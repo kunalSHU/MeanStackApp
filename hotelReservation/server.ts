@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var api = require('./server/routes/api');
+var api = require('./server/routes/api.ts');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'dist')));
