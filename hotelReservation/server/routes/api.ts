@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
 var url = "mongodb://kunal:kunal5@ds227322.mlab.com:27322/usersinfo";
 //var assert = require('assert');
-
+//var db = MongoClient(url, ['users']);
 MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
     //assert.equal(null, err);
     if(err){
@@ -14,7 +15,6 @@ MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
     
         router.get('/', function(req,res,next){
             console.log('api works');
-            var db = MongoClient.db('usersinfo');
             db.collection('users').findOne({}, function(err, result){
                 if(err){
                     res.send(err);
