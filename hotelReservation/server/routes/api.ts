@@ -1,5 +1,39 @@
 var express = require('express');
 var router = express.Router();
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://kunal:kunal5@ds227322.mlab.com:27322/usersinfo";
+
+MongoClient.connect(url,{ useNewUrlParser: true }, function(err, database) {
+    console.log("Connected successfully to server");  
+    if(err){
+        console.log('This is the error ', err);
+    }
+    else{
+        console.log('connected successfully'); 
+    
+        router.get('/', function(req,res,next){
+            console.log('api works');
+            var db = MongoClient(url, ['users']);
+            db.collection("users").findOne({}, function(err, result){
+                if(err){
+                    res.send(err);
+                }
+                else{
+                    res.json(result);
+                }
+                db.close();
+            });
+        });
+    }
+});
+module.exports = router;
+
+
+
+
+
+/*var express = require('express');
+var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 //const assert = require('assert');
 
@@ -7,13 +41,18 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://kunal:kunal5@ds227322.mlab.com:27322/usersinfo';
 
 // Use connect method to connect to the server
-MongoClient.connect(url, function(err, database) {
- // assert.equal(null, err);
-  console.log("Connected successfully to server");
-  const db = database.db('usersinfo');
-  findDocuments(db, function(){
-      console.log('Finding documents successful');
-  });
+MongoClient.connect(url,{ useNewUrlParser: true }, function(err, database) {
+    console.log("Connected successfully to server");  
+    if(err){
+        console.log('This is the error ', err);
+    }
+    else{
+        const db = database.db('usersinfo');
+        //assert.equal(null, err);
+        findDocuments(db, function(){
+            console.log('Finding documents successful');
+        }); 
+    }
 });
 
 const findDocuments = function(db, callback) {
@@ -26,36 +65,4 @@ const findDocuments = function(db, callback) {
       console.log(docs)
       callback(docs);
     });
-  }
-/*var express = require('express');
-var router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://kunal:kunal5@ds227322.mlab.com:27322/usersinfo";
-var db = database.db('usersinfo');
-
-router.get('/', function(req,res,next){
-    console.log('api works');
-    db.collection("users").findOne({}, function(err, result){
-        if(err){
-            res.send(err);
-        }
-        else{
-            res.json(result);
-        }
-        db.close();
-    });
-
-    //res.send(db.getCollectionNames());
-    /*db.users.find(function(err, users){
-    if(err){
-        res.send(err);     
-    }
-    else{
-        console.log("in here");
-        res.json(users);
-        res.send('in here');
-    }
-    });
-});*/
-
-module.exports = router;
+  }*/
