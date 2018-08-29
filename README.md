@@ -7,7 +7,7 @@ When you're done, you can delete the content in this README and update the file 
 ---
 
 ## Edit a file
-
+## To run the server use npm run dev, To run the front end use ng serve -o
 You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
 1. Click **Source** on the left side.
