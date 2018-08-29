@@ -8,6 +8,7 @@ When you're done, you can delete the content in this README and update the file 
 
 ## Edit a file
 ## To run the server use npm run dev, To run the front end use ng serve -o
+## To create a service use ng g s services/task command: Services will be used to makes REST calls to the db, make it inside src
 You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
 1. Click **Source** on the left side.
