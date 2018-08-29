@@ -2,26 +2,27 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://kunal:kunal5@ds227322.mlab.com:27322/usersinfo";
+//var assert = require('assert');
 
-MongoClient.connect(url,{ useNewUrlParser: true }, function(err, database) {
-    console.log("Connected successfully to server");  
+MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
+    //assert.equal(null, err);
     if(err){
-        console.log('This is the error ', err);
+        console.log(err);
     }
     else{
-        console.log('connected successfully'); 
+        console.log('Connected to db'); 
     
         router.get('/', function(req,res,next){
             console.log('api works');
-            var db = MongoClient(url, ['users']);
-            db.collection("users").findOne({}, function(err, result){
+            var db = MongoClient.db('usersinfo');
+            db.collection('users').findOne({}, function(err, result){
                 if(err){
                     res.send(err);
                 }
                 else{
                     res.json(result);
+                    db.close();
                 }
-                db.close();
             });
         });
     }
