@@ -4,5 +4,20 @@
 }
 
 .example-container > * {
-  width: 100%;
+  width: 20%;
+  position: relative;
+  top: -10px;
+  left: 760px;
+}
+
+#angularLogo{
+  position: relative;
+  top: -100px;
+  left: -20px;
+}
+
+.example-container .button-row{
+  position: relative;
+  top: 20px;
+  left: 850px;
 }
