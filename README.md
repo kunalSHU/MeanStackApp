@@ -9,6 +9,14 @@ When you're done, you can delete the content in this README and update the file 
 ## Edit a file
 ## To run the server use npm run dev, To run the front end use ng serve -o
 ## To create a service use ng g s services/task command: Services will be used to makes REST calls to the db, make it inside src
+## If the repo needs to be cloned again, run the following commands:
+	1. npm install --save-dev @angular-devkit/build-angular
+	2. ng build, but make sure to install Angular CLI first
+	3. Install ejs in MeanStackApp by npm i ejs
+	4. Then ng serve -o
+	5. Will need to install many other modules to use mat-form-field
+	6. Refer to StackBlitz for proper GUI
+
 You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
 1. Click **Source** on the left side.
