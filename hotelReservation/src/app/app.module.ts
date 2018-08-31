@@ -2,6 +2,7 @@ import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import {HttpClientModule} from '@angular/common/http';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -16,7 +17,6 @@ import {
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
-  MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
@@ -40,7 +40,7 @@ import {
   MatTreeModule
 } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatIconModule} from '@angular/material/icon';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
@@ -94,6 +94,7 @@ export class DemoMaterialModule {}
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     AngularSvgIconModule,
     ReactiveFormsModule,DemoMaterialModule
   ],
