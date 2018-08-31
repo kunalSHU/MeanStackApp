@@ -15,7 +15,8 @@
   
     <mat-form-field>
       <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide = !hide" svgIcon="thumbs-up">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  
     </mat-form-field>
 
     <mat-form-field>
@@ -28,5 +29,6 @@
       <button mat-stroked-button color="primary">Register</button>
     </div>
 </div>
-  
+
+
 <router-outlet></router-outlet>

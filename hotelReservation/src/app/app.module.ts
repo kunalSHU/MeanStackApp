@@ -37,9 +37,10 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
-  MatFormFieldModule
+  MatTreeModule
 } from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
@@ -83,6 +84,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    MatFormFieldModule
   ]
 })
 export class DemoMaterialModule {}
