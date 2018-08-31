@@ -2,9 +2,13 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body { 
-  font-family: Roboto, Arial, sans-serif;
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 .version-info {
   font-size: 8pt;
   float: right;
+}
+html, body {
+  margin:0;
+  padding:0;
 }

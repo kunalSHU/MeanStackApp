@@ -1,6 +1,6 @@
-#angularLogo{
+.angularLogo{
   position: relative;
-  top: 400px;
+  top: -1138px;
   left: 50%;
 }
 
@@ -12,7 +12,7 @@
 .example-card {
   height: 450px;
   width: 275px;
-  top: 50%;
+  top: 51%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -53,10 +53,29 @@
   background-size: cover;
   left: 150px;
 }
+.welcomeText {
+  background-color: #8958FA;
+  height: 247px;
+  width: 100%;
+  font: 400 24px/32px Roboto, "Helvetica Neue", sans-serif;
+}
+
 .welcomeText .header{
-  position: relative;
-  top: 1px;
-  background-color: #00A2FF;
-  border: 5px solid red;
-  height: 225px;
+  position: absolute;
+  left: 725px;
+  top: 80px;
+  color: white;
+  font-weight: 300;  
+}
+h1 {
+  margin:0;
+}
+.tropicalMainImg{
+  left: 725px;
+  top: -1000px;
+  height: 900px;
+  line-height: 0;
+  width: 100%;
+  margin:0;
+  padding:0;
 }
