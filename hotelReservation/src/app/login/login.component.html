@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <div class="welcomeText" style="text-align:center">
+    <h1 class="header">
+      Hotel Reservation Login
+    </h1>
+  </div>
+  <div class="tropicalMain">
+    <img class="tropicalMainImg" src="../../assets/images/tropicalMain.jpg">      
+  </div>
+  <div style="text-align:left" class="angularLogo">
+      <img width="30" class="angularIcon" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">    
+  </div>
+</div>
+<mat-card class="example-card" id="example-card">
+  <img mat-card-avatar width="30" class="userImg" src="../../assets/images/user.png">  
+  <mat-card-content>        
+    <mat-form-field class="userName">
+      <input matInput placeholder="Username">
+    </mat-form-field>
+  
+    <mat-form-field class="password">
+      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="login-button">
+      <button mat-flat-button color="warn">Login</button>
+    </div>  
+    <div class="register-button" (click)="register()" id="register-button">    
+      <button mat-stroked-button>Register</button>
+    </div>
+    <div class="forgotPassword-button">
+      <a mat-button routerLink=".">Forgot your Password?</a>
+    </div>
+  </mat-card-actions>
+</mat-card>

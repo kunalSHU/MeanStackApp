@@ -3,6 +3,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -45,7 +46,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -87,7 +88,7 @@ import { LoginComponent } from '../login/login.component';
     MatTreeModule,
     MatFormFieldModule
   ],
-  declarations: [LoginComponent]
+  declarations: []
 })
 export class DemoMaterialModule {}
 
@@ -95,13 +96,14 @@ export class DemoMaterialModule {}
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     AngularSvgIconModule,
     ReactiveFormsModule,DemoMaterialModule
   ],
   entryComponents: [AppComponent],
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   bootstrap: [AppComponent],  providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

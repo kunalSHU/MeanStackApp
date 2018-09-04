@@ -16,7 +16,7 @@ export class AppComponent {
         sanitizer.bypassSecurityTrustResourceUrl('assets/images/thumbup-icon.svg'));
   }
   register(){
-    $("#example-card").hide();
+    //$("#example-card").hide();
     console.log("The click worked");
   }
 }
