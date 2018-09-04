@@ -4,6 +4,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import {NgProgressModule} from '@ngx-progressbar/core';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -47,6 +48,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -100,10 +102,10 @@ export class DemoMaterialModule {}
     FormsModule,
     HttpClientModule,
     AngularSvgIconModule,
-    ReactiveFormsModule,DemoMaterialModule
+    ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
   entryComponents: [AppComponent],
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent,RegisterComponent],
   bootstrap: [AppComponent],  providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
