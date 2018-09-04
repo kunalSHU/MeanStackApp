@@ -23,26 +23,31 @@
   background-position: center;
 }
 .example-card .userName{
-  width: 200px;
+  width: 220px;
   position: absolute;
   top: 95px;
-  left: 100px;
+  left: 80px;
 }
 .example-card .password{
-  width: 200px;  
+  width: 220px;  
   position: absolute;
   top: 180px;
-  left: 100px;
+  left: 80px;
 }
 .example-card .login-button{
   position: absolute;
-  top: 280px;
+  top: 270px;
   left: 150px;
 }
 .example-card .register-button{
   position: absolute;
-  top: 360px;
+  top: 330px;
   left: 150px;
+}
+.example-card .forgotPassword-button{
+  position: absolute;
+  top: 405px;
+  left: 5px;
 }
 .userImg{
   width: 100px;
@@ -51,7 +56,7 @@
   position: absolute;
   top: -50px;
   background-size: cover;
-  left: 150px;
+  left: 145px;
 }
 .welcomeText {
   background-color: #8958FA;

@@ -17,6 +17,7 @@ When you're done, you can delete the content in this README and update the file 
 	4. Then ng serve -o
 	5. Will need to install many other modules to use mat-form-field
 	6. Refer to StackBlitz for proper GUI
+	7. Also install bootstrap npm install --save bootstrap
 
 You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 

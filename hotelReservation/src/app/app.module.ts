@@ -45,6 +45,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { LoginComponent } from '../login/login.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -85,7 +86,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     MatTooltipModule,
     MatTreeModule,
     MatFormFieldModule
-  ]
+  ],
+  declarations: [LoginComponent]
 })
 export class DemoMaterialModule {}
 

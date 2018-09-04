@@ -9,11 +9,14 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class AppComponent {
   title = 'myApp';
   hide = true;
-
   //all icons in the app will go here
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
         'thumbs-up',
         sanitizer.bypassSecurityTrustResourceUrl('assets/images/thumbup-icon.svg'));
+  }
+  register(){
+    $("#example-card").hide();
+    console.log("The click worked");
   }
 }
