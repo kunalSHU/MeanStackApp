@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {NavigationStart,
+  NavigationEnd,
+  NavigationError,
+  NavigationCancel,
+  Event, Router} from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,15 +13,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'myApp';
-  hide = true;
+  loading = true;
   //all icons in the app will go here
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-        'thumbs-up',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/images/thumbup-icon.svg'));
-  }
-  register(){
-    //$("#example-card").hide();
-    console.log("The click worked");
-  }
 }
