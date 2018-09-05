@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppModule} from '../../app/app.module';
 import {NgProgress} from '@ngx-progressbar/core';
-import {NavigationStart,
-  NavigationEnd,
-  NavigationError,
-  NavigationCancel,
-  Event, Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
