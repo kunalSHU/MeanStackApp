@@ -12,32 +12,20 @@ import {NavigationStart,
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loading = false;
+ /* loading = true;
   constructor(private router: Router) { 
     this.router.events.subscribe((event:Event) => {
-      switch(true){
-        case event instanceof NavigationStart: {
-          this.loading = true;
-          break;
-        }
-        case event instanceof NavigationEnd:
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError: {
-          this.loading = false;
-          break;
-        }
-        default: {
-          break;
-        }
+      if(event instanceof NavigationStart){
+        this.loading = true;
       }
-
+      if(event instanceof NavigationEnd){
+        this.loading = false;
+      }
     });
-  }
+  }*/
   ngOnInit() {
   }
   register(){
     //add progress bar for register page here
-    
-    console.log(this.loading);
   }
 }

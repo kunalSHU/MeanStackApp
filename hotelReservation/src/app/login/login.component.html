@@ -1,4 +1,3 @@
-<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 <div class="wrapper">
   <div class="welcomeText" style="text-align:center">
     <h1 class="header">
@@ -29,11 +28,10 @@
       <button mat-flat-button color="warn">Login</button>
     </div>  
     <div class="register-button" id="register-button">    
-      <a mat-stroked-button routerLink="/register" (click)="register()" routerLinkActive="active">Register</a>
+      <a mat-stroked-button routerLink="/register" routerLinkActive="active">Register</a>
     </div>
     <div class="forgotPassword-button">
       <a mat-button routerLink=".">Forgot your Password?</a>
     </div>
   </mat-card-actions>
 </mat-card>
-
