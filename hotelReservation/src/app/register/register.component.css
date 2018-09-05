@@ -1,11 +1,10 @@
+  /*custom font*/
+  @import url(https://fonts.googleapis.com/css?family=Montserrat);
 .angularLogo{
     position: relative;
     top: -1138px;
     left: 50%;
   }
-  /*custom font*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
 /*basic reset*/
 * {margin: 0; padding: 0;}
 
@@ -126,7 +125,7 @@ body {
 	background: white;
 	position: absolute;
 	left: -42.5%;
-	top: 9px;
+  top: 9px;
 }
 #progressbar li:first-child:after {
 	/*connector not needed before the first step*/
