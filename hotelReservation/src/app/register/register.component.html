@@ -23,7 +23,7 @@
   <fieldset id="f1">
     <h2 class="fs-title">Create your account</h2>
     <h3 class="fs-subtitle">This is step 1</h3>
-    <mat-form-field class="userName">
+    <mat-form-field class="email">
       <input matInput placeholder="Email">
     </mat-form-field>
     <mat-form-field class="userName">
@@ -31,7 +31,8 @@
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <mat-form-field class="userName">
-      <input matInput placeholder="Confirm Password">
+        <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <mat-chip-list>
       <mat-chip selected (click)="firstnextCall()" [color]="availableColors[1].color">
@@ -45,14 +46,14 @@
     
     <table>
       <tr>
-        <td>
-          <mat-form-field class="userName">
-            <input matInput placeholder="First Name">
+        <td id="col1">
+          <mat-form-field class="fName">
+            <input matInput placeholder="First Name" class="iFname">
           </mat-form-field>
         </td>
         
         <td>
-          <mat-form-field class="userName">
+          <mat-form-field class="lName">
             <input matInput placeholder="Last Name">
           </mat-form-field>
         </td>   
@@ -105,8 +106,15 @@
       <mat-chip selected (click)="secondnextCall()" [color]="availableColors[1].color">
         <div class="firstNext">{{availableColors[1].name}}</div>
       </mat-chip>
-    </mat-chip-list> 
+    </mat-chip-list>
+    <mat-chip-list>
+        <mat-chip selected (click)="firstprevCall()" [color]="availableColors[1].color">
+          <div class="firstPrev">Previous</div>
+        </mat-chip>
+      </mat-chip-list>   
   </fieldset>
+
+
   <fieldset id="f3">
     <h2 class="fs-title">Social Profiles</h2>
     <h3 class="fs-subtitle">Your presence on the social network</h3>

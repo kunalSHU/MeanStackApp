@@ -43,4 +43,12 @@ export class RegisterComponent implements OnInit {
   secondnextCall(){
 
   }
+  firstprevCall(){
+    //Using JQuery for the progress bar 
+    $("#msform").children("#f2").hide();
+    this.current_fs = $(this).parent();
+    this.next_fs = $(this).parent().prev();
+    $("#progressbar li").eq(1).removeClass("active");
+    $("#msform").children("#f1").show();
+  }
 }
