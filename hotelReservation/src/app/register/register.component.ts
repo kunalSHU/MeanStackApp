@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
+import {MatSnackBar} from '@angular/material';
 
 export interface ChipColor {
   name: string;
@@ -12,6 +13,7 @@ export interface ChipColor {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   hide = true;
   //storing the chip buttons to be used in a list
   availableColors: ChipColor[] = [
@@ -28,7 +30,12 @@ export class RegisterComponent implements OnInit {
   left:any;
   opacity:any;
   scale:any;
-  constructor() { }
+  constructor(public snackBar: MatSnackBar) { }
+
+  openSnackBar(){
+    this.snackBar.openFromComponent(SubmitComponent, {duration: 500,
+    });
+  }
 
   ngOnInit() {
   }
@@ -41,7 +48,11 @@ export class RegisterComponent implements OnInit {
     $("#msform").children("#f2").show();
   }
   secondnextCall(){
-
+    $("#msform").children("#f2").hide();
+    this.current_fs = $(this).parent();
+    this.next_fs = $(this).parent().next();
+    $("#progressbar li").eq(2).addClass("active");
+    $("#msform").children("#f3").show();
   }
   firstprevCall(){
     //Using JQuery for the progress bar 
@@ -52,3 +63,13 @@ export class RegisterComponent implements OnInit {
     $("#msform").children("#f1").show();
   }
 }
+
+
+@Component({
+  selector: 'snack-bar-component-example-snack',
+  template: `<span class="example-pizza-party">
+  Pizza party!!! 🍕
+</span>`,
+  styles: []
+})
+export class SubmitComponent{}
