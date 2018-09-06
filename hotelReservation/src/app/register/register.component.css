@@ -31,7 +31,7 @@ body {
   width: 400px;
 }
 #msform fieldset {
-	background: white;
+	background: #CDEB62;
 	border: 0 none;
 	border-radius: 3px;
 	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
@@ -51,27 +51,20 @@ body {
 }
 /*inputs*/
 #msform input, #msform textarea {
-	padding: 15px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	margin-bottom: 10px;
-	width: 100%;
-	box-sizing: border-box;
-	font-family: montserrat;
+	width: 200%;
 	color: #2C3E50;
 	font-size: 13px;
+	top: 200px;
 }
-/*buttons*/
-#msform .action-button {
-	width: 100px;
-	background: #27AE60;
-	font-weight: bold;
-	color: white;
-	border: 0 none;
-	border-radius: 1px;
-	cursor: pointer;
-	padding: 10px 5px;
-	margin: 10px 5px;
+
+mat-chip{
+	width: 200px;
+	left: 20%;
+	top: 100px;
+}
+#msform #f1 mat-chip-list mat-chip .firstNext {
+	position: relative;
+	left: 44%;
 }
 #msform .action-button:hover, #msform .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
