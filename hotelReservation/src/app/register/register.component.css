@@ -30,17 +30,32 @@ body {
   height: 100px;
   width: 400px;
 }
-#msform fieldset {
-	background: #CDEB62;
+#msform #f1 {
+	background: white;
 	border: 0 none;
 	border-radius: 3px;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.7);
 	padding: 20px 30px;
 	box-sizing: border-box;
   width: 100%;
   height: 500px;
   margin: 0 10%;
   left: -10%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+#msform #f2 {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.7);
+	padding: 20px 30px;
+	box-sizing: border-box;
+  width: 100%;
+  height: 550px;
+  margin: 0 10%;
+  left: -33%;
 	
 	/*stacking fieldsets above each other*/
 	position: relative;
@@ -57,12 +72,35 @@ body {
 	top: 200px;
 }
 
-mat-chip{
+#msform #f1 mat-chip-list mat-chip{
 	width: 200px;
 	left: 20%;
-	top: 100px;
+	top: 50px;
 }
-#msform #f1 mat-chip-list mat-chip .firstNext {
+#msform #f2 mat-chip-list mat-chip{
+	width: 200px;
+	left: 30%;
+	top: 200px;
+}
+#msform #f1 mat-form-field{
+	margin: 10px;
+	top: 0px;
+	left: 0%;
+}
+#msform #f2 mat-form-field{
+	margin: 15px;
+	top: 0px;
+	left: 0%;
+}
+
+#msform #f2 mat-accordion mat-expansion-panel{
+	width: 475px;
+	position: absolute;
+	left: 7%;
+	top: 55%;
+}
+
+#msform #f1 mat-chip-list mat-chip .firstNext,  #msform #f2 mat-chip-list mat-chip .firstNext{
 	position: relative;
 	left: 44%;
 }

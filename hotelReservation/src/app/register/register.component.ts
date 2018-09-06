@@ -12,7 +12,7 @@ export interface ChipColor {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  hide = true;
   //storing the chip buttons to be used in a list
   availableColors: ChipColor[] = [
     {name: 'none', color: undefined},

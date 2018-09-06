@@ -24,13 +24,14 @@
     <h2 class="fs-title">Create your account</h2>
     <h3 class="fs-subtitle">This is step 1</h3>
     <mat-form-field class="userName">
-      <input matInput placeholder="First Name">
-    </mat-form-field>
-    <mat-form-field class="userName">
-      <input matInput placeholder="Last Name">
-    </mat-form-field>
-    <mat-form-field class="userName">
       <input matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="userName">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="userName">
+      <input matInput placeholder="Confirm Password">
     </mat-form-field>
     <mat-chip-list>
       <mat-chip selected (click)="firstnextCall()" [color]="availableColors[1].color">
@@ -41,12 +42,70 @@
   <fieldset id="f2">
     <h2 class="fs-title">Personal Details</h2>
     <h3 class="fs-subtitle">We will never sell it</h3>
-    <input type="text" name="fname" placeholder="First Name" />
-    <input type="text" name="lname" placeholder="Last Name" />
-    <input type="text" name="phone" placeholder="Phone" />
-    <textarea name="address" placeholder="Address"></textarea>
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" name="next" (click)="secondnextCall()" class="next action-button" value="Next" />
+    
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="userName">
+            <input matInput placeholder="First Name">
+          </mat-form-field>
+        </td>
+        
+        <td>
+          <mat-form-field class="userName">
+            <input matInput placeholder="Last Name">
+          </mat-form-field>
+        </td>   
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <span matPrefix>+1 &nbsp;</span>
+            <input type="tel" matInput placeholder="Telephone">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Address
+                </mat-panel-title>
+                <mat-panel-description>
+                  Info
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              
+              <mat-form-field>
+                  <input matInput placeholder="City, Country">
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput placeholder="Postal Code">
+              </mat-form-field>
+
+
+            </mat-expansion-panel>      
+          </mat-accordion>
+        </td>
+      </tr>
+    </table>
+
+    <mat-chip-list>
+      <mat-chip selected (click)="secondnextCall()" [color]="availableColors[1].color">
+        <div class="firstNext">{{availableColors[1].name}}</div>
+      </mat-chip>
+    </mat-chip-list> 
   </fieldset>
   <fieldset id="f3">
     <h2 class="fs-title">Social Profiles</h2>

@@ -7,6 +7,7 @@ import {NgProgress} from '@ngx-progressbar/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   ngOnInit() {
   }
   register(){
