@@ -27,15 +27,16 @@
       <input matInput placeholder="Email" [(ngModel)]="email" name="emailN" [formControl]="emailFormControl" required>
     </mat-form-field>
     <mat-form-field class="userName">
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="p">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [(ngModel)]="password" name="p">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <mat-form-field class="userName">
-        <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'">
+        <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'" [(ngModel)]="confirmpassword" [formControl]="confirmpasswordFormControl">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <mat-chip-list>
-      <mat-chip [selected]="isSelected" (click)="test(emailFormControl.hasError('email'), emailFormControl.hasError('required'))" [color]="availableColors[1].color">
+      <mat-chip [selected]="isSelected" (click)="test(emailFormControl.hasError('email'), 
+      emailFormControl.hasError('required'), passwordFormControl.hasError('required'), confirmpasswordFormControl.hasError('required'))" [color]="availableColors[1].color">
         <div class="firstNext">{{availableColors[1].name}}</div>
       </mat-chip>
     </mat-chip-list>  

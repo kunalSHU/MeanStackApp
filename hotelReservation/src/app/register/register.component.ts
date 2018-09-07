@@ -26,11 +26,20 @@ export interface ChipColor {
 export class RegisterComponent implements OnInit {
 
   hide = true;
-  isSelected = false;
+  isSelected = false;;
 
+  //For the email text field
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  confirmpasswordFormControl = new FormControl('', [
+    Validators.required,
   ]);
 
   matcher = new MyErrorStateMatcher();
@@ -53,6 +62,7 @@ export class RegisterComponent implements OnInit {
   scale:any;
   AccountSetup: NgForm;
   password: any;
+  confirmpassword: any;
   //store user inputs here and then pass them to db
   account = new accountSetup();
   personal = new personalDetails();
@@ -69,17 +79,28 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     //console.log(this.password.valid);
   }
-  test(email, required){
+  test(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     console.log(email);
-    console.log(required);
-    if((!email && required) || (email && !required) || (email && required)){
+    console.log(requiredEmail);
+    console.log(requiredPassword);
+    console.log(requiredConfirmpassword);
+    
+    if(this.password != this.confirmpassword){
+      this.isSelected = false;
+    }
+    else if(!(!email && !requiredEmail && !requiredPassword && !requiredConfirmpassword)){
       this.isSelected = false;
     }
     else if(this.isSelected){
       this.firstnextCall();
     }
-    else if(!email && !required){
-      this.isSelected = true;
+    else if(!email && !requiredEmail && !requiredPassword && !requiredConfirmpassword){
+      if(this.password == this.confirmpassword){
+        this.isSelected = true;
+      }
+      else{
+        alert("password mismatch");
+      } 
     }
   }
     
