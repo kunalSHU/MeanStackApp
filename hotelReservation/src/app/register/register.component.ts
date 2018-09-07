@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
     {name: 'Next', color: 'primary'},
     {name: 'Accent', color: 'accent'},
     {name: 'Warn', color: 'warn'}
+
   ];
 
   animating: any;
@@ -32,8 +33,10 @@ export class RegisterComponent implements OnInit {
   scale:any;
   constructor(public snackBar: MatSnackBar) { }
 
+  //this is where we take user data and make an ajax request to the db
+  //to register the user 
   openSnackBar(){
-    this.snackBar.openFromComponent(SubmitComponent, {duration: 500,
+    this.snackBar.openFromComponent(SubmitComponent, {duration: 800,
     });
   }
 
@@ -62,13 +65,21 @@ export class RegisterComponent implements OnInit {
     $("#progressbar li").eq(1).removeClass("active");
     $("#msform").children("#f1").show();
   }
+  secondprevCall(){
+    //Using JQuery for the progress bar 
+    $("#msform").children("#f3").hide();
+    this.current_fs = $(this).parent();
+    this.next_fs = $(this).parent().prev();
+    $("#progressbar li").eq(2).removeClass("active");
+    $("#msform").children("#f2").show();
+  }
 }
 
 
 @Component({
   selector: 'snack-bar-component-example-snack',
   template: `<span class="example-pizza-party">
-  Pizza party!!! 🍕
+  You have been registered!
 </span>`,
   styles: []
 })

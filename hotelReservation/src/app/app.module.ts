@@ -48,7 +48,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent, SubmitComponent } from './register/register.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -104,8 +104,8 @@ export class DemoMaterialModule {}
     AngularSvgIconModule,
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
-  entryComponents: [AppComponent],
-  declarations: [AppComponent, LoginComponent,RegisterComponent],
+  entryComponents: [AppComponent, SubmitComponent],
+  declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent],
   bootstrap: [AppComponent],  providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

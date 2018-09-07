@@ -111,15 +111,20 @@
         <mat-chip selected (click)="firstprevCall()" [color]="availableColors[1].color">
           <div class="firstPrev">Previous</div>
         </mat-chip>
-      </mat-chip-list>   
+    </mat-chip-list>   
   </fieldset>
 
 
   <fieldset id="f3">
     <h2 class="fs-title">Result</h2>
     <h3 class="fs-subtitle">Here is what you entered</h3>
-    <button mat-button (click)="openSnackBar()" aria-label="Show an example snack-bar">
-        Pizza party
-      </button>
+    <mat-chip-list>
+      <mat-chip class="registerChip" selected (click)="openSnackBar()" [color]="availableColors[1].color">
+        <div class="register">Register</div>
+      </mat-chip>
+      <mat-chip selected class="prevChip" (click)="secondprevCall()" [color]="availableColors[1].color">
+        <div class="secondPrev">Previous</div>
+      </mat-chip>
+    </mat-chip-list>  
   </fieldset>
 </form>

@@ -75,6 +75,28 @@ body {
 	/*stacking fieldsets above each other*/
 	position: relative;
 }
+
+#msform #f3 mat-chip-list .registerChip{
+	position: absolute;
+	top: 83%;
+	left: 25%;
+	width: 200px;
+}
+#msform #f3 mat-chip-list .prevChip{
+	position: absolute;
+	top: 89%;
+	left: 25%;
+	width: 200px;
+}
+#msform #f3 mat-chip-list .registerChip .register{
+	position: relative;
+	left: 38%;
+}
+#msform #f3 mat-chip-list .prevChip .secondPrev{
+	position: relative;
+	left: 38%;
+}
+
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
 	display: none;
