@@ -87,6 +87,7 @@ export class RegisterComponent implements OnInit {
     
     if(this.password != this.confirmpassword){
       this.isSelected = false;
+      alert("password mismatch");
     }
     else if(!(!email && !requiredEmail && !requiredPassword && !requiredConfirmpassword)){
       this.isSelected = false;

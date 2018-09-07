@@ -24,11 +24,18 @@
     <h2 class="fs-title">Create your account</h2>
     <h3 class="fs-subtitle">This is step 1</h3>
     <mat-form-field class="email">
-      <input matInput placeholder="Email" [(ngModel)]="email" name="emailN" [formControl]="emailFormControl" required>
+      <input matInput placeholder="Email" [(ngModel)]="email" name="emailN" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required>
+      <mat-error class="example-full-width" *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
+
     <mat-form-field class="userName">
         <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [(ngModel)]="password" name="p">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error class="example-full-width" *ngIf="passwordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
     </mat-form-field>
     <mat-form-field class="userName">
         <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'" [(ngModel)]="confirmpassword" [formControl]="confirmpasswordFormControl">
