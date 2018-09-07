@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material';
+import {accountSetup, personalDetails} from './register.model';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 export interface ChipColor {
   name: string;
@@ -15,6 +26,15 @@ export interface ChipColor {
 export class RegisterComponent implements OnInit {
 
   hide = true;
+  isSelected = false;
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  matcher = new MyErrorStateMatcher();
+
   //storing the chip buttons to be used in a list
   availableColors: ChipColor[] = [
     {name: 'none', color: undefined},
@@ -31,6 +51,12 @@ export class RegisterComponent implements OnInit {
   left:any;
   opacity:any;
   scale:any;
+  AccountSetup: NgForm;
+  password: any;
+  //store user inputs here and then pass them to db
+  account = new accountSetup();
+  personal = new personalDetails();
+
   constructor(public snackBar: MatSnackBar) { }
 
   //this is where we take user data and make an ajax request to the db
@@ -41,7 +67,23 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    //console.log(this.password.valid);
   }
+  test(email, required){
+    console.log(email);
+    console.log(required);
+    if((!email && required) || (email && !required) || (email && required)){
+      this.isSelected = false;
+    }
+    else if(this.isSelected){
+      this.firstnextCall();
+    }
+    else if(!email && !required){
+      this.isSelected = true;
+    }
+  }
+    
+
   firstnextCall(){
     //Using JQuery for the progress bar 
     $("#msform").children("#f1").hide();

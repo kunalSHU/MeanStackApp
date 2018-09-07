@@ -12,7 +12,7 @@
   </div>
 </div>
 <!-- multistep form -->
-<form id="msform">
+<form id="msform" #userRegistration="ngForm">
   <!-- progressbar -->
   <ul id="progressbar">
     <li class="active">Account Setup</li>
@@ -24,10 +24,10 @@
     <h2 class="fs-title">Create your account</h2>
     <h3 class="fs-subtitle">This is step 1</h3>
     <mat-form-field class="email">
-      <input matInput placeholder="Email">
+      <input matInput placeholder="Email" [(ngModel)]="email" name="emailN" [formControl]="emailFormControl" required>
     </mat-form-field>
     <mat-form-field class="userName">
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="p">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <mat-form-field class="userName">
@@ -35,7 +35,7 @@
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <mat-chip-list>
-      <mat-chip selected (click)="firstnextCall()" [color]="availableColors[1].color">
+      <mat-chip [selected]="isSelected" (click)="test(emailFormControl.hasError('email'), emailFormControl.hasError('required'))" [color]="availableColors[1].color">
         <div class="firstNext">{{availableColors[1].name}}</div>
       </mat-chip>
     </mat-chip-list>  
@@ -89,7 +89,7 @@
               </mat-expansion-panel-header>
               
               <mat-form-field>
-                  <input matInput placeholder="City, Country">
+                  <input matInput placeholder="Street">
               </mat-form-field>
               <mat-form-field>
                   <input matInput placeholder="Postal Code">
@@ -125,6 +125,8 @@
       <mat-chip selected class="prevChip" (click)="secondprevCall()" [color]="availableColors[1].color">
         <div class="secondPrev">Previous</div>
       </mat-chip>
-    </mat-chip-list>  
+    </mat-chip-list> 
+    <p>{{email}}</p> 
   </fieldset>
 </form>
+
