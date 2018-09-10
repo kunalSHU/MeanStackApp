@@ -157,16 +157,16 @@ emailPatternValidator(pattern: any): ValidatorFn {
       console.log(streetrequired);
       console.log(coderequired);
       console.log(firstNamePattern==null);
-      if(!firstNamerequired && (firstNamePattern!=null) && !lastNamerequired && (lastNamePattern!=null) &&
-      !dateOfBirthrequired || !telephonerequired && (telephonePattern!=null) && !streetrequired && !coderequired){
+      if(!(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
+      !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired)){
         console.log("IN HERE");
         this.isSelectedStep1 = false;
       }
       else if(this.isSelectedStep2){
         this.secondnextCall();
       }
-      else if(!(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
-        !dateOfBirthrequired || !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired)){
+      else if(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
+        !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired){
           console.log("IN HERE 2S");
           this.isSelectedStep2 = true;
       }
