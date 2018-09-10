@@ -26,11 +26,16 @@ export interface ChipColor {
 export class RegisterComponent implements OnInit {
 
   hide = true;
-  isSelected = false;
+  isSelectedStep1 = false;
+  isSelectedStep2 = false;
   private control:AbstractControl;
-  emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
 
-  //For the email text field
+  //Regex for patterns
+  emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
+  namePattern = "^[a-zA-Z]{2,13}$";
+  numberPattern = "^[0-9]{10,15}$";
+
+  //Required Validators
   emailFormControl = new FormControl('', [
     Validators.required,
   ]);
@@ -87,9 +92,7 @@ export class RegisterComponent implements OnInit {
   personal = new personalDetails();
 
   
-  //custom validator test
-
-
+//custom validator test
 emailPatternValidator(pattern: any): ValidatorFn {
   return (control: AbstractControl): { [key: string]: boolean } | null => {
       console.log('in the validator');
@@ -113,29 +116,60 @@ emailPatternValidator(pattern: any): ValidatorFn {
     console.log('hellot');
     console.log(this.emailFormControl.errors);
   }
-  test(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
+  validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     console.log(email);
     console.log(requiredEmail);
     console.log(requiredPassword);
     console.log(requiredConfirmpassword);
     
     if(this.passwordFormControl.value != this.confirmpasswordFormControl.value){
-      this.isSelected = false;
+      this.isSelectedStep1 = false;
     }
     else if(!(!email && !requiredEmail && !requiredPassword && !requiredConfirmpassword)){
-      this.isSelected = false;
+      this.isSelectedStep1 = false;
     }
-    else if(this.isSelected){
+    else if(this.isSelectedStep1){
       this.firstnextCall();
     }
     else if(!email && !requiredEmail && !requiredPassword && !requiredConfirmpassword){
       if(this.password == this.confirmpassword){
-        this.isSelected = true;
+        this.isSelectedStep1 = true;
       }
       else{
         //alert("password mismatch");
       } 
     }
+  }
+
+  validateSecondnext(firstNamerequired: boolean, firstNamePattern: boolean,
+    lastNamerequired: boolean, lastNamePattern: boolean,
+    dateOfBirthrequired: boolean,telephonerequired: boolean, 
+    telephonePattern: boolean,streetrequired:boolean, 
+    coderequired: boolean){
+
+      console.log(firstNamerequired);
+      console.log(firstNamePattern);
+      console.log(lastNamerequired);
+      console.log(lastNamePattern);
+      console.log(dateOfBirthrequired);
+      console.log(telephonerequired);
+      console.log(telephonePattern);
+      console.log(streetrequired);
+      console.log(coderequired);
+      console.log(firstNamePattern==null);
+      if(!firstNamerequired && (firstNamePattern!=null) && !lastNamerequired && (lastNamePattern!=null) &&
+      !dateOfBirthrequired || !telephonerequired && (telephonePattern!=null) && !streetrequired && !coderequired){
+        console.log("IN HERE");
+        this.isSelectedStep1 = false;
+      }
+      else if(this.isSelectedStep2){
+        this.secondnextCall();
+      }
+      else if(!(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
+        !dateOfBirthrequired || !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired)){
+          console.log("IN HERE 2S");
+          this.isSelectedStep2 = true;
+      }
   }
     
   firstnextCall(){

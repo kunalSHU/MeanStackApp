@@ -48,7 +48,7 @@
       Password and Confirm Password do not<strong> match</strong>
     </mat-error>
     <mat-chip-list>
-      <mat-chip [selected]="isSelected" (click)="test(emailFormControl.errors?.pattern, 
+      <mat-chip [selected]="isSelectedStep1" (click)="validateFirstnext(emailFormControl.errors?.pattern, 
       emailFormControl.hasError('required'), passwordFormControl.hasError('required'), confirmpasswordFormControl.hasError('required'))" [color]="availableColors[1].color">
         <div class="firstNext">{{availableColors[1].name}}</div>
       </mat-chip>
@@ -62,13 +62,25 @@
       <tr>
         <td id="col1">
           <mat-form-field class="fName">
-            <input matInput placeholder="First Name" class="iFname" name="firstName" [formControl]="firstNameFormControl">
+            <input matInput placeholder="First Name" class="iFname" name="firstName" [formControl]="firstNameFormControl" [pattern]="namePattern" required>
+            <mat-error class="example-full-width" *ngIf="firstNameFormControl.errors?.pattern">
+              Invalid <strong> first name</strong>
+            </mat-error>
+            <mat-error class="example-full-width" *ngIf="firstNameFormControl.hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </td>
         
         <td>
           <mat-form-field class="lName">
-            <input matInput placeholder="Last Name" name="lastName" [formControl]="lastNameFormControl">
+            <input matInput placeholder="Last Name" name="lastName" [formControl]="lastNameFormControl" [pattern]="namePattern" required>
+            <mat-error class="example-full-width" *ngIf="lastNameFormControl.errors?.pattern">
+              Invalid <strong> last name</strong>
+            </mat-error>
+            <mat-error class="example-full-width" *ngIf="lastNameFormControl.hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </td>   
       </tr>
@@ -76,16 +88,25 @@
       <tr>
         <td>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="dateBirth" [formControl]="dateBirthFormControl">
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="dateBirth" [formControl]="dateBirthFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error class="example-full-width" *ngIf="dateBirthFormControl.hasError('required')">
+              Date of Birth is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field class="example-full-width">
             <span matPrefix>+1 &nbsp;</span>
-            <input type="tel" matInput placeholder="Telephone" name="number" [formControl]="numberControl">
+            <input type="tel" matInput placeholder="Telephone" name="number" [formControl]="numberControl" [pattern]="numberPattern" required>
             <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error class="example-full-width" *ngIf="numberControl.errors?.pattern">
+              Telephone number is <strong>invalid</strong>
+            </mat-error>
+            <mat-error class="example-full-width" *ngIf="numberControl.hasError('required')">
+              Telephone number is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </td>
       </tr>
@@ -103,12 +124,17 @@
               </mat-expansion-panel-header>
               
               <mat-form-field>
-                  <input matInput placeholder="Street" name="street" [formControl]="streetControl">
+                  <input matInput placeholder="Street" name="street" [formControl]="streetControl" required>
+                  <mat-error class="example-full-width" *ngIf="streetControl.hasError('required')">
+                    Street is <strong>required</strong>
+                  </mat-error>
               </mat-form-field>
               <mat-form-field>
-                  <input matInput placeholder="Postal Code" name="postalCode" [formControl]="postalCodeControl">
+                  <input matInput placeholder="Postal Code" name="postalCode" [formControl]="postalCodeControl" required>
+                  <mat-error class="example-full-width" *ngIf="postalCodeControl.hasError('required')">
+                    Postal Code is <strong>required</strong>
+                  </mat-error>
               </mat-form-field>
-
 
             </mat-expansion-panel>      
           </mat-accordion>
@@ -117,7 +143,11 @@
     </table>
 
     <mat-chip-list>
-      <mat-chip selected (click)="secondnextCall()" [color]="availableColors[1].color">
+      <mat-chip [selected]="false" (click)="validateSecondnext(firstNameFormControl.hasError('required'), firstNameFormControl.errors?.pattern,
+      lastNameFormControl.hasError('required'), lastNameFormControl.errors?.pattern,
+      dateBirthFormControl.hasError('required'), numberControl.hasError('required'),
+      numberControl.errors?.pattern, streetControl.hasError('required'),
+      postalCodeControl.hasError('required'))" [color]="availableColors[1].color">
         <div class="firstNext">{{availableColors[1].name}}</div>
       </mat-chip>
     </mat-chip-list>
