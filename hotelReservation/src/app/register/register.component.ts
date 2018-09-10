@@ -119,7 +119,7 @@ emailPatternValidator(pattern: any): ValidatorFn {
     console.log(requiredPassword);
     console.log(requiredConfirmpassword);
     
-    if(this.password != this.confirmpassword){
+    if(this.passwordFormControl.value != this.confirmpasswordFormControl.value){
       this.isSelected = false;
     }
     else if(!(!email && !requiredEmail && !requiredPassword && !requiredConfirmpassword)){

@@ -44,7 +44,7 @@
         <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'" [formControl]="confirmpasswordFormControl">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
-    <mat-error class="example-full-width" *ngIf="password!=confirmpassword">
+    <mat-error class="example-full-width" *ngIf="passwordFormControl.value!=confirmpasswordFormControl.value">
       Password and Confirm Password do not<strong> match</strong>
     </mat-error>
     <mat-chip-list>
