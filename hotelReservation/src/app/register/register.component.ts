@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material';
 import {accountSetup, personalDetails} from './register.model';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, ValidatorFn, NgForm, FormGroup,Validators, AbstractControl} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -26,12 +26,13 @@ export interface ChipColor {
 export class RegisterComponent implements OnInit {
 
   hide = true;
-  isSelected = false;;
+  isSelected = false;
+  private control:AbstractControl;
+  emailPattern = "^[a-z]$";
 
   //For the email text field
   emailFormControl = new FormControl('', [
     Validators.required,
-    Validators.email,
   ]);
 
   passwordFormControl = new FormControl('', [
@@ -39,6 +40,24 @@ export class RegisterComponent implements OnInit {
   ]);
 
   confirmpasswordFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  firstNameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  lastNameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  dateBirthFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  numberControl = new FormControl('', [
+    Validators.required,
+  ]);
+  streetControl = new FormControl('', [
+    Validators.required,
+  ]);
+  postalCodeControl = new FormControl('', [
     Validators.required,
   ]);
 
@@ -67,6 +86,20 @@ export class RegisterComponent implements OnInit {
   account = new accountSetup();
   personal = new personalDetails();
 
+  
+  //custom validator test
+
+
+emailPatternValidator(pattern: any): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: boolean } | null => {
+      console.log('in the validator');
+      if (control.value == pattern) {
+        console.log('email matches pattern');
+          return { 'ageRange': true };
+      }
+      return null;
+  };
+}
   constructor(public snackBar: MatSnackBar) { }
 
   //this is where we take user data and make an ajax request to the db
@@ -77,7 +110,8 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.password.valid);
+    console.log('hellot');
+    console.log(this.emailFormControl.errors);
   }
   test(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     console.log(email);
@@ -87,7 +121,6 @@ export class RegisterComponent implements OnInit {
     
     if(this.password != this.confirmpassword){
       this.isSelected = false;
-      alert("password mismatch");
     }
     else if(!(!email && !requiredEmail && !requiredPassword && !requiredConfirmpassword)){
       this.isSelected = false;
@@ -100,12 +133,11 @@ export class RegisterComponent implements OnInit {
         this.isSelected = true;
       }
       else{
-        alert("password mismatch");
+        //alert("password mismatch");
       } 
     }
   }
     
-
   firstnextCall(){
     //Using JQuery for the progress bar 
     $("#msform").children("#f1").hide();
