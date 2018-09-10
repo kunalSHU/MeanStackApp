@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   hide = true;
   isSelected = false;
   private control:AbstractControl;
-  emailPattern = "^[a-z]$";
+  emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
 
   //For the email text field
   emailFormControl = new FormControl('', [

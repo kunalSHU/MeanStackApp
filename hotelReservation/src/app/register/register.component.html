@@ -31,6 +31,7 @@
       <mat-error class="example-full-width" *ngIf="emailFormControl.errors?.pattern">
         Email is <strong> invalid</strong>
       </mat-error>
+      
     </mat-form-field>
     <mat-form-field class="userName">
         <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" name="p">
@@ -47,7 +48,7 @@
       Password and Confirm Password do not<strong> match</strong>
     </mat-error>
     <mat-chip-list>
-      <mat-chip [selected]="isSelected" (click)="test(emailFormControl.hasError('email'), 
+      <mat-chip [selected]="isSelected" (click)="test(emailFormControl.errors?.pattern, 
       emailFormControl.hasError('required'), passwordFormControl.hasError('required'), confirmpasswordFormControl.hasError('required'))" [color]="availableColors[1].color">
         <div class="firstNext">{{availableColors[1].name}}</div>
       </mat-chip>
