@@ -12,7 +12,7 @@
   </div>
 </div>
 <!-- multistep form -->
-<form id="msform" (ngSubmit)="registerSubmit()" #userRegistration="ngForm">
+<form id="msform" (ngSubmit)="registerSubmit()" #userRegistration="ngForm" name ="userRegistration">
   <!-- progressbar -->
   <ul id="progressbar">
     <li class="active">Account Setup</li>
@@ -34,7 +34,7 @@
       
     </mat-form-field>
     <mat-form-field class="userName">
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [minlength]="5" name="p">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [minlength]="5" name="p" required>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         <mat-error class="example-full-width" *ngIf="passwordFormControl.errors?.required">
           Password is <strong>required</strong>
@@ -203,7 +203,7 @@
       </tr>  
     </table> 
     <mat-chip-list>
-      <mat-chip class="registerChip" (click)="openSnackBar()" selected [color]="availableColors[1].color">
+      <mat-chip class="registerChip" (click)="registerSubmit()" selected [color]="availableColors[1].color">
         <div class="register">Register</div>
       </mat-chip>
       <mat-chip selected class="prevChip" (click)="secondprevCall()" [color]="availableColors[1].color">
@@ -211,7 +211,5 @@
       </mat-chip>
     </mat-chip-list>
   </fieldset>
-  <input id="submitButton" type="submit" value="submit" />
-  
 </form>
 

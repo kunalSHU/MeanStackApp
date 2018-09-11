@@ -1,9 +1,6 @@
-export class accountSetup{
+export class UserInfo{
     email: string;
     password: any;
-}
-
-export class personalDetails{
     firstName: string;
     lastName: string;
     dateBirth: Date;

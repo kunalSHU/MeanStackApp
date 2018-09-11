@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material';
-import {accountSetup, personalDetails} from './register.model';
+import {UserInfo} from './register.model';
 import {FormControl, FormGroupDirective, ValidatorFn, NgForm, FormGroup,Validators, AbstractControl} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -41,10 +42,6 @@ export class RegisterComponent implements OnInit {
   AccountSetup: NgForm;
   password: any;
   confirmpassword: any;
-  //store user inputs here and then pass them to db
-  account = new accountSetup();
-  personal = new personalDetails();
-
   //Regex for patterns
   emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
   namePattern = "^[a-zA-Z]{2,13}$";
@@ -83,7 +80,7 @@ export class RegisterComponent implements OnInit {
         return null;
     };
   }
-  constructor(public snackBar: MatSnackBar) { }
+  constructor(public snackBar: MatSnackBar, private http: HttpClient) { }
 
   //this is where we take user data and make an ajax request to the db
   //to register the user 
@@ -91,11 +88,8 @@ export class RegisterComponent implements OnInit {
     this.snackBar.openFromComponent(SubmitComponent, {duration: 800,
     });
   }
-
   ngOnInit() {
-
     $("#submitButton").hide();
-    console.log('hellot');
     console.log(this.emailFormControl.errors);
   }
   validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
@@ -150,8 +144,29 @@ export class RegisterComponent implements OnInit {
           this.isSelectedStep2 = true;
       }
   }
+
+  //package the user info and post it to the db
   registerSubmit(){
-    console.log('in register submit function');
+
+    //data payload for the user
+    const userData: UserInfo = {
+      email: this.emailFormControl.value,
+      password: this.passwordFormControl.value,
+      firstName: this.firstNameFormControl.value,
+      lastName: this.lastNameFormControl.value,
+      dateBirth: this.dateBirthFormControl.value,
+      telephone: this.numberControl.value,
+      street: this.streetControl.value,
+      postalCode: this.postalCodeControl.value,
+    }
+
+    this.http.post('https://jsonplaceholder.typicode.com/users',
+    userData).subscribe(
+      (data: any) => {
+        console.log(data);
+    });
+
+    console.log(this.dateBirthFormControl.value);
   }
 
   firstnextCall(){
