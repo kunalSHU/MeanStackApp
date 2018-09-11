@@ -65,24 +65,24 @@
       <tr>
         <td id="col1">
           <mat-form-field class="fName">
-            <input matInput placeholder="First Name" class="iFname" name="firstName" [formControl]="firstNameFormControl" [pattern]="namePattern" required>
+            <input matInput placeholder="Full Name" class="iFname" name="firstName" [formControl]="firstNameFormControl" [pattern]="fullnamePattern" required>
             <mat-error class="example-full-width" *ngIf="firstNameFormControl.errors?.pattern">
-              Invalid <strong> first name</strong>
+              Invalid <strong> full name</strong>
             </mat-error>
             <mat-error class="example-full-width" *ngIf="firstNameFormControl.errors?.required">
-              First name is <strong>required</strong>
+              Full name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </td>
         
         <td>
           <mat-form-field class="lName">
-            <input matInput placeholder="Last Name" name="lastName" [formControl]="lastNameFormControl" [pattern]="namePattern" required>
+            <input matInput placeholder="Username" name="lastName" [formControl]="lastNameFormControl" [pattern]="usernamePattern" required>
             <mat-error class="example-full-width" *ngIf="lastNameFormControl.errors?.pattern">
-              Invalid <strong> last name</strong>
+              Invalid <strong> username</strong>
             </mat-error>
             <mat-error class="example-full-width" *ngIf="lastNameFormControl.errors?.required">
-              Last name is <strong>required</strong>
+              Username is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </td>   
@@ -212,4 +212,3 @@
     </mat-chip-list>
   </fieldset>
 </form>
-

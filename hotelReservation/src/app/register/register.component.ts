@@ -5,7 +5,7 @@ import {UserInfo} from './register.model';
 import {FormControl, FormGroupDirective, ValidatorFn, NgForm, FormGroup,Validators, AbstractControl} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
-
+//GOOGLE MAPS API KEY: AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -31,7 +31,6 @@ export class RegisterComponent implements OnInit {
   isSelectedStep2 = false;
   private control:AbstractControl;
 
-
   animating: any;
   current_fs: any;
   next_fs: any;
@@ -44,7 +43,8 @@ export class RegisterComponent implements OnInit {
   confirmpassword: any;
   //Regex for patterns
   emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
-  namePattern = "^[a-zA-Z]{2,13}$";
+  fullnamePattern = "^[a-zA-Z]{2,13} [a-zA-Z]{2,13}$";
+  usernamePattern = "^[a-zA-Z0-9]{4,12}$"
   numberPattern = "^[0-9]{10,15}$";
 
   //Required Validators
@@ -89,7 +89,6 @@ export class RegisterComponent implements OnInit {
     });
   }
   ngOnInit() {
-    $("#submitButton").hide();
     console.log(this.emailFormControl.errors);
   }
   validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
@@ -160,8 +159,12 @@ export class RegisterComponent implements OnInit {
       postalCode: this.postalCodeControl.value,
     }
 
-    this.http.post('https://jsonplaceholder.typicode.com/users',
-    userData).subscribe(
+    const headers= new Headers();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+
+    //sending the user data to the server for POST request
+    this.http.post('http://localhost:3000/api/users',
+    JSON.stringify(userData)).subscribe(
       (data: any) => {
         console.log(data);
     });

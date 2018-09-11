@@ -16,4 +16,8 @@ router.get('/', function(req,res,next){
         }
     });
 });
+
+router.post('/users', function(req, res, next){
+    db.users.insert(req.body);
+});
 module.exports = router;
