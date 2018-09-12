@@ -5,6 +5,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {NgProgressModule} from '@ngx-progressbar/core';
+import {AgmCoreModule} from '@agm/core';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -100,6 +101,7 @@ export class DemoMaterialModule {}
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4', libraries : ['places']}),
     HttpClientModule,
     AngularSvgIconModule,
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()

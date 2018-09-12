@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {} from '@types/googlemaps';
+
 import {
   Router,
   // import as RouterEvent to avoid confusion with the DOM Event

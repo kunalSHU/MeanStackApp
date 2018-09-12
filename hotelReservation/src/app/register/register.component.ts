@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material';
 import {UserInfo} from './register.model';
 import {FormControl, FormGroupDirective, ValidatorFn, NgForm, FormGroup,Validators, AbstractControl} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
+import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
+import {MapsAPILoader} from '@agm/core';
+import {} from '@types/googlemaps'
 //GOOGLE MAPS API KEY: AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -25,7 +28,6 @@ export interface ChipColor {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
   hide = true;
   isSelectedStep1 = false;
   isSelectedStep2 = false;
@@ -46,6 +48,9 @@ export class RegisterComponent implements OnInit {
   fullnamePattern = "^[a-zA-Z]{2,13} [a-zA-Z]{2,13}$";
   usernamePattern = "^[a-zA-Z0-9]{4,12}$"
   numberPattern = "^[0-9]{10,15}$";
+
+  //Search functionality using google maps API
+  @ViewChild('search') public searchElement: ElementRef;
 
   //Required Validators
   emailFormControl = new FormControl('');
@@ -80,7 +85,7 @@ export class RegisterComponent implements OnInit {
         return null;
     };
   }
-  constructor(public snackBar: MatSnackBar, private http: HttpClient) { }
+  constructor(public snackBar: MatSnackBar, private http: HttpClient, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
 
   //this is where we take user data and make an ajax request to the db
   //to register the user 
@@ -89,14 +94,28 @@ export class RegisterComponent implements OnInit {
     });
   }
   ngOnInit() {
-    console.log(this.emailFormControl.errors);
-  }
+    this.mapsAPILoader.load().then(()=> {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
+    
+      autocomplete.addListener('places_changed', () => {
+
+        this.ngZone.run(()=> {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          if(place.geometry == undefined || place.geometry == null){
+            return;
+          }
+
+        })
+      });
+    });
+  }  
+
   validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     /*console.log(email);
     console.log(requiredEmail);
     console.log(requiredPassword);
-    console.log(requiredConfirmpassword);*/
-      
+    console.log(requiredConfirmpassword);*/ 
     if(this.passwordFormControl.value != this.confirmpasswordFormControl.value){
       this.isSelectedStep1 = false;
     }
