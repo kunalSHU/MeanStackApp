@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
   AccountSetup: NgForm;
   password: any;
   confirmpassword: any;
+  autocomplete:any;
   //Regex for patterns
   emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
   fullnamePattern = "^[a-zA-Z]{2,13} [a-zA-Z]{2,13}$";
@@ -95,19 +96,17 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit() {
     this.mapsAPILoader.load().then(()=> {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
-    
-      autocomplete.addListener('places_changed', () => {
+      this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
+      console.log(this.autocomplete.getPlace());
+      //autocomplete.addListener('places_changed', () => {
+        //this.ngZone.run(()=> {
+          //let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          //if(place.geometry == undefined || place.geometry == null){
+            //return;
+          //}
 
-        this.ngZone.run(()=> {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          if(place.geometry == undefined || place.geometry == null){
-            return;
-          }
-
-        })
-      });
+        //})
+      //});
     });
   }  
 
@@ -174,7 +173,7 @@ export class RegisterComponent implements OnInit {
       lastName: this.lastNameFormControl.value,
       dateBirth: this.dateBirthFormControl.value,
       telephone: this.numberControl.value,
-      street: this.streetControl.value,
+      street: this.searchElement.nativeElement.value,
       postalCode: this.postalCodeControl.value,
     }
 
@@ -189,6 +188,7 @@ export class RegisterComponent implements OnInit {
     });
 
     console.log(this.dateBirthFormControl.value);
+    console.log(this.searchElement.nativeElement.value);
   }
 
   firstnextCall(){
@@ -203,6 +203,9 @@ export class RegisterComponent implements OnInit {
     $("#msform").children("#f2").hide();
     this.current_fs = $(this).parent();
     this.next_fs = $(this).parent().next();
+    if(this.autocomplete.getPlace() != undefined){
+      (<HTMLInputElement>document.getElementById('streetValue')).innerHTML = this.autocomplete.getPlace().formatted_address;
+    }
     $("#progressbar li").eq(2).addClass("active");
     $("#msform").children("#f3").show();
     $("#submitButton").show();
