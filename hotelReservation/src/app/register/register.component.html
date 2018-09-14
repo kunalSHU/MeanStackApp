@@ -91,7 +91,7 @@
       <tr>
         <td>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="dateBirth" [formControl]="dateBirthFormControl" required>
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="dateBirth" [formControl]="dateBirthFormControl" isInvalidDate required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error class="example-full-width" *ngIf="dateBirthFormControl.errors?.required">
@@ -150,7 +150,7 @@
       lastNameFormControl.hasError('required'), lastNameFormControl.errors?.pattern,
       dateBirthFormControl.hasError('required'), numberControl.hasError('required'),
       numberControl.errors?.pattern, streetControl.hasError('required'),
-      postalCodeControl.hasError('required'))" [color]="availableColors[1].color">
+      postalCodeControl.hasError('required'), dateBirthFormControl.value)" [color]="availableColors[1].color">
         <div class="firstNext">{{availableColors[1].name}}</div>
       </mat-chip>
     </mat-chip-list>
@@ -183,7 +183,7 @@
       </tr>
       <tr>
         <td>
-          <b>Date of Birth: </b>{{dateBirthFormControl.value}}
+          <b>Date of Birth: </b>{{dateBirthFormControl.value | date:'yyyy-MM-dd'}}
         </td>  
       </tr>
       <tr>
@@ -193,7 +193,6 @@
       </tr>
       <tr>
         <td id="streetValue">
-          <b id="street"> </b>
         </td>  
       </tr>
       <tr>

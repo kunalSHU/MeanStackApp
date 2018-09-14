@@ -8,6 +8,8 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps'
+import { DatePipe } from '@angular/common';
+
 //GOOGLE MAPS API KEY: AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -25,7 +27,8 @@ export interface ChipColor {
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [DatePipe]
 })
 export class RegisterComponent implements OnInit {
   hide = true;
@@ -44,6 +47,10 @@ export class RegisterComponent implements OnInit {
   password: any;
   confirmpassword: any;
   autocomplete:any;
+  formattedDate: any;
+  userDate: any;
+  isInvalidDate: boolean;
+  currentDate: any = new Date();
   //Regex for patterns
   emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
   fullnamePattern = "^[a-zA-Z]{2,13} [a-zA-Z]{2,13}$";
@@ -86,7 +93,8 @@ export class RegisterComponent implements OnInit {
         return null;
     };
   }
-  constructor(public snackBar: MatSnackBar, private http: HttpClient, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+  constructor(public snackBar: MatSnackBar, private http: HttpClient, 
+    private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private datePipe: DatePipe) { }
 
   //this is where we take user data and make an ajax request to the db
   //to register the user 
@@ -134,7 +142,7 @@ export class RegisterComponent implements OnInit {
     lastNamerequired: boolean, lastNamePattern: boolean,
     dateOfBirthrequired: boolean,telephonerequired: boolean, 
     telephonePattern: boolean,streetrequired:boolean, 
-    coderequired: boolean){
+    coderequired: boolean, date:any){
 
       /*console.log(firstNamerequired);
       console.log(firstNamePattern);
@@ -145,16 +153,29 @@ export class RegisterComponent implements OnInit {
       console.log(telephonePattern);
       console.log(streetrequired);
       console.log(coderequired);*/
+
+      this.userDate = new Date(date);
+
       if(!(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
       !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired)){
         this.isSelectedStep2 = false;
       }
       else if(this.isSelectedStep2){
-        this.secondnextCall();
+        this.secondnextCall(date);
       }
       else if(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
         !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired){
-          this.isSelectedStep2 = true;
+          
+          //validate the date here
+          if(this.userDate > this.currentDate){
+              alert("Invalid Date entered");
+          }
+          else if(((this.currentDate - this.userDate)/((1000*60*60*24))/365) < 18){
+            alert("You are not over 18 years of age");
+          }
+          else{
+            this.isSelectedStep2 = true;
+          }
       }
   }
 
@@ -167,12 +188,11 @@ export class RegisterComponent implements OnInit {
       password: this.passwordFormControl.value,
       firstName: this.firstNameFormControl.value,
       lastName: this.lastNameFormControl.value,
-      dateBirth: this.dateBirthFormControl.value,
+      dateBirth: this.formattedDate,
       telephone: this.numberControl.value,
       street: this.searchElement.nativeElement.value,
       postalCode: this.postalCodeControl.value,
     }
-
     const headers= new Headers();
     headers.append('Content-Type', 'application/json; charset=utf-8');
 
@@ -196,13 +216,14 @@ export class RegisterComponent implements OnInit {
     $("#progressbar li").eq(1).addClass("active");
     $("#msform").children("#f2").show();
   }
-  secondnextCall(){
+  secondnextCall(date){
     $("#msform").children("#f2").hide();
     this.current_fs = $(this).parent();
     this.next_fs = $(this).parent().next();
     if(this.autocomplete.getPlace() != undefined){
       (<HTMLInputElement>document.getElementById('streetValue')).innerHTML = '<b>Street: </b>' + this.autocomplete.getPlace().formatted_address;
     }
+    this.formattedDate = this.datePipe.transform(date, "yyyy-MM-dd");
     $("#progressbar li").eq(2).addClass("active");
     $("#msform").children("#f3").show();
     $("#submitButton").show();
