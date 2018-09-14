@@ -165,44 +165,45 @@
   <fieldset id="f3">
     <h2 class="fs-title">Result</h2>
     <h3 class="fs-subtitle">Here is what you entered</h3>
-    <table>
+    <table class="table">
       <tr>
         <td>
-          {{emailFormControl.value}}
+          <b>Email: </b>{{emailFormControl.value}}
         </td>  
       </tr>
       <tr>
         <td>
-          {{firstNameFormControl.value}}
+          <b>First Name: </b> {{firstNameFormControl.value}}
         </td>  
       </tr> 
       <tr>
         <td>
-          {{lastNameFormControl.value}}
+          <b>Last Name: </b>{{lastNameFormControl.value}}
         </td>  
       </tr>
       <tr>
         <td>
-          {{dateBirthFormControl.value}}
+          <b>Date of Birth: </b>{{dateBirthFormControl.value}}
         </td>  
       </tr>
       <tr>
         <td>
-          {{numberControl.value}}
+          <b>Telephone Number: </b>{{numberControl.value}}
         </td>  
       </tr>
       <tr>
         <td id="streetValue">
+          <b id="street"> </b>
         </td>  
       </tr>
       <tr>
         <td>
-          {{postalCodeControl.value}}
+            <b>Postal Code: </b>{{postalCodeControl.value}}
         </td>  
       </tr>  
     </table> 
     <mat-chip-list>
-      <mat-chip class="registerChip" (click)="registerSubmit()" selected [color]="availableColors[1].color">
+      <mat-chip class="registerChip" (click)="registerSubmit()"  routerLink="/login" selected [color]="availableColors[1].color">
         <div class="register">Register</div>
       </mat-chip>
       <mat-chip selected class="prevChip" (click)="secondprevCall()" [color]="availableColors[1].color">

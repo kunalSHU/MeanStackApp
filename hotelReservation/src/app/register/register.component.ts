@@ -90,10 +90,6 @@ export class RegisterComponent implements OnInit {
 
   //this is where we take user data and make an ajax request to the db
   //to register the user 
-  openSnackBar(){
-    this.snackBar.openFromComponent(SubmitComponent, {duration: 800,
-    });
-  }
   ngOnInit() {
     this.mapsAPILoader.load().then(()=> {
       this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
@@ -186,9 +182,10 @@ export class RegisterComponent implements OnInit {
       (data: any) => {
         console.log(data);
     });
-
     console.log(this.dateBirthFormControl.value);
-    console.log(this.searchElement.nativeElement.value);
+    console.log(this.searchElement.nativeElement.value);      
+    this.snackBar.openFromComponent(SubmitComponent, {duration: 1200,
+    });
   }
 
   firstnextCall(){
@@ -204,7 +201,7 @@ export class RegisterComponent implements OnInit {
     this.current_fs = $(this).parent();
     this.next_fs = $(this).parent().next();
     if(this.autocomplete.getPlace() != undefined){
-      (<HTMLInputElement>document.getElementById('streetValue')).innerHTML = this.autocomplete.getPlace().formatted_address;
+      (<HTMLInputElement>document.getElementById('streetValue')).innerHTML = '<b>Street: </b>' + this.autocomplete.getPlace().formatted_address;
     }
     $("#progressbar li").eq(2).addClass("active");
     $("#msform").children("#f3").show();
