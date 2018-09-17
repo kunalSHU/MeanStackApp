@@ -1,8 +1,8 @@
 export class UserInfo{
     email: string;
     password: any;
-    firstName: string;
-    lastName: string;
+    fullName: string;
+    userName: string;
     dateBirth: Date;
     telephone: number;
     street: any;

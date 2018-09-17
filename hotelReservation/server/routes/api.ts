@@ -17,11 +17,25 @@ router.get('/', function(req,res,next){
     });
 });
 
+
+router.get('/login', function(req, res, next){
+
+    
+
+});
+
 router.post('/users', function(req, res, next){
 
     //only post users if the username is not in the database
+    //send back an error message to user if username already exists
     
-
-    db.users.insert(req.body);
+    //username does not exist, good to go
+    if(db.users.find({userName: req.body.userName}).count() == 0){
+        db.users.insert(req.body);
+        res.json({success : "Updated Successfully", status : 200});
+    }
+    else{
+        res.json({error: "Username already exists", status: 404});
+    }
 });
 module.exports = router;

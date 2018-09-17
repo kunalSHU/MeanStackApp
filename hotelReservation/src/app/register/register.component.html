@@ -65,11 +65,11 @@
       <tr>
         <td id="col1">
           <mat-form-field class="fName">
-            <input matInput placeholder="Full Name" class="iFname" name="firstName" [formControl]="firstNameFormControl" [pattern]="fullnamePattern" required>
-            <mat-error class="example-full-width" *ngIf="firstNameFormControl.errors?.pattern">
+            <input matInput placeholder="Full Name" class="iFname" name="firstName" [formControl]="fullNameFormControl" [pattern]="fullnamePattern" required>
+            <mat-error class="example-full-width" *ngIf="fullNameFormControl.errors?.pattern">
               Invalid <strong> full name</strong>
             </mat-error>
-            <mat-error class="example-full-width" *ngIf="firstNameFormControl.errors?.required">
+            <mat-error class="example-full-width" *ngIf="fullNameFormControl.errors?.required">
               Full name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -77,11 +77,11 @@
         
         <td>
           <mat-form-field class="lName">
-            <input matInput placeholder="Username" name="lastName" [formControl]="lastNameFormControl" [pattern]="usernamePattern" required>
-            <mat-error class="example-full-width" *ngIf="lastNameFormControl.errors?.pattern">
+            <input matInput placeholder="Username" name="lastName" [formControl]="userNameFormControl" [pattern]="usernamePattern" required>
+            <mat-error class="example-full-width" *ngIf="userNameFormControl.errors?.pattern">
               Invalid <strong> username</strong>
             </mat-error>
-            <mat-error class="example-full-width" *ngIf="lastNameFormControl.errors?.required">
+            <mat-error class="example-full-width" *ngIf="userNameFormControl.errors?.required">
               Username is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -151,8 +151,8 @@
       You must be over <strong>18 years of age</strong>
     </mat-error>
     <mat-chip-list>
-      <mat-chip [selected]="isSelectedStep2" (click)="validateSecondnext(firstNameFormControl.hasError('required'), firstNameFormControl.errors?.pattern,
-      lastNameFormControl.hasError('required'), lastNameFormControl.errors?.pattern,
+      <mat-chip [selected]="isSelectedStep2" (click)="validateSecondnext(fullNameFormControl.hasError('required'), fullNameFormControl.errors?.pattern,
+      userNameFormControl.hasError('required'), userNameFormControl.errors?.pattern,
       dateBirthFormControl.hasError('required'), numberControl.hasError('required'),
       numberControl.errors?.pattern, streetControl.hasError('required'),
       postalCodeControl.hasError('required'), dateBirthFormControl.value)" [color]="availableColors[1].color">
@@ -178,12 +178,12 @@
       </tr>
       <tr>
         <td>
-          <b>First Name: </b> {{firstNameFormControl.value}}
+          <b>Name: </b> {{fullNameFormControl.value}}
         </td>  
       </tr> 
       <tr>
         <td>
-          <b>Last Name: </b>{{lastNameFormControl.value}}
+          <b>Username: </b>{{userNameFormControl.value}}
         </td>  
       </tr>
       <tr>

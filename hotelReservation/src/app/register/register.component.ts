@@ -65,8 +65,8 @@ export class RegisterComponent implements OnInit {
   emailFormControl = new FormControl('');
   passwordFormControl = new FormControl('');
   confirmpasswordFormControl = new FormControl('');
-  firstNameFormControl = new FormControl('');
-  lastNameFormControl = new FormControl('');
+  fullNameFormControl = new FormControl('');
+  userNameFormControl = new FormControl('');
   dateBirthFormControl = new FormControl('');
   numberControl = new FormControl('');
   streetControl = new FormControl('');
@@ -183,7 +183,7 @@ export class RegisterComponent implements OnInit {
           }
       }
   }
-  
+
   //package the user info and post it to the db
   registerSubmit(){
 
@@ -191,8 +191,8 @@ export class RegisterComponent implements OnInit {
     const userData: UserInfo = {
       email: this.emailFormControl.value,
       password: this.passwordFormControl.value,
-      firstName: this.firstNameFormControl.value,
-      lastName: this.lastNameFormControl.value,
+      fullName: this.fullNameFormControl.value,
+      userName: this.userNameFormControl.value,
       dateBirth: this.formattedDate,
       telephone: this.numberControl.value,
       street: this.searchElement.nativeElement.value,

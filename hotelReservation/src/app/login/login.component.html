@@ -13,19 +13,26 @@
 </div>
 <mat-card class="example-card" id="example-card">
   <img mat-card-avatar width="30" class="userImg" src="../../assets/images/user.png">  
-  <mat-card-content>        
-    <mat-form-field class="userName">
-      <input matInput placeholder="Username">
-    </mat-form-field>
   
-    <mat-form-field class="password">
-      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </mat-form-field>
-  </mat-card-content>
+  <form id="loginForm" name="login" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-card-content>        
+      <mat-form-field class="userName">
+        <input matInput placeholder="Username" id="username" [formControl]="usernameControl" name="username" required>
+        <mat-error class="example-full-width" *ngIf="usernameControl.errors?.required">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="password">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" name="password" [formControl]="passwordControl" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error class="example-full-width" *ngIf="passwordControl.errors?.required">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
   <mat-card-actions>
     <div class="login-button">
-      <button mat-flat-button color="warn">Login</button>
+      <button mat-flat-button color="warn" [type]="submit">Login</button>
     </div>  
     <div class="register-button" id="register-button">    
       <a mat-stroked-button routerLink="/register" routerLinkActive="active">Register</a>
@@ -34,4 +41,5 @@
       <a mat-button routerLink=".">Forgot your Password?</a>
     </div>
   </mat-card-actions>
+  </form>
 </mat-card>
