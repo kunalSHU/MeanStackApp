@@ -16,5 +16,6 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(f: NgForm) {
     console.log("In the submit function");
+    //make a get request to the db to see if the user with those credentials exists
   }
 }
