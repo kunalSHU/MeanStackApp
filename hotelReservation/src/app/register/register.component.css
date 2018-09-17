@@ -81,6 +81,10 @@ body {
 	left: -500%;
 }
 
+#msform #f3 .invalidDate{
+	top: 200%;
+	position: relative; 
+}
 
 #msform #f3 mat-chip-list .registerChip{
 	position: absolute;

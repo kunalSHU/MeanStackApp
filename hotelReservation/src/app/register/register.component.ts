@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
   formattedDate: any;
   userDate: any;
   isInvalidDate: boolean;
+  tooYoung: boolean;
   currentDate: any = new Date();
   //Regex for patterns
   emailPattern = "^[a-z]+@[a-z]+[.](com|ca)$";
@@ -99,6 +100,7 @@ export class RegisterComponent implements OnInit {
   //this is where we take user data and make an ajax request to the db
   //to register the user 
   ngOnInit() {
+    console.log(this.dateBirthFormControl.errors);
     this.mapsAPILoader.load().then(()=> {
       this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
       console.log(this.autocomplete.getPlace());
@@ -167,18 +169,21 @@ export class RegisterComponent implements OnInit {
         !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired){
           
           //validate the date here
+          //set boolean to true to activate the custom directive
           if(this.userDate > this.currentDate){
-              alert("Invalid Date entered");
+            this.isInvalidDate = true;
           }
           else if(((this.currentDate - this.userDate)/((1000*60*60*24))/365) < 18){
-            alert("You are not over 18 years of age");
+            this.tooYoung = true;
           }
           else{
+            this.isInvalidDate = false;
+            this.tooYoung = false;
             this.isSelectedStep2 = true;
           }
       }
   }
-
+  
   //package the user info and post it to the db
   registerSubmit(){
 

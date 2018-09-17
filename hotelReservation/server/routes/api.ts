@@ -20,6 +20,7 @@ router.get('/', function(req,res,next){
 router.post('/users', function(req, res, next){
 
     //only post users if the username is not in the database
+    
 
     db.users.insert(req.body);
 });

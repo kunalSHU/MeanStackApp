@@ -91,7 +91,7 @@
       <tr>
         <td>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="dateBirth" [formControl]="dateBirthFormControl" isInvalidDate required>
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="dateBirth" id="dateField" [formControl]="dateBirthFormControl" appDatecheck required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error class="example-full-width" *ngIf="dateBirthFormControl.errors?.required">
@@ -144,7 +144,12 @@
         </td>
       </tr>
     </table>
-
+    <mat-error class=".invalidDate" *ngIf="this.isInvalidDate">
+      Invalid <strong> date</strong>
+    </mat-error>
+    <mat-error class=".invalidDate" *ngIf="this.tooYoung">
+      You must be over <strong>18 years of age</strong>
+    </mat-error>
     <mat-chip-list>
       <mat-chip [selected]="isSelectedStep2" (click)="validateSecondnext(firstNameFormControl.hasError('required'), firstNameFormControl.errors?.pattern,
       lastNameFormControl.hasError('required'), lastNameFormControl.errors?.pattern,
