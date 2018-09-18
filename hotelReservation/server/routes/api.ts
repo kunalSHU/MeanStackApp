@@ -18,17 +18,38 @@ router.get('/', function(req,res,next){
 });
 
 
-router.get('/login', function(req, res, next){
+router.get('/users/:username/:password', function(req, res, next){
 
+    console.log(JSON.stringify(req.params.username));
     
+    console.log(JSON.stringify(req.params.password));
 
+    console.log(req.body);
+
+    //Check 1: See if username exists
+    //Check 2: If username exists but password is incorrect
+
+    //username DNE for login, so error
+    if(db.users.find({userName: req.body.userName}).count() == 0){
+        res.json({error: "Username does not exist", status: 404});
+    }
+    //username does exist
+    else{
+        //password DNE so passoword incorrect
+        if(db.users.find({password: req.body.password}).count() == 0){
+            res.json({error: "Password is incorrect", status: 404});
+        }
+        else{
+            res.json({success : "Successful", status : 200});
+        }    
+    }
 });
 
-router.post('/users', function(req, res, next){
-    console.log('In the post user THING FOR API.ts');
+router.post('/register', function(req, res, next){
     //only post users if the username is not in the database
     //send back an error message to user if username already exists
-    
+    console.log('This is the username that the user entered : ' + JSON.stringify(req.body.userName));
+    console.log(db.users.find());
     //username does not exist, good to go
     if(db.users.find({userName: req.body.userName}).count() == 0){
         db.users.insert(req.body);

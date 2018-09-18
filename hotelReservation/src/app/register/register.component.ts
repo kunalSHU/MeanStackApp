@@ -9,7 +9,7 @@ import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps'
 import { DatePipe } from '@angular/common';
-import {RegisterService} from './register.service';
+import {AppService} from '../service/app.service';
 //GOOGLE MAPS API KEY: AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -96,7 +96,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(public snackBar: MatSnackBar, private http: HttpClient, 
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private datePipe: DatePipe,
-    private registerService: RegisterService) { }
+    private appService: AppService) { }
   //this is where we take user data and make an ajax request to the db
   //to register the user 
   ngOnInit() {
@@ -202,7 +202,7 @@ export class RegisterComponent implements OnInit {
 
     //sending the user data to the server for POST request
     //make the call to the service here
-    this.registerService.postUser(userData).subscribe(result => {
+    this.appService.postUser(userData).subscribe(result => {
       console.log(result);
     });
 
