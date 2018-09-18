@@ -9,7 +9,7 @@ import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps'
 import { DatePipe } from '@angular/common';
-
+import {RegisterService} from './register.service';
 //GOOGLE MAPS API KEY: AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -23,7 +23,6 @@ export interface ChipColor {
   name: string;
   color: ThemePalette;
 }
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -73,7 +72,6 @@ export class RegisterComponent implements OnInit {
   postalCodeControl = new FormControl('');
 
   matcher = new MyErrorStateMatcher();
-
   //storing the chip buttons to be used in a list
   availableColors: ChipColor[] = [
     {name: 'none', color: undefined},
@@ -94,9 +92,11 @@ export class RegisterComponent implements OnInit {
         return null;
     };
   }
-  constructor(public snackBar: MatSnackBar, private http: HttpClient, 
-    private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private datePipe: DatePipe) { }
 
+
+  constructor(public snackBar: MatSnackBar, private http: HttpClient, 
+    private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private datePipe: DatePipe,
+    private registerService: RegisterService) { }
   //this is where we take user data and make an ajax request to the db
   //to register the user 
   ngOnInit() {
@@ -110,12 +110,10 @@ export class RegisterComponent implements OnInit {
           //if(place.geometry == undefined || place.geometry == null){
             //return;
           //}
-
         //})
       //});
     });
   }  
-
   validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     /*console.log(email);
     console.log(requiredEmail);
@@ -167,14 +165,15 @@ export class RegisterComponent implements OnInit {
       }
       else if(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
         !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired){
-          
           //validate the date here
           //set boolean to true to activate the custom directive
           if(this.userDate > this.currentDate){
             this.isInvalidDate = true;
+            if(this.tooYoung){ this.tooYoung = false; }
           }
           else if(((this.currentDate - this.userDate)/((1000*60*60*24))/365) < 18){
             this.tooYoung = true;
+            if(this.isInvalidDate){ this.isInvalidDate = false; }
           }
           else{
             this.isInvalidDate = false;
@@ -202,6 +201,7 @@ export class RegisterComponent implements OnInit {
     headers.append('Content-Type', 'application/json; charset=utf-8');
 
     //sending the user data to the server for POST request
+    //make the call to the service here
     this.http.post('http://localhost:3000/api/users',
     JSON.stringify(userData)).subscribe(
       (data: any) => {
