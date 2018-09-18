@@ -202,11 +202,15 @@ export class RegisterComponent implements OnInit {
 
     //sending the user data to the server for POST request
     //make the call to the service here
-    this.http.post('http://localhost:3000/api/users',
+    this.registerService.postUser(userData).subscribe(result => {
+      console.log(result);
+    });
+
+    /*this.http.post('http://localhost:3000/api/users',
     JSON.stringify(userData)).subscribe(
       (data: any) => {
         console.log(data);
-    });
+    });*/
     console.log(this.dateBirthFormControl.value);
     console.log(this.searchElement.nativeElement.value);      
     this.snackBar.openFromComponent(SubmitComponent, {duration: 1200,

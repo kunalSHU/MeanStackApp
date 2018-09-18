@@ -25,7 +25,7 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/users', function(req, res, next){
-
+    console.log('In the post user THING FOR API.ts');
     //only post users if the username is not in the database
     //send back an error message to user if username already exists
     
