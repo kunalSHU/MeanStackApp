@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
      username: this.usernameControl.value,
      password:  this.passwordControl.value
     }
-    
+
     //validates the users credentials in the backend
     this.appService.getUserLogin(userCred).subscribe(result =>   
     {
@@ -39,10 +39,6 @@ export class LoginComponent implements OnInit {
         //successful so the user can login
         if(!this.isUserExists){ this.isUserExists = true; }
         if(!this.isPasswordCorrect){ this.isPasswordCorrect = true; }
-
-        //route to the home page of the hotel reservation screen
-
-
       }
       else{
         //not successful, display an error message
@@ -56,7 +52,6 @@ export class LoginComponent implements OnInit {
 
         }
       }
-
     });
   }
 }

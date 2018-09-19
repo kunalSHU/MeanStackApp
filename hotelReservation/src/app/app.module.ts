@@ -50,6 +50,7 @@ import {AppComponent} from './app.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent, SubmitComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -107,7 +108,7 @@ export class DemoMaterialModule {}
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
   entryComponents: [AppComponent, SubmitComponent],
-  declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent],
+  declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
   bootstrap: [AppComponent],  providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
