@@ -24,7 +24,7 @@ router.get('/users/:username/:password', function(req, res, next){
     
     console.log(JSON.stringify(req.params.password));
 
-    console.log(req.body);
+    console.log(db.users.find());
 
     //Check 1: See if username exists
     //Check 2: If username exists but password is incorrect
@@ -33,6 +33,7 @@ router.get('/users/:username/:password', function(req, res, next){
     if(db.users.find({userName: req.body.userName}).count() == 0){
         res.json({error: "Username does not exist", status: 404});
     }
+    
     //username does exist
     else{
         //password DNE so passoword incorrect
@@ -40,6 +41,7 @@ router.get('/users/:username/:password', function(req, res, next){
             res.json({error: "Password is incorrect", status: 404});
         }
         else{
+            //res.json({error: "Password is incorrect", status: 404});
             res.json({success : "Successful", status : 200});
         }    
     }

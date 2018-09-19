@@ -24,7 +24,7 @@ export class AppService {
   getUserLogin(loginModel: LoginModel){
     console.log('http://localhost:3000/api/users/'+loginModel);
     return this.http.get('http://localhost:3000/api/users/'+loginModel.username+'/'+loginModel.password)
-    .map((response: Response)=> response);
+    .map((response: any)=> response);
   }
 
 }

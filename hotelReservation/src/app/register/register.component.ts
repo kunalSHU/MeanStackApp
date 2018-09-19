@@ -56,7 +56,6 @@ export class RegisterComponent implements OnInit {
   fullnamePattern = "^[a-zA-Z]{2,13} [a-zA-Z]{2,13}$";
   usernamePattern = "^[a-zA-Z0-9]{4,12}$"
   numberPattern = "^[0-9]{10,15}$";
-
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
 
@@ -97,6 +96,7 @@ export class RegisterComponent implements OnInit {
   constructor(public snackBar: MatSnackBar, private http: HttpClient, 
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private datePipe: DatePipe,
     private appService: AppService) { }
+    
   //this is where we take user data and make an ajax request to the db
   //to register the user 
   ngOnInit() {

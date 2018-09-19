@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   hide = true;
   usernameControl = new FormControl();
   passwordControl = new FormControl();
+  isUserExists: boolean = true;
+  isPasswordCorrect: boolean = true;
 
   constructor(private appService: AppService){}
 
@@ -26,9 +28,35 @@ export class LoginComponent implements OnInit {
      password:  this.passwordControl.value
     }
     
+    //validates the users credentials in the backend
     this.appService.getUserLogin(userCred).subscribe(result =>   
     {
+      console.log('in the subscribe');
       console.log(result);
+
+      console.log(JSON.stringify(result));
+      if(result.status == 200){
+        //successful so the user can login
+        if(!this.isUserExists){ this.isUserExists = true; }
+        if(!this.isPasswordCorrect){ this.isPasswordCorrect = true; }
+
+        //route to the home page of the hotel reservation screen
+
+
+      }
+      else{
+        //not successful, display an error message
+        if(result.error == "Username does not exist"){
+          this.isUserExists = false;
+          this.isPasswordCorrect = true;    
+        }
+        else if(result.error == "Password is incorrect"){
+          this.isPasswordCorrect = false;
+          this.isUserExists = true;
+
+        }
+      }
+
     });
   }
 }

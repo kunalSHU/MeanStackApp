@@ -30,6 +30,12 @@
         </mat-error>
       </mat-form-field>
     </mat-card-content>
+    <mat-error class="example-full-width" *ngIf="this.isUserExists == false">
+      Username is <strong>incorrect</strong>
+    </mat-error>
+    <mat-error class="example-full-width" *ngIf="this.isPasswordCorrect == false">
+      Password is <strong>incorrect</strong>
+    </mat-error>
   <mat-card-actions>
     <div class="login-button">
       <button mat-flat-button color="warn" [type]="submit">Login</button>
