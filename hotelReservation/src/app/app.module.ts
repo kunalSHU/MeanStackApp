@@ -110,6 +110,6 @@ export class DemoMaterialModule {}
   entryComponents: [AppComponent, SubmitComponent],
   declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
   bootstrap: [AppComponent],  providers: [],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule {}

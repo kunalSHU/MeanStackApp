@@ -185,7 +185,6 @@ export class RegisterComponent implements OnInit {
 
   //package the user info and post it to the db
   registerSubmit(){
-
     //data payload for the user
     const userData: UserInfo = {
       email: this.emailFormControl.value,
@@ -199,7 +198,6 @@ export class RegisterComponent implements OnInit {
     }
     const headers= new Headers();
     headers.append('Content-Type', 'application/json; charset=utf-8');
-
     //sending the user data to the server for POST request
     //make the call to the service here
     this.appService.postUser(userData).subscribe(result => {

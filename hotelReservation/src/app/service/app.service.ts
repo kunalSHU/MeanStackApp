@@ -26,5 +26,8 @@ export class AppService {
     return this.http.get('http://localhost:3000/api/users/'+loginModel.username+'/'+loginModel.password)
     .map((response: any)=> response);
   }
+  test(){
+    return true;
+  }
 
 }

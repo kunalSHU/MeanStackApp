@@ -41,8 +41,8 @@ router.get('/users/:username/:password', function(req, res, next){
             res.json({error: "Password is incorrect", status: 404});
         }
         else{
-            res.json({error: "Password is incorrect", status: 404});
-            //res.json({success : "Successful", status : 200});
+            //res.json({error: "Password is incorrect", status: 404});
+            res.json({success : "Successful", status : 200});
         }    
     }
 });

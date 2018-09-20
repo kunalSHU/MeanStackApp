@@ -3,7 +3,9 @@ import {AppModule} from '../../app/app.module';
 import {NgProgress} from '@ngx-progressbar/core';
 import {NgForm, FormControl} from '@angular/forms';
 import {LoginModel} from './login.model';
+import {Router} from '@angular/router';
 import {AppService} from '../service/app.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,8 +18,7 @@ export class LoginComponent implements OnInit {
   isUserExists: boolean = true;
   isPasswordCorrect: boolean = true;
 
-  constructor(private appService: AppService){}
-
+  constructor(private appService: AppService, private router: Router){}
   ngOnInit() {
   }
   onSubmit(f: NgForm) {
@@ -27,7 +28,6 @@ export class LoginComponent implements OnInit {
      username: this.usernameControl.value,
      password:  this.passwordControl.value
     }
-
     //validates the users credentials in the backend
     this.appService.getUserLogin(userCred).subscribe(result =>   
     {
@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
         //successful so the user can login
         if(!this.isUserExists){ this.isUserExists = true; }
         if(!this.isPasswordCorrect){ this.isPasswordCorrect = true; }
+
+        if(this.isUserExists && this.isPasswordCorrect){
+          this.router.navigate(['home']);
+        }
       }
       else{
         //not successful, display an error message
