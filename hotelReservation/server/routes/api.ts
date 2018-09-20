@@ -21,7 +21,6 @@ router.get('/', function(req,res,next){
 router.get('/users/:username/:password', function(req, res, next){
 
     console.log(JSON.stringify(req.params.username));
-    
     console.log(JSON.stringify(req.params.password));
 
     console.log(db.users.find());
@@ -42,7 +41,8 @@ router.get('/users/:username/:password', function(req, res, next){
         }
         else{
             //res.json({error: "Password is incorrect", status: 404});
-            res.json({success : "Successful", status : 200});
+           //res.json({success : "Successful", status : 200});
+            res.json({error: "Username does not exist", status: 404});
         }    
     }
 });

@@ -9,7 +9,8 @@ import {AppService} from '../service/app.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[AppService]
 })
 export class LoginComponent implements OnInit {
   hide = true;
@@ -17,8 +18,11 @@ export class LoginComponent implements OnInit {
   passwordControl = new FormControl();
   isUserExists: boolean = true;
   isPasswordCorrect: boolean = true;
+  public isUserLoggedIn;
 
-  constructor(private appService: AppService, private router: Router){}
+  constructor(private appService: AppService, private router: Router){
+    this.isUserLoggedIn = false;
+  }
   ngOnInit() {
   }
   onSubmit(f: NgForm) {
@@ -35,16 +39,24 @@ export class LoginComponent implements OnInit {
       console.log(result);
 
       console.log(JSON.stringify(result));
+      //this.router.navigate(['/home']);
       if(result.status == 200){
         //successful so the user can login
         if(!this.isUserExists){ this.isUserExists = true; }
         if(!this.isPasswordCorrect){ this.isPasswordCorrect = true; }
-
+        console.log('user can login');
+        console.log(this.isUserExists && this.isPasswordCorrect);
         if(this.isUserExists && this.isPasswordCorrect){
-          this.router.navigate(['home']);
+          this.router.navigate(['/home']);
+          console.log('navigate to home');
+          this.isUserLoggedIn = true;
+          localStorage.setItem('username', this.usernameControl.value);
+          //this.appService.setUserLoggedIn(true);
         }
       }
       else{
+        localStorage.setItem('username', null);
+        console.log("The ELSE BLOVVK");
         //not successful, display an error message
         if(result.error == "Username does not exist"){
           this.isUserExists = false;

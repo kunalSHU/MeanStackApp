@@ -6,6 +6,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {NgProgressModule} from '@ngx-progressbar/core';
 import {AgmCoreModule} from '@agm/core';
+import {AppService} from '../app/service/app.service';
+import {LoginGuard} from '../app/login/login.guard';
+import { HttpModule } from '@angular/http';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -105,11 +108,12 @@ export class DemoMaterialModule {}
     AgmCoreModule.forRoot({apiKey: 'AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4', libraries : ['places']}),
     HttpClientModule,
     AngularSvgIconModule,
+    HttpModule,
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
   entryComponents: [AppComponent, SubmitComponent],
   declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
-  bootstrap: [AppComponent],  providers: [],
+  bootstrap: [AppComponent],  providers: [AppService,LoginGuard],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule {}

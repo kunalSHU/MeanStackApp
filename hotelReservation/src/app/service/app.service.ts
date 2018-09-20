@@ -3,13 +3,15 @@ import { Http, Response,Headers, RequestOptions} from '@angular/http';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {UserInfo} from '../register/register.model';
 import {LoginModel} from '../login/login.model';
-
+import {LoginComponent} from '../login/login.component'
 import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
+  isUserLoggedIn: boolean;
+  login: LoginComponent;
   constructor(private http: HttpClient) { }
 
   //all methods will go here
@@ -26,8 +28,13 @@ export class AppService {
     return this.http.get('http://localhost:3000/api/users/'+loginModel.username+'/'+loginModel.password)
     .map((response: any)=> response);
   }
-  test(){
-    return true;
+  /*setUserLoggedIn(value: boolean){
+    console.log('in set user login');
+    this.isUserLoggedIn = value;
+    console.log(this.isUserLoggedIn);
+  }*/
+  getUserLoggedIn(){
+    return this.login.isUserLoggedIn;
   }
 
 }
