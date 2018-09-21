@@ -33,41 +33,43 @@ export class LoginComponent implements OnInit {
      password:  this.passwordControl.value
     }
     //validates the users credentials in the backend
-    this.appService.getUserLogin(userCred).subscribe(result =>   
-    {
-      console.log('in the subscribe');
-      console.log(result);
+    if(userCred.username!=null && userCred.password!=null){
+      this.appService.getUserLogin(userCred).subscribe(result =>   
+      {
+        console.log('in the subscribe');
+        console.log(result);
 
-      console.log(JSON.stringify(result));
-      //this.router.navigate(['/home']);
-      if(result.status == 200){
-        //successful so the user can login
-        if(!this.isUserExists){ this.isUserExists = true; }
-        if(!this.isPasswordCorrect){ this.isPasswordCorrect = true; }
-        console.log('user can login');
-        console.log(this.isUserExists && this.isPasswordCorrect);
-        if(this.isUserExists && this.isPasswordCorrect){
-          this.router.navigate(['/home']);
-          console.log('navigate to home');
-          this.isUserLoggedIn = true;
-          localStorage.setItem('username', this.usernameControl.value);
-          //this.appService.setUserLoggedIn(true);
+        console.log(JSON.stringify(result));
+        //this.router.navigate(['/home']);
+        if(result.status == 200){
+          //successful so the user can login
+          if(!this.isUserExists){ this.isUserExists = true; }
+          if(!this.isPasswordCorrect){ this.isPasswordCorrect = true; }
+          console.log('user can login');
+          console.log(this.isUserExists && this.isPasswordCorrect);
+          if(this.isUserExists && this.isPasswordCorrect){
+            this.router.navigate(['/home']);
+            console.log('navigate to home');
+            this.isUserLoggedIn = true;
+            localStorage.setItem('username', this.usernameControl.value);
+            //this.appService.setUserLoggedIn(true);
+          }
         }
-      }
-      else{
-        localStorage.setItem('username', null);
-        console.log("The ELSE BLOVVK");
-        //not successful, display an error message
-        if(result.error == "Username does not exist"){
-          this.isUserExists = false;
-          this.isPasswordCorrect = true;    
-        }
-        else if(result.error == "Password is incorrect"){
-          this.isPasswordCorrect = false;
-          this.isUserExists = true;
+        else{
+          localStorage.setItem('username', 'null');
+          console.log("The ELSE BLOVVK");
+          //not successful, display an error message
+          if(result.error == "Username does not exist"){
+            this.isUserExists = false;
+            this.isPasswordCorrect = true;    
+          }
+          else if(result.error == "Password is incorrect"){
+            this.isPasswordCorrect = false;
+            this.isUserExists = true;
 
+          }
         }
-      }
-    });
+      });
+    }
   }
 }

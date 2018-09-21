@@ -24,6 +24,7 @@ isPasswordCorrect: boolean;
     
       if(localStorage.getItem('username')!='null'){
         console.log('in here');
+        localStorage.setItem('username', 'null');
         return true;
       }
       else{
