@@ -91,12 +91,9 @@ export class RegisterComponent implements OnInit {
         return null;
     };
   }
-
-
   constructor(public snackBar: MatSnackBar, private http: HttpClient, 
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private datePipe: DatePipe,
     private appService: AppService) { }
-    
   //this is where we take user data and make an ajax request to the db
   //to register the user 
   ngOnInit() {
@@ -113,7 +110,8 @@ export class RegisterComponent implements OnInit {
         //})
       //});
     });
-  }  
+  }
+  
   validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     /*console.log(email);
     console.log(requiredEmail);
@@ -153,13 +151,13 @@ export class RegisterComponent implements OnInit {
       console.log(telephonePattern);
       console.log(streetrequired);
       console.log(coderequired);*/
-
       this.userDate = new Date(date);
 
       if(!(!firstNamerequired && (firstNamePattern==null) && !lastNamerequired && (lastNamePattern==null) &&
       !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired)){
         this.isSelectedStep2 = false;
       }
+
       else if(this.isSelectedStep2){
         this.secondnextCall(date);
       }
@@ -175,6 +173,7 @@ export class RegisterComponent implements OnInit {
             this.tooYoung = true;
             if(this.isInvalidDate){ this.isInvalidDate = false; }
           }
+
           else{
             this.isInvalidDate = false;
             this.tooYoung = false;
@@ -207,12 +206,13 @@ export class RegisterComponent implements OnInit {
       (data: any) => {
         console.log(data);
     });*/
+
     console.log(this.dateBirthFormControl.value);
     console.log(this.searchElement.nativeElement.value);      
     this.snackBar.openFromComponent(SubmitComponent, {duration: 1200,
     });
   }
-  
+
   firstnextCall(){
     //Using JQuery for the progress bar 
     $("#msform").children("#f1").hide();

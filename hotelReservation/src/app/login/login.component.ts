@@ -5,6 +5,7 @@ import {NgForm, FormControl} from '@angular/forms';
 import {LoginModel} from './login.model';
 import {Router} from '@angular/router';
 import {AppService} from '../service/app.service';
+import * as jwt from 'jsonwebtoken';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,11 @@ export class LoginComponent implements OnInit {
      username: this.usernameControl.value,
      password:  this.passwordControl.value
     }
+    //generate a user token here, which keeps the sensitive
+    //user information encrypted over HTTP 
+    //var token = jwt.sign(userCred, 'secretKey');
+    //console.log(token);
+
     //validates the users credentials in the backend
     if(userCred.username!=null && userCred.password!=null){
       this.appService.getUserLogin(userCred).subscribe(result =>   

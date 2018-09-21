@@ -88,13 +88,13 @@ body {
 
 #msform #f3 mat-chip-list .registerChip{
 	position: absolute;
-	top: 83%;
+	top: 86%;
 	left: 25%;
 	width: 200px;
 }
 #msform #f3 mat-chip-list .prevChip{
 	position: absolute;
-	top: 89%;
+	top: 92%;
 	left: 25%;
 	width: 200px;
 }

@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var mongojs = require('mongojs');
 var url = "mongodb://kunal:kunal5@ds227322.mlab.com:27322/usersinfo";
 var db = mongojs(url, ['users']);
-
+var jwt = require('jsonwebtoken');
 router.get('/', function(req,res,next){
     db.users.find((err, users) => {
         if(err){
@@ -22,7 +22,8 @@ router.get('/users/:username/:password', function(req, res, next){
 
     console.log(JSON.stringify(req.params.username));
     console.log(JSON.stringify(req.params.password));
-
+    var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+    console.log(token);
     console.log(db.users.find());
 
     //Check 1: See if username exists
@@ -40,8 +41,8 @@ router.get('/users/:username/:password', function(req, res, next){
             res.json({error: "Password is incorrect", status: 404});
         }
         else{
-            res.json({error: "Password is incorrect", status: 404});
-           //res.json({success : "Successful", status : 200});
+        //res.json({error: "Password is incorrect", status: 404});
+           res.json({success : "Successful", status : 200});
             //res.json({error: "Username does not exist", status: 404});
         }    
     }

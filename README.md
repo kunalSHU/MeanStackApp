@@ -20,6 +20,7 @@ When you're done, you can delete the content in this README and update the file 
 	7. Also install bootstrap npm install --save bootstrap
 	8. Install progress bar module npm install --save @ngx-progressbar/core
 	9. Upgrade npm i npm <-- using this command to solve the issue for import 'rxjs/add/operator/map'; for register service at home
+	10. At home when installing npm i jsonwebtoken to avoid 'module crypto not found' error do the following: go to browser.js in node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs and change node: false to node: { crypto: true, stream: true }
 
 You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
