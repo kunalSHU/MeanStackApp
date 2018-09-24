@@ -111,7 +111,6 @@ export class RegisterComponent implements OnInit {
       //});
     });
   }
-  
   validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     /*console.log(email);
     console.log(requiredEmail);
@@ -206,7 +205,6 @@ export class RegisterComponent implements OnInit {
       (data: any) => {
         console.log(data);
     });*/
-
     console.log(this.dateBirthFormControl.value);
     console.log(this.searchElement.nativeElement.value);      
     this.snackBar.openFromComponent(SubmitComponent, {duration: 1200,

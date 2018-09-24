@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
 
     //validates the users credentials in the backend
     if(userCred.username!=null && userCred.password!=null){
+      console.log('before interceptor');
       this.appService.postUserLogin(userCred).subscribe(result =>   
       {
         console.log('in the subscribe');

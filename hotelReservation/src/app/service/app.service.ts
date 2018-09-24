@@ -35,8 +35,8 @@ export class AppService {
     this.isUserLoggedIn = value;
     console.log(this.isUserLoggedIn);
   }*/
-  getUserLoggedIn(){
-    return this.login.isUserLoggedIn;
+  getUserToken(){
+    return localStorage.getItem('token');
   }
 
 }
