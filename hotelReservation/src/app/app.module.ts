@@ -2,13 +2,14 @@ import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {NgProgressModule} from '@ngx-progressbar/core';
 import {AgmCoreModule} from '@agm/core';
 import {AppService} from '../app/service/app.service';
 import {LoginGuard} from '../app/login/login.guard';
 import { HttpModule } from '@angular/http';
+import {TokenInterceptorService} from '../app/service/token-interceptor.service';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -113,7 +114,7 @@ export class DemoMaterialModule {}
   ],
   entryComponents: [AppComponent, SubmitComponent],
   declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
-  bootstrap: [AppComponent],  providers: [AppService,LoginGuard],
+  bootstrap: [AppComponent],  providers: [AppService,LoginGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule {}

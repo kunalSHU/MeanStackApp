@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
 
     //means we are back in the login route and token must be reset
     if(this.router.url != localStorage.getItem('homeUrl')){
+      console.log('in login init');
       localStorage.setItem('token', 'null');
     }
 

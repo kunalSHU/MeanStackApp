@@ -27,7 +27,7 @@ export class AppService {
   postUserLogin(loginModel: LoginModel){
     
     console.log('http://localhost:3000/api/users/'+loginModel);
-    return this.http.post('http://localhost:3000/api/users', loginModel)
+    return this.http.post('http://localhost:3000/api/home', loginModel)
     .map((response: any)=> response);
   }
   /*setUserLoggedIn(value: boolean){

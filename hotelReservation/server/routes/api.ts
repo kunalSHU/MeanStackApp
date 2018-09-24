@@ -6,6 +6,18 @@ var mongojs = require('mongojs');
 var url = "mongodb://kunal:kunal5@ds227322.mlab.com:27322/usersinfo";
 var db = mongojs(url, ['users']);
 var jwt = require('jsonwebtoken');
+
+/*
+Must do these checks when the user requests the API using the token - Validation of Token
+1. Make sure its well formed (ie the format xxxx.yyyyy.zzzzz) <-- parse the JWT
+2. Check the signature algorithm, ours is HS256
+3. Verify the signature. Signature is created by using the header, payload, the secretKey and the hashing algo HS256
+*/
+function verifyToken(){
+
+}
+
+
 router.get('/', function(req,res,next){
     db.users.find((err, users) => {
         if(err){
@@ -17,15 +29,15 @@ router.get('/', function(req,res,next){
     });
 });
 
-router.post('/users', function(req, res, next){
+router.post('/home', function(req, res, next){
 
     console.log(JSON.stringify(req.body));
-
     //generate token for user once logged in
     var token = jwt.sign(req.body, 'secretKey');
     console.log(token);
-    console.log(db.users.find());
-
+    //console.log(db.users.find());
+    console.log(jwt.verify(token, 'secretKey'));
+    console.log(req.headers);
     //Check 1: See if username exists
     //Check 2: If username exists but password is incorrect
 
