@@ -25,6 +25,12 @@ export class LoginComponent implements OnInit {
     this.isUserLoggedIn = false;
   }
   ngOnInit() {
+
+    //means we are back in the login route and token must be reset
+    if(this.router.url != localStorage.getItem('homeUrl')){
+      localStorage.setItem('token', 'null');
+    }
+
   }
   onSubmit(f: NgForm) {
     console.log("In the submit function");
