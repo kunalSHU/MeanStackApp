@@ -24,10 +24,10 @@ export class AppService {
   }
   //verifies if user creddentials are in db,
   //if not then informs the user that username/password is not correct/DNE
-  getUserLogin(loginModel: LoginModel){
+  postUserLogin(loginModel: LoginModel){
     
     console.log('http://localhost:3000/api/users/'+loginModel);
-    return this.http.get('http://localhost:3000/api/users/'+loginModel.username+'/'+loginModel.password)
+    return this.http.post('http://localhost:3000/api/users', loginModel)
     .map((response: any)=> response);
   }
   /*setUserLoggedIn(value: boolean){

@@ -20,9 +20,10 @@ isPasswordCorrect: boolean;
     state: RouterStateSnapshot): boolean {
     console.log("In the guard");
     console.log(localStorage.getItem('username'));
+    console.log(localStorage.getItem('token'));
     console.log(localStorage.getItem('username') == 'null');
     
-      if(localStorage.getItem('username')!='null'){
+      if(localStorage.getItem('username')!='null' && localStorage.getItem('token')!='null'){
         console.log('in here');
         localStorage.setItem('username', 'null');
         return true;

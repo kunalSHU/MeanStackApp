@@ -17,12 +17,12 @@ router.get('/', function(req,res,next){
     });
 });
 
+router.post('/users', function(req, res, next){
 
-router.get('/users/:username/:password', function(req, res, next){
+    console.log(JSON.stringify(req.body));
 
-    console.log(JSON.stringify(req.params.username));
-    console.log(JSON.stringify(req.params.password));
-    var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+    //generate token for user once logged in
+    var token = jwt.sign(req.body, 'secretKey');
     console.log(token);
     console.log(db.users.find());
 
@@ -42,7 +42,9 @@ router.get('/users/:username/:password', function(req, res, next){
         }
         else{
         //res.json({error: "Password is incorrect", status: 404});
-           res.json({success : "Successful", status : 200});
+           res.json({success : "Successful", status : 200, userToken: token});
+           //also send back token to the use
+           
             //res.json({error: "Username does not exist", status: 404});
         }    
     }

@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
 
     //validates the users credentials in the backend
     if(userCred.username!=null && userCred.password!=null){
-      this.appService.getUserLogin(userCred).subscribe(result =>   
+      this.appService.postUserLogin(userCred).subscribe(result =>   
       {
         console.log('in the subscribe');
         console.log(result);
-
+        console.log(this.router.url);
         console.log(JSON.stringify(result));
         //this.router.navigate(['/home']);
         if(result.status == 200){
@@ -58,11 +58,13 @@ export class LoginComponent implements OnInit {
             console.log('navigate to home');
             this.isUserLoggedIn = true;
             localStorage.setItem('username', this.usernameControl.value);
+            localStorage.setItem('token', result.userToken);
             //this.appService.setUserLoggedIn(true);
           }
         }
         else{
           localStorage.setItem('username', 'null');
+          localStorage.setItem('token', 'null');
           console.log("The ELSE BLOVVK");
           //not successful, display an error message
           if(result.error == "Username does not exist"){
