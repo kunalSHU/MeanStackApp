@@ -8,20 +8,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private injector: Injector) { }
+  constructor(private appService: AppService) { }
 
   intercept(req, next){
-    console.log("IN THE TOKEN INTERCEPTOR");
-    let authService = this.injector.get(AppService);
-    console.log(localStorage.getItem('token'));
     let tokenizedReq = req.clone({
       setHeaders: {
-        Authortization: `Bearer ${authService.getUserToken()}`
+        Authortization: `Bearer ${this.appService.getUserToken()}`
       }
     })
-    return next.handle(req).pipe(tap(() => {
-        console.log('executed after the request');
-    }));
+    return next.handle(tokenizedReq);
   }
-
 }

@@ -26,7 +26,7 @@ export class AppService {
   //if not then informs the user that username/password is not correct/DNE
   postUserLogin(loginModel: LoginModel){
     
-    console.log('http://localhost:3000/api/users/'+loginModel);
+    console.log(localStorage.getItem('token'));
     return this.http.post('http://localhost:3000/api/home', loginModel)
     .map((response: any)=> response);
   }

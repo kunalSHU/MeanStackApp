@@ -17,7 +17,6 @@ function verifyToken(){
 
 }
 
-
 router.get('/', function(req,res,next){
     db.users.find((err, users) => {
         if(err){
@@ -28,7 +27,6 @@ router.get('/', function(req,res,next){
         }
     });
 });
-
 router.post('/home', function(req, res, next){
 
     console.log(JSON.stringify(req.body));
