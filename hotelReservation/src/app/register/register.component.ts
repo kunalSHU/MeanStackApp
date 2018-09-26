@@ -111,6 +111,7 @@ export class RegisterComponent implements OnInit {
       //});
     });
   }
+  
   validateFirstnext(email: boolean, requiredEmail: boolean, requiredPassword: boolean, requiredConfirmpassword: boolean){
     /*console.log(email);
     console.log(requiredEmail);
