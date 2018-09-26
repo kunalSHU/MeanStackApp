@@ -1,3 +1,17 @@
 .tropicalMain{
     background-position: center;
+    width: 2px;
+    top: 500px;
+}
+img.tropicalMainImg {
+    width:1920px; /* you can use % */
+    height: 950px;
+}
+.toolbar{
+    top: 0px;
+    position: absolute;
+}
+.toolbar #logout{
+    left: 93%;
+    position: absolute;
 }
