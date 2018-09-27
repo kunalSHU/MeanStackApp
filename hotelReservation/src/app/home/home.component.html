@@ -11,8 +11,9 @@
 </mat-toolbar>
 <div id="rectangle"></div>
 <div class="line"></div>
+<div id="square"></div>
 
-<form id="locationForm">
+<form id="locationForm" name="locationF" #locationForm="ngForm" (ngSubmit)="onSubmit(locationForm)">
   <div id="descriptionText">
     <p align="center">
       This app allows you to search for Restaurants <br/> near you
@@ -22,10 +23,10 @@
     </p>
   </div>
   <div id="locationText">
-    <p>Enter a Location to get started</p>
+    <p>Enter a City to get started</p>
   </div>
-  <input type="text" id="location" name="fname" placeholder="Enter Location">
-</form>
+  <input type="text" id="location" name="location" [formControl]="locationControl" placeholder="Enter Location" #search required>
 <div class="search-button">
-<button mat-flat-button id="search">Search</button> 
+    <button mat-flat-button id="search" [disabled]="locationControl.errors?.required">Search for Restaurants</button>  
 </div>
+</form>
