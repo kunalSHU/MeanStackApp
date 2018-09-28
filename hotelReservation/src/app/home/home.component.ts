@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   autocomplete:any;
   locationControl = new FormControl();
   isCityExist: boolean = true;
+  loading: any = 0;
+  cuisines: any;
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
 
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
     //parsing the location to get the city
     let city: any = location.split(', ');
     console.log("This is the city parsed " + city[0]);
-    console.log(city);
+    console.log(city[0] + ', ' + city[1]);
     this.appService.getLocationFromZomato(headers, city[0]).subscribe(result =>{ 
       console.log(result);
 
@@ -45,6 +47,32 @@ export class HomeComponent implements OnInit {
       if(result.location_suggestions.length > 0){
         console.log('good to go');
         this.isCityExist = true;
+        this.loading = 1;
+        setTimeout(() => { // here
+          this.loading = 2;
+        }, 2000);
+
+        //find ID of the location from the response
+        let i;
+        let cityState = city[0] + ', ' + city[1];
+        let location_array = result.location_suggestions;
+        var location_id;
+
+        for(i=0; i < location_array.length; i++){
+          
+          //found it, grab the ID and break out of loop
+          if(location_array[i].name == cityState){
+            location_id = location_array[i].id;
+            break;
+          }
+        }
+
+        //make a get request to get the types of cuisines in the city, based on loc ID
+        this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
+          console.log(result);
+          (<HTMLInputElement>document.getElementById("locationCuisines")).innerHTML = result.cuisines[0].cuisine.cuisine_name;
+        });
+
       }
       //that city DNE
       else{

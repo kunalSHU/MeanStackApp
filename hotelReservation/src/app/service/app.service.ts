@@ -40,11 +40,14 @@ export class AppService {
   }
 
   getLocationFromZomato(headers: HttpHeaders, city: any){
-    console.log(headers.get('Access-Control-Request-Headers'));
     const url = `https://developers.zomato.com/api/v2.1/cities?q=${city}`;
-    console.log(url);
     return this.http.get(url,{headers})
-    .map((response: Response)=> response);
+    .map((response: any)=> response);
+  }
+
+  getCuisineFromZomato(headers:HttpHeaders,location_id: any){
+    const url = `https://developers.zomato.com/api/v2.1/cuisines?city_id=${location_id}`;
+    return this.http.get(url,{headers}).map((response: any)=> response);
   }
 
 }

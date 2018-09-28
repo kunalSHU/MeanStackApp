@@ -31,14 +31,7 @@ img.tropicalMainImg {
     background:rgba(0, 0, 0, 0.83);
     position: absolute;
 }
-#square{
-    top:765px;
-    left: 225px;
-    width:400px;
-    height:100px;
-    background:rgba(2, 255, 255, 0.64);
-    position: absolute;
-}
+
 .line{
     top: 290px;
     left: 250px;
@@ -93,9 +86,22 @@ input[type=text]:focus {
     position: absolute;
     left: 55px;
     color: yellow;
+    box-shadow: 0 0 1px 1px rgba(0.2, 0.2, 0.2, 0.99);
+    box-sizing: border-box;
 }
 #invalidCityCheck{
     position: absolute;
     top:75%;
     left: 12.5%;
+}
+#hello{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+}
+#spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
