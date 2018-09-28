@@ -26,7 +26,12 @@
     <p>Enter a City to get started</p>
   </div>
   <input type="text" id="location" name="location" [formControl]="locationControl" placeholder="Enter Location" #search required>
-<div class="search-button">
-    <button mat-flat-button id="search" [disabled]="locationControl.errors?.required">Search for Restaurants</button>  
-</div>
+  <mat-error class="example-full-width" id="invalidCityCheck" *ngIf="this.isCityExist == false">
+    City is <strong>invalid</strong> or cannot find Restaurants in this <strong>city</strong>
+
+  </mat-error>
+  
+  <div class="search-button">
+      <button mat-flat-button id="search" [disabled]="locationControl.errors?.required">Search for Restaurants</button>  
+  </div>
 </form>

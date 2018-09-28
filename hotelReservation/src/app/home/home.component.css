@@ -94,3 +94,8 @@ input[type=text]:focus {
     left: 55px;
     color: yellow;
 }
+#invalidCityCheck{
+    position: absolute;
+    top:75%;
+    left: 12.5%;
+}

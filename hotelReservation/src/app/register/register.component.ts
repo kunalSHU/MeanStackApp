@@ -69,7 +69,6 @@ export class RegisterComponent implements OnInit {
   numberControl = new FormControl('');
   streetControl = new FormControl('');
   postalCodeControl = new FormControl('');
-
   matcher = new MyErrorStateMatcher();
   //storing the chip buttons to be used in a list
   availableColors: ChipColor[] = [
@@ -77,7 +76,6 @@ export class RegisterComponent implements OnInit {
     {name: 'Next', color: 'primary'},
     {name: 'Accent', color: 'accent'},
     {name: 'Warn', color: 'warn'}
-
   ];
   
   //custom validator test

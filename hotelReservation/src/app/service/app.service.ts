@@ -39,4 +39,12 @@ export class AppService {
     return localStorage.getItem('token');
   }
 
+  getLocationFromZomato(headers: HttpHeaders, city: any){
+    console.log(headers.get('Access-Control-Request-Headers'));
+    const url = `https://developers.zomato.com/api/v2.1/cities?q=${city}`;
+    console.log(url);
+    return this.http.get(url,{headers})
+    .map((response: Response)=> response);
+  }
+
 }
