@@ -57,20 +57,26 @@ export class HomeComponent implements OnInit {
         let cityState = city[0] + ', ' + city[1];
         let location_array = result.location_suggestions;
         var location_id;
-
-        for(i=0; i < location_array.length; i++){
-          
-          //found it, grab the ID and break out of loop
-          if(location_array[i].name == cityState){
-            location_id = location_array[i].id;
-            break;
+        
+        if(city.length > 1){
+          for(i=0; i < location_array.length; i++){
+            
+            //found it, grab the ID and break out of loop
+            if(location_array[i].name == cityState){
+              location_id = location_array[i].id;
+              break;
+            }
           }
+        }
+        //Mumbai case
+        else{
+
         }
 
         //make a get request to get the types of cuisines in the city, based on loc ID
         this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
           console.log(result);
-          (<HTMLInputElement>document.getElementById("locationCuisines")).innerHTML = result.cuisines[0].cuisine.cuisine_name;
+          (<HTMLInputElement>document.getElementById("locationCuisines")).innerHTML = JSON.stringify(result);
         });
 
       }
