@@ -3,6 +3,7 @@
     <img class="tropicalMainImg" src="../../assets/images/hotelMain.jpg"> 
   </div>
 </div>
+
 <mat-toolbar class="toolbar" color="primary">
   <mat-toolbar-row>
     <button mat-button id="logout">Logout</button>
@@ -12,6 +13,7 @@
 <div id="rectangle"></div>
 <div class="line"></div>
 <div id="square"></div>
+
 <form id="locationForm" name="locationF" #locationForm="ngForm" (ngSubmit)="onSubmit(locationForm)">
   <div id="descriptionText">
     <p align="center">
@@ -34,5 +36,12 @@
       <button mat-flat-button id="search" [disabled]="locationControl.errors?.required">Search for Restaurants</button>  
   </div>
 </form>
-<div id="locationCuisines"></div>
+
 <mat-spinner id="spinner" *ngIf="this.loading == 1" color="warn"></mat-spinner>
+
+<mat-card id="cuisine-card" *ngIf="this.getCuisineSuccess">
+  <mat-header>
+    <img mat-card-image id="countryImage" src="{{this.country_pic}}"> 
+  </mat-header>   
+</mat-card>
+

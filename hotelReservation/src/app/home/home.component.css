@@ -105,3 +105,17 @@ input[type=text]:focus {
     top: 50%;
     left: 50%;
 }
+#cuisine-card{
+    position: absolute;
+    top:10%;
+    left: 55%;
+    height: 70%;
+    width: 500px;
+}
+#countryImage{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 47px;
+}

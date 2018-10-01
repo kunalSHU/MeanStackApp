@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
   isCityExist: boolean = true;
   loading: any = 0;
   cuisines: any;
+  getCuisineSuccess: boolean = false;
+  country_pic: any;
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
 
@@ -51,32 +53,57 @@ export class HomeComponent implements OnInit {
         setTimeout(() => { // here
           this.loading = 2;
         }, 2000);
+        console.log(city[city.length-1]);
+
+        //Brazil is special case
+        if(city[city.length-1] == "Brazil"){
+          city[city.length-1] = "Brasil";
+        }      
 
         //find ID of the location from the response
         let i;
         let cityState = city[0] + ', ' + city[1];
         let location_array = result.location_suggestions;
         var location_id;
+        console.log(location_array);
+        console.log(cityState);
         
-        if(city.length > 1){
+        //Special Case Washington DC
+        if(cityState == 'Washington, DC'){
+          cityState = 'Washington DC';
+        }
+
+        if(location_array.length > 1){
           for(i=0; i < location_array.length; i++){
             
             //found it, grab the ID and break out of loop
-            if(location_array[i].name == cityState){
+            if(location_array[i].name == cityState || location_array[i].country_name == city[city.length-1]){
               location_id = location_array[i].id;
+              this.country_pic = location_array[i].country_flag_url;
               break;
             }
           }
         }
         //Mumbai case
         else{
-
+          if(location_array[0].country_name == city[city.length-1]){
+            location_id = location_array[0].id;
+            this.country_pic = location_array[0].country_flag_url;
+          }
+          else{ 
+            this.isCityExist = false;
+            return
+          }
         }
-
+        console.log(this.country_pic);
+        console.log('The id of the place is ' + location_id);
         //make a get request to get the types of cuisines in the city, based on loc ID
         this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
           console.log(result);
-          (<HTMLInputElement>document.getElementById("locationCuisines")).innerHTML = JSON.stringify(result);
+          console.log(typeof this.country_pic);
+          this.getCuisineSuccess = true;
+  
+          //(<HTMLInputElement>document.getElementById("cuisine-card")).src = this.country_pic;
         });
 
       }
