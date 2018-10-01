@@ -14,10 +14,11 @@ export class HomeComponent implements OnInit {
   autocomplete:any;
   locationControl = new FormControl();
   isCityExist: boolean = true;
-  loading: any = 0;
+  loading: boolean = false;
   cuisines: any;
   getCuisineSuccess: boolean = false;
   country_pic: any;
+  isPlaceFound: boolean;
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
 
@@ -29,9 +30,9 @@ export class HomeComponent implements OnInit {
     this.mapsAPILoader.load().then(()=> {
       this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["(cities)"] });
     });
+    
   }
   onSubmit(form: NgForm){
-
     //Using the Zomato API here
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
@@ -48,16 +49,14 @@ export class HomeComponent implements OnInit {
       //good to go
       if(result.location_suggestions.length > 0){
         console.log('good to go');
-        this.isCityExist = true;
-        this.loading = 1;
-        setTimeout(() => { // here
-          this.loading = 2;
-        }, 2000);
         console.log(city[city.length-1]);
-
-        //Brazil is special case
+        this.isCityExist = true;
+        //Brazil and UK is special case
         if(city[city.length-1] == "Brazil"){
           city[city.length-1] = "Brasil";
+        }
+        if(city[city.length-1] == "UK"){
+          city[city.length-1] = "United Kingdom";
         }      
 
         //find ID of the location from the response
@@ -80,13 +79,15 @@ export class HomeComponent implements OnInit {
             if(location_array[i].name == cityState || location_array[i].country_name == city[city.length-1]){
               location_id = location_array[i].id;
               this.country_pic = location_array[i].country_flag_url;
+              this.isPlaceFound = true;
               break;
             }
           }
+          if(!this.isPlaceFound){ this.isPlaceFound = false; return}
         }
         //Mumbai case
         else{
-          if(location_array[0].country_name == city[city.length-1]){
+          if(location_array[0].name == cityState || location_array[0].country_name == city[city.length-1]){
             location_id = location_array[0].id;
             this.country_pic = location_array[0].country_flag_url;
           }
@@ -99,11 +100,7 @@ export class HomeComponent implements OnInit {
         console.log('The id of the place is ' + location_id);
         //make a get request to get the types of cuisines in the city, based on loc ID
         this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
-          console.log(result);
-          console.log(typeof this.country_pic);
           this.getCuisineSuccess = true;
-  
-          //(<HTMLInputElement>document.getElementById("cuisine-card")).src = this.country_pic;
         });
 
       }
@@ -115,5 +112,15 @@ export class HomeComponent implements OnInit {
     });
     console.log(form);
   }
-
+  
+  callSubmit(form: NgForm){
+    //calls onSubmit after 2 seconds of loading
+    
+    this.loading = true;
+    setTimeout(() => {
+      console.log('in timeout');
+    this.onSubmit(form);
+    this.loading = false;}, 2000);
+  }
 }
+

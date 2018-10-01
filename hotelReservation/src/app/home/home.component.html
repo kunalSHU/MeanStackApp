@@ -14,7 +14,7 @@
 <div class="line"></div>
 <div id="square"></div>
 
-<form id="locationForm" name="locationF" #locationForm="ngForm" (ngSubmit)="onSubmit(locationForm)">
+<form id="locationForm" name="locationF" #locationForm="ngForm" (ngSubmit)="callSubmit(locationForm)">
   <div id="descriptionText">
     <p align="center">
       This app allows you to search for Restaurants <br/> near you
@@ -27,7 +27,7 @@
     <p>Enter a City to get started</p>
   </div>
   <input type="text" id="location" name="location" [formControl]="locationControl" placeholder="Enter Location" #search required>
-  <mat-error class="example-full-width" id="invalidCityCheck" *ngIf="this.isCityExist == false">
+  <mat-error class="example-full-width" id="invalidCityCheck" *ngIf="this.isCityExist == false || this.isPlaceFound == false">
     City is <strong>invalid</strong> or cannot find Restaurants in this <strong>city</strong>
 
   </mat-error>
