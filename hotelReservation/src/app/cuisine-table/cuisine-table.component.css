@@ -1,10 +1,6 @@
-.cuisine-table{
-    width: 30%;
-    position: absolute;
-    top: 0%;
-}
 .mat-table {
-    height: 400px;
+    position: relative;
+    height: 500px;
     overflow: auto; 
     width: 100%;
   }

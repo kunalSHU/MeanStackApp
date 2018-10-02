@@ -111,6 +111,7 @@ export class HomeComponent implements OnInit {
       else{
         console.log("not good input");
         this.isCityExist = false;
+        this.loading = false;
       }
     });
     console.log(form);

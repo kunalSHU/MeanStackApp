@@ -109,13 +109,17 @@ input[type=text]:focus {
     position: absolute;
     top:10%;
     left: 55%;
-    height: 70%;
+    height: 86%;
     width: 500px;
 }
 #countryImage{
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: relative;
+    top: 0%;
+    left: 0%;
     width: 70px;
     height: 47px;
+}
+app-cuisine-table{
+    position: relative;
+    top: 75px;
 }
