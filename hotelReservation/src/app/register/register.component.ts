@@ -70,6 +70,7 @@ export class RegisterComponent implements OnInit {
   streetControl = new FormControl('');
   postalCodeControl = new FormControl('');
   matcher = new MyErrorStateMatcher();
+  
   //storing the chip buttons to be used in a list
   availableColors: ChipColor[] = [
     {name: 'none', color: undefined},

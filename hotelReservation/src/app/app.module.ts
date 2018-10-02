@@ -55,6 +55,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent, SubmitComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -78,7 +79,6 @@ import { HomeComponent } from './home/home.component';
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
-    MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
@@ -88,15 +88,14 @@ import { HomeComponent } from './home/home.component';
     MatSliderModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
     MatFormFieldModule
   ],
-  declarations: []
+  declarations: [],
+  imports: []
 })
 export class DemoMaterialModule {}
 
@@ -109,11 +108,12 @@ export class DemoMaterialModule {}
     AgmCoreModule.forRoot({apiKey: 'AIzaSyD153ySYhJSsAxppuq-BDLRFJ7GTy1PKe4', libraries : ['places']}),
     HttpClientModule,
     AngularSvgIconModule,
+    MatTableModule, MatPaginatorModule, MatSortModule,
     HttpModule,
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
   entryComponents: [AppComponent, SubmitComponent],
-  declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent, HomeComponent,CuisineTableComponent],
   bootstrap: [AppComponent],  providers: [AppService,LoginGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

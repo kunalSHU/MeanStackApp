@@ -4,13 +4,14 @@ import {MapsAPILoader} from '@agm/core';
 import {NgForm, FormControl} from '@angular/forms';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {AppService} from '../service/app.service';
+import {} from '../cuisine-table/cuisine-table.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   autocomplete:any;
   locationControl = new FormControl();
   isCityExist: boolean = true;
@@ -101,6 +102,8 @@ export class HomeComponent implements OnInit {
         //make a get request to get the types of cuisines in the city, based on loc ID
         this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
           this.getCuisineSuccess = true;
+          this.loading = false; 
+          console.log(result);
         });
 
       }
@@ -118,9 +121,8 @@ export class HomeComponent implements OnInit {
     
     this.loading = true;
     setTimeout(() => {
-      console.log('in timeout');
-    this.onSubmit(form);
-    this.loading = false;}, 2000);
+      this.onSubmit(form);
+    }, 2000);
   }
 }
 
