@@ -73,6 +73,9 @@ export class HomeComponent implements OnInit {
         if(cityState == 'Washington, DC'){
           cityState = 'Washington DC';
         }
+        if(cityState == 'New York, NY'){
+          cityState = 'New York City, NY';
+        }
 
         if(location_array.length > 1){
           for(i=0; i < location_array.length; i++){
@@ -82,20 +85,25 @@ export class HomeComponent implements OnInit {
               location_id = location_array[i].id;
               this.country_pic = location_array[i].country_flag_url;
               this.isPlaceFound = true;
+              this.isCityExist = true;
               break;
             }
           }
-          if(!this.isPlaceFound){ this.isPlaceFound = false; this.loading = false; return}
+          if(!this.isPlaceFound){ this.isPlaceFound = false; this.isCityExist = false; this.loading = false; return}
         }
         //Mumbai case
         else{
           if(location_array[0].name == cityState || location_array[0].country_name == city[city.length-1]){
             location_id = location_array[0].id;
             this.country_pic = location_array[0].country_flag_url;
+            this.isCityExist = true;
+            this.isPlaceFound = true;
+            
           }
           else{ 
             this.isCityExist = false;
             this.loading = false;
+            this.isPlaceFound = false;
             return
           }
         }
