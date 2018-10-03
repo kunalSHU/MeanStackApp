@@ -2,6 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import {HomeComponent} from '../home/home.component';
 
 // TODO: Replace this with your own data model type
 export interface CuisineTableItem {
@@ -38,11 +39,12 @@ const EXAMPLE_DATA: CuisineTableItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class CuisineTableDataSource extends DataSource<CuisineTableItem> {
+export class CuisineTableDataSource {
   data: CuisineTableItem[] = EXAMPLE_DATA;
 
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
-    super();
+  constructor(private paginator: MatPaginator, private sort: MatSort,
+    private homeComponent: HomeComponent) {
+    
   }
 
   /**
@@ -58,7 +60,8 @@ export class CuisineTableDataSource extends DataSource<CuisineTableItem> {
       this.paginator.page,
       this.sort.sortChange
     ];
-
+    console.log('in thee connect');
+    console.log(JSON.stringify(localStorage.getItem('cuisineData')));
     // Set the paginators length
     this.paginator.length = this.data.length;
 

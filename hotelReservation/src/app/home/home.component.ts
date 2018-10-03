@@ -4,7 +4,7 @@ import {MapsAPILoader} from '@agm/core';
 import {NgForm, FormControl} from '@angular/forms';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {AppService} from '../service/app.service';
-import {} from '../cuisine-table/cuisine-table.component';
+//import {CuisineTableDataSource} from '../cuisine-table/cuisine-table-datasource';
 
 @Component({
   selector: 'app-home',
@@ -20,11 +20,12 @@ export class HomeComponent implements OnInit {
   getCuisineSuccess: boolean = false;
   country_pic: any;
   isPlaceFound: boolean;
+  savedResult: any;
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
 
   constructor(private router: Router,private mapsAPILoader: MapsAPILoader,
-  private appService: AppService) { }
+  private appService: AppService, /*private cuisineTableData: CuisineTableDataSource*/) { }
 
   ngOnInit() {
     localStorage.setItem('homeUrl', this.router.url);
@@ -102,10 +103,12 @@ export class HomeComponent implements OnInit {
         //make a get request to get the types of cuisines in the city, based on loc ID
         this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
           this.getCuisineSuccess = true;
+          localStorage.setItem('cuisineData', result.cuisines[0].cuisine.cuisine_name);
+          //this.cuisineTableData.populateData(result);
           this.loading = false; 
           console.log(result);
         });
-
+        
       }
       //that city DNE
       else{

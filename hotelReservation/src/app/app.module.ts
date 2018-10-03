@@ -56,6 +56,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent, SubmitComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
+//import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
+//import { CuisineTableDataSource } from './cuisine-table/cuisine-table-datasource';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -95,7 +97,7 @@ import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
     MatFormFieldModule
   ],
   declarations: [],
-  imports: []
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule]
 })
 export class DemoMaterialModule {}
 
@@ -113,8 +115,8 @@ export class DemoMaterialModule {}
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
   entryComponents: [AppComponent, SubmitComponent],
-  declarations: [AppComponent, LoginComponent,RegisterComponent, SubmitComponent, HomeComponent,CuisineTableComponent],
-  bootstrap: [AppComponent],  providers: [AppService,LoginGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+  declarations: [AppComponent, CuisineTableComponent,LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
+  bootstrap: [AppComponent],  providers: [AppService,/*CuisineTableDataSource,*/HttpClientModule,LoginGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule {}

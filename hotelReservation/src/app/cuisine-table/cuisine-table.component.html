@@ -1,6 +1,5 @@
-<div class="cuisine-table">
-<mat-card-content>
-  <mat-table mat-table #table id="table" [dataSource]="dataSource" matSort aria-label="Elements">
+
+  <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
@@ -21,7 +20,5 @@
     [length]="dataSource.data.length"
     [pageIndex]="0"
     [pageSize]="50"
-    [pageSizeOptions]="[5, 10, 100, 200]">
+    [pageSizeOptions]="[25, 50, 100, 250]">
   </mat-paginator>
-</mat-card-content>
-</div>

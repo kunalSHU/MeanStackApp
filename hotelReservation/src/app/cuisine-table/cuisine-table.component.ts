@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { CuisineTableDataSource } from './cuisine-table-datasource';
-
+import {HomeComponent} from '../home/home.component';
 @Component({
   selector: 'app-cuisine-table',
   templateUrl: './cuisine-table.component.html',
@@ -14,6 +14,11 @@ export class CuisineTableComponent implements OnInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
+
+  constructor(private homeComponent: HomeComponent){
+
+  }
+
 
   ngOnInit() {
     this.dataSource = new CuisineTableDataSource(this.paginator, this.sort);
