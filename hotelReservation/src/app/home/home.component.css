@@ -115,13 +115,14 @@ input[type=text]:focus {
 #countryImage{
     position: relative;
     top: 0%;
-    left: 0%;
+    left: 50%;
     width: 70px;
     height: 47px;
 }
 app-cuisine-table{
-    height: 400px;
+    height: 800px;
     overflow: auto; 
     width: 100%;
     position: relative;
+    top:35px;
 }

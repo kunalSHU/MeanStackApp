@@ -22,5 +22,6 @@ export class CuisineTableComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new CuisineTableDataSource(this.paginator, this.sort);
+    console.log(this.dataSource);
   }
 }

@@ -6,45 +6,22 @@ import {HomeComponent} from '../home/home.component';
 
 // TODO: Replace this with your own data model type
 export interface CuisineTableItem {
-  name: string;
-  id: number;
+  cuisine_name: string;
+  cuisine_id: number;
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: CuisineTableItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
-];
+const parsed_cuisine_data: CuisineTableItem[] = JSON.parse(localStorage.getItem('cuisineData'));
 
 /**
  * Data source for the CuisineTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class CuisineTableDataSource {
-  data: CuisineTableItem[] = EXAMPLE_DATA;
-
-  constructor(private paginator: MatPaginator, private sort: MatSort,
-    private homeComponent: HomeComponent) {
-    
+export class CuisineTableDataSource extends DataSource<CuisineTableItem>{
+  data: CuisineTableItem[] = parsed_cuisine_data;
+  constructor(private paginator: MatPaginator, private sort: MatSort) {
+    super();
   }
 
   /**
@@ -55,15 +32,17 @@ export class CuisineTableDataSource {
   connect(): Observable<CuisineTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
+    
+    console.log('in thee connect');
+    var parsed_cuisine_data = JSON.parse(localStorage.getItem('cuisineData'));
+    console.log(parsed_cuisine_data);
+
+    
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,
       this.sort.sortChange
     ];
-    console.log('in thee connect');
-    var plz = JSON.parse(localStorage.getItem('cuisineData'));
-    console.log(typeof plz);
-
     // Set the paginators length
     this.paginator.length = this.data.length;
 
@@ -99,8 +78,8 @@ export class CuisineTableDataSource {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'name': return compare(a.cuisine_name, b.cuisine_name, isAsc);
+        case 'id': return compare(+a.cuisine_id, +b.cuisine_id, isAsc);
         default: return 0;
       }
     });
