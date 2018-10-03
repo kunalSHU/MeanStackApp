@@ -77,6 +77,7 @@ export class RegisterComponent implements OnInit {
     {name: 'Accent', color: 'accent'},
     {name: 'Warn', color: 'warn'}
   ];
+  
   //custom validator test
   emailPatternValidator(pattern: any): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {

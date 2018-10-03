@@ -103,10 +103,11 @@ export class HomeComponent implements OnInit {
         //make a get request to get the types of cuisines in the city, based on loc ID
         this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
           this.getCuisineSuccess = true;
-          localStorage.setItem('cuisineData', result.cuisines[0].cuisine.cuisine_name);
+          localStorage.setItem('cuisineData', JSON.stringify(result.cuisines));
           //this.cuisineTableData.populateData(result);
           this.loading = false; 
           console.log(result);
+          console.log((typeof result.cuisines));
         });
         
       }
@@ -122,7 +123,7 @@ export class HomeComponent implements OnInit {
   
   callSubmit(form: NgForm){
     //calls onSubmit after 2 seconds of loading
-    
+    localStorage.setItem('cuisineData', null);
     this.loading = true;
     setTimeout(() => {
       this.onSubmit(form);

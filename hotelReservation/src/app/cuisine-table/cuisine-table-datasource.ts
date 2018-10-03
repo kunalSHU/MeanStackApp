@@ -61,7 +61,9 @@ export class CuisineTableDataSource {
       this.sort.sortChange
     ];
     console.log('in thee connect');
-    console.log(JSON.stringify(localStorage.getItem('cuisineData')));
+    var plz = JSON.parse(localStorage.getItem('cuisineData'));
+    console.log(typeof plz);
+
     // Set the paginators length
     this.paginator.length = this.data.length;
 
