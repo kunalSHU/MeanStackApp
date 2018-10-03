@@ -20,6 +20,7 @@ const parsed_cuisine_data: CuisineTableItem[] = JSON.parse(localStorage.getItem(
  */
 export class CuisineTableDataSource extends DataSource<CuisineTableItem>{
   data: CuisineTableItem[] = parsed_cuisine_data;
+
   constructor(private paginator: MatPaginator, private sort: MatSort) {
     super();
   }
@@ -32,22 +33,22 @@ export class CuisineTableDataSource extends DataSource<CuisineTableItem>{
   connect(): Observable<CuisineTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-    
+    console.log(this.data);
     console.log('in thee connect');
     var parsed_cuisine_data = JSON.parse(localStorage.getItem('cuisineData'));
     console.log(parsed_cuisine_data);
 
     
     const dataMutations = [
-      observableOf(this.data),
+      observableOf(parsed_cuisine_data),
       this.paginator.page,
       this.sort.sortChange
     ];
     // Set the paginators length
-    this.paginator.length = this.data.length;
+    this.paginator.length = parsed_cuisine_data.length;
 
     return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
+      return this.getPagedData(this.getSortedData([...parsed_cuisine_data]));
     }));
   }
 

@@ -15,7 +15,7 @@ export class CuisineTableComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
-  constructor(private homeComponent: HomeComponent){
+  constructor(){
 
   }
 

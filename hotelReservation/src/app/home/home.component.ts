@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
               break;
             }
           }
-          if(!this.isPlaceFound){ this.isPlaceFound = false; return}
+          if(!this.isPlaceFound){ this.isPlaceFound = false; this.loading = false; return}
         }
         //Mumbai case
         else{
@@ -95,6 +95,7 @@ export class HomeComponent implements OnInit {
           }
           else{ 
             this.isCityExist = false;
+            this.loading = false;
             return
           }
         }
@@ -123,6 +124,7 @@ export class HomeComponent implements OnInit {
   
   callSubmit(form: NgForm){
     //calls onSubmit after 2 seconds of loading
+    this.getCuisineSuccess = false;
     localStorage.setItem('cuisineData', null);
     this.loading = true;
     setTimeout(() => {
