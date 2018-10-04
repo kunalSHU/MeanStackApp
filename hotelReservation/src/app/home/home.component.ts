@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   cuisines: any;
   getCuisineSuccess: boolean = false;
   country_pic: any;
-  isPlaceFound: boolean;
+  isPlaceFound: any;
   savedResult: any;
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
     
   }
   onSubmit(form: NgForm){
+ 
+     //this.isPlaceFound = 0; 
     //Using the Zomato API here
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
@@ -78,10 +80,12 @@ export class HomeComponent implements OnInit {
         }
 
         if(location_array.length > 1){
+          console.log('array more than size 1 for paris');
           for(i=0; i < location_array.length; i++){
             
             //found it, grab the ID and break out of loop
             if(location_array[i].name == cityState || location_array[i].country_name == city[city.length-1]){
+              console.log('in the if statement');
               location_id = location_array[i].id;
               this.country_pic = location_array[i].country_flag_url;
               this.isPlaceFound = true;
@@ -89,7 +93,15 @@ export class HomeComponent implements OnInit {
               break;
             }
           }
-          if(!this.isPlaceFound){ this.isPlaceFound = false; this.isCityExist = false; this.loading = false; return}
+          console.log(this.isPlaceFound);
+          console.log(this.isCityExist);
+          if(!this.isPlaceFound){ 
+            console.log('paris not found')
+            this.isPlaceFound = false; 
+            this.isCityExist = false; 
+            this.loading = false; 
+            return
+          }
         }
         //Mumbai case
         else{
@@ -135,9 +147,14 @@ export class HomeComponent implements OnInit {
     this.getCuisineSuccess = false;
     localStorage.setItem('cuisineData', null);
     this.loading = true;
+    this.reset();
     setTimeout(() => {
       this.onSubmit(form);
     }, 2000);
+  }
+  reset(){
+    this.isCityExist = undefined;
+    this.isPlaceFound = undefined;
   }
 }
 
