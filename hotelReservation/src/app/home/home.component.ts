@@ -127,6 +127,7 @@ export class HomeComponent implements OnInit {
           localStorage.setItem('cuisineData', JSON.stringify(result.cuisines));
           //this.cuisineTableData.populateData(result);
           this.loading = false; 
+          console.log(result.cuisines);
           console.log(result);
           console.log((typeof result.cuisines));
         });

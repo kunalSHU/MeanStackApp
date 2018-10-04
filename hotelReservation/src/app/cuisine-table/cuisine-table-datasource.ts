@@ -3,6 +3,8 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import {HomeComponent} from '../home/home.component';
+import {Component} from '@angular/core';
+import {MatTableDataSource} from '@angular/material';
 
 // TODO: Replace this with your own data model type
 export interface CuisineTableItem {
@@ -11,7 +13,7 @@ export interface CuisineTableItem {
 }
 
 // TODO: replace this with real data from your application
-const parsed_cuisine_data: CuisineTableItem[] = JSON.parse(localStorage.getItem('cuisineData'));
+
 
 /**
  * Data source for the CuisineTable view. This class should
@@ -19,10 +21,12 @@ const parsed_cuisine_data: CuisineTableItem[] = JSON.parse(localStorage.getItem(
  * (including sorting, pagination, and filtering).
  */
 export class CuisineTableDataSource extends DataSource<CuisineTableItem>{
-  data: CuisineTableItem[] = parsed_cuisine_data;
-
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  parsed_cuisine_data: CuisineTableItem[] = JSON.parse(localStorage.getItem('cuisineData'));
+  data: CuisineTableItem[] = this.parsed_cuisine_data;
+  dataSource = new MatTableDataSource(this.parsed_cuisine_data);
+  constructor(private paginator: MatPaginator, private sort: MatSort, private filterData: any) {
     super();
+    this.filterData = this.parsed_cuisine_data;
   }
 
   /**
@@ -33,22 +37,22 @@ export class CuisineTableDataSource extends DataSource<CuisineTableItem>{
   connect(): Observable<CuisineTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-    console.log(this.data);
+    //console.log(this.data);
     console.log('in thee connect');
-    var parsed_cuisine_data = JSON.parse(localStorage.getItem('cuisineData'));
-    console.log(parsed_cuisine_data);
+    //var parsed_cuisine_data = JSON.parse(localStorage.getItem('cuisineData'));
+    console.log(typeof this.parsed_cuisine_data);
 
     
     const dataMutations = [
-      observableOf(parsed_cuisine_data),
+      observableOf(this.parsed_cuisine_data),
       this.paginator.page,
       this.sort.sortChange
     ];
     // Set the paginators length
-    this.paginator.length = parsed_cuisine_data.length;
+    this.paginator.length = this.parsed_cuisine_data.length;
 
     return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...parsed_cuisine_data]));
+      return this.getPagedData(this.getSortedData([...this.parsed_cuisine_data]));
     }));
   }
 
@@ -57,6 +61,12 @@ export class CuisineTableDataSource extends DataSource<CuisineTableItem>{
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect() {}
+
+  public applyFilter(filterValue: string){
+    console.log('in apply filter');
+    console.log(this.dataSource)
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
