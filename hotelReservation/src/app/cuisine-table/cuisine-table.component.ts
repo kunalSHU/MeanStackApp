@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
-import { CuisineTableDataSource } from './cuisine-table-datasource';
 import {HomeComponent} from '../home/home.component';
 import {MatTableDataSource} from '@angular/material';
 export interface PeriodicElement {
@@ -41,23 +40,13 @@ export class CuisineTableComponent implements OnInit {
     
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    //console.log(this.dataSource);
-    /*this.dataSource.filterPredicate = (data, filter) => {
-      console.log(data);
-      console.log(filter);
-      console.log(this.displayedColumns.some);
-      return data.cuisine[this.displayedColumns[1]] == filter;
-      /*return this.displayedColumns.some(ele => {
-        console.log(typeof ele);
-        console.log(data.cuisine[this.displayedColumns[1]]);
-        return ele != 'actions' && data.cuisine[this.displayedColumns[1]].toLowerCase.indexOf(filter) != -1;
-      })
-  } */
-    //console.log(this.dataSource);
+
   }
   applyFilter(filterValue: string){
     console.log('in the apply filter');
     console.log(this.dataSource);
+  
+      
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

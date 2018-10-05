@@ -1,5 +1,25 @@
 .mat-table {
-    height: 600px;
+    height: 525px;
     overflow: auto; 
     width: 100%;
+  }
+  input[type=text]{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('search.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+  }
+  img{
+    position:relative;
+    bottom:2px;
+    left:10px;
+    width:24px;
+    height:24px;
+    top:38px;
   }

@@ -120,7 +120,7 @@ input[type=text]:focus {
     height: 47px;
 }
 app-cuisine-table{
-    height: 800px;
+    height: 700px;
     overflow: auto; 
     width: 100%;
     position: relative;
