@@ -4,10 +4,24 @@
   <input type="text" (keyup)="applyFilter($event.target.value)" name="search" placeholder="Search..">  
 </div>
   <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+
+    <!-- Checkbox Coloumn -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+       Select
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)"></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
     <!-- Id Column -->
     <ng-container matColumnDef="cuisine_id">
       <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.cuisine_id}}</mat-cell>
+      <mat-cell *matCellDef="let row" >{{row.cuisine_id}}</mat-cell>
+      <p *ngIf="this.dataSource.filteredData.length==0">empty</p>
     </ng-container>
 
     <!-- Name Column -->
@@ -18,7 +32,6 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-
   <mat-paginator #paginator
     [length]="dataSource.data.length"
     [pageIndex]="0"

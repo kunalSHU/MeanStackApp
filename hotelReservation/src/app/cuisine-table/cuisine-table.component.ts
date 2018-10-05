@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import {HomeComponent} from '../home/home.component';
 import {MatTableDataSource} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -17,14 +19,16 @@ export class CuisineTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTableDataSource) filterData: MatTableDataSource<any>;
   dataSource: MatTableDataSource<any>;
+  selection = new SelectionModel<any>(true, []);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   //displayedColumns = ['cuisine_id', 'cuisine_name'];
-  displayedColumns: string[] = ['cuisine_id', 'cuisine_name'];
+  displayedColumns: string[] = ['select','cuisine_id', 'cuisine_name'];
   constructor(){
   }
 
   ngOnInit() {
     console.log(this.sort);
+    //console.log(this.selection);
     //this.dataSource = new CuisineTableDataSource(this.paginator, this.sort, this.filterData);
     //console.log(this.dataSource);
     //this.dataSource = new MatTableDataSource(JSON.parse(localStorage.getItem('cuisineData')));
@@ -45,7 +49,7 @@ export class CuisineTableComponent implements OnInit {
   applyFilter(filterValue: string){
     console.log('in the apply filter');
     console.log(this.dataSource);
-  
+    console.log(this.dataSource.paginator);
       
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
