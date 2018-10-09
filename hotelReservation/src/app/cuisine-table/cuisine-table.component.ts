@@ -56,7 +56,6 @@ export class CuisineTableComponent implements OnInit {
   }
   selectedRow(row_original){
     console.log(row_original);
-    row_original.isSelected = true;
     this.found = false;
     //loop through the list of selected cuisines to see if that 
     //cuisine needs to be removed or added to the list
@@ -81,7 +80,6 @@ export class CuisineTableComponent implements OnInit {
       this.selectedCuisines.push(row_original);
     }
     //need to add the cuisine here
-    //when call that object has been selected so we attach a bool attribute
     if(this.selectedCuisines.length==0){
       this.selectedCuisines.push(row_original);
     }
