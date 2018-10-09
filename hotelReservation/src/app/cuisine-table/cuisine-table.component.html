@@ -6,12 +6,12 @@
   <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
     <!-- Checkbox Coloumn -->
-    <ng-container matColumnDef="select">
+    <ng-container matColumnDef="select" >
       <mat-header-cell *matHeaderCellDef>
        Select
       </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
+      <mat-cell *matCellDef="let row" id="matCell">
+        <mat-checkbox (click)="selectedRow(row)"
         (change)="$event ? selection.toggle(row) : null"
         [checked]="selection.isSelected(row)"></mat-checkbox>
       </mat-cell>
