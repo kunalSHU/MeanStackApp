@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit {
     console.log('in searchCuisineClick');
     console.log(this.location_id);
     console.log(localStorage.getItem("selectedCuisines"));
-
+    //localStorage.setItem("selectedCuisines", null);
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
     headers = headers.append('X-Zomato-API-Key', '5f8f8c7daa019ccc1553516688930d4f');
@@ -157,11 +157,14 @@ export class HomeComponent implements OnInit {
 
     var i;
     var cuisine_id_string = "";
+    if(json_cuisines_array != null){
     for(i = 0; i < json_cuisines_array.length; i++){
       cuisine_id_string += json_cuisines_array[i].cuisine_id.toString() + '%2C';
     }
+  
     var formatted_cuisine_string = cuisine_id_string.slice(0,cuisine_id_string.length-3);
     console.log(formatted_cuisine_string);
+
     //grab each of the cuisine ID's and format it into a string
 
     //make a request to the zomato API here
@@ -170,12 +173,17 @@ export class HomeComponent implements OnInit {
     this.appService.getRestaurantFromCuisineZomato(headers, this.location_id, formatted_cuisine_string).subscribe(result=>{
       console.log(result);
     })
-
+  }
+  else{
+    console.log('you selected nothing');
+  }
+   // localStorage.setItem("selectedCuisines", null);
   }
   callSubmit(form: NgForm){
     //calls onSubmit after 2 seconds of loading
     this.getCuisineSuccess = false;
     localStorage.setItem('cuisineData', null);
+    localStorage.setItem('selectedCuisines', null);
     this.loading = true;
     this.reset();
     setTimeout(() => {
