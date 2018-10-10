@@ -4,7 +4,7 @@ import {MapsAPILoader} from '@agm/core';
 import {NgForm, FormControl} from '@angular/forms';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {AppService} from '../service/app.service';
-//import {CuisineTableDataSource} from '../cuisine-table/cuisine-table-datasource';
+import {CuisineTableComponent} from '../cuisine-table/cuisine-table.component';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +21,12 @@ export class HomeComponent implements OnInit {
   country_pic: any;
   isPlaceFound: any;
   savedResult: any;
+  location_id: number;
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
 
   constructor(private router: Router,private mapsAPILoader: MapsAPILoader,
-  private appService: AppService, /*private cuisineTableData: CuisineTableDataSource*/) { }
+  private appService: AppService) { }
 
   ngOnInit() {
     localStorage.setItem('homeUrl', this.router.url);
@@ -67,7 +68,7 @@ export class HomeComponent implements OnInit {
         let i;
         let cityState = city[0] + ', ' + city[1];
         let location_array = result.location_suggestions;
-        var location_id;
+    
         console.log(location_array);
         console.log(cityState);
         
@@ -86,7 +87,7 @@ export class HomeComponent implements OnInit {
             //found it, grab the ID and break out of loop
             if(location_array[i].name == cityState || location_array[i].country_name == city[city.length-1]){
               console.log('in the if statement');
-              location_id = location_array[i].id;
+              this.location_id = location_array[i].id;
               this.country_pic = location_array[i].country_flag_url;
               this.isPlaceFound = true;
               this.isCityExist = true;
@@ -106,7 +107,7 @@ export class HomeComponent implements OnInit {
         //Mumbai case
         else{
           if(location_array[0].name == cityState || location_array[0].country_name == city[city.length-1]){
-            location_id = location_array[0].id;
+            this.location_id = location_array[0].id;
             this.country_pic = location_array[0].country_flag_url;
             this.isCityExist = true;
             this.isPlaceFound = true;
@@ -120,9 +121,9 @@ export class HomeComponent implements OnInit {
           }
         }
         console.log(this.country_pic);
-        console.log('The id of the place is ' + location_id);
+        console.log('The id of the place is ' + this.location_id);
         //make a get request to get the types of cuisines in the city, based on loc ID
-        this.appService.getCuisineFromZomato(headers, location_id).subscribe(result => {
+        this.appService.getCuisineFromZomato(headers, this.location_id).subscribe(result => {
           this.getCuisineSuccess = true;
           localStorage.setItem('cuisineData', JSON.stringify(result.cuisines));
           //this.cuisineTableData.populateData(result);
@@ -142,7 +143,35 @@ export class HomeComponent implements OnInit {
     });
     console.log(form);
   }
-  
+  searchCuisineClick(){
+    console.log('in searchCuisineClick');
+    console.log(this.location_id);
+    console.log(localStorage.getItem("selectedCuisines"));
+
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('X-Zomato-API-Key', '5f8f8c7daa019ccc1553516688930d4f');
+
+    let json_cuisines_array = JSON.parse(localStorage.getItem("selectedCuisines"));
+    console.log(json_cuisines_array);
+
+    var i;
+    var cuisine_id_string = "";
+    for(i = 0; i < json_cuisines_array.length; i++){
+      cuisine_id_string += json_cuisines_array[i].cuisine_id.toString() + '%2C';
+    }
+    var formatted_cuisine_string = cuisine_id_string.slice(0,cuisine_id_string.length-3);
+    console.log(formatted_cuisine_string);
+    //grab each of the cuisine ID's and format it into a string
+
+    //make a request to the zomato API here
+    //their search endpoint
+    //arguments: locatoin_id, enitytype=city, list of cuisine ID (string)
+    this.appService.getRestaurantFromCuisineZomato(headers, this.location_id, formatted_cuisine_string).subscribe(result=>{
+      console.log(result);
+    })
+
+  }
   callSubmit(form: NgForm){
     //calls onSubmit after 2 seconds of loading
     this.getCuisineSuccess = false;

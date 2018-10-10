@@ -89,7 +89,7 @@ export class RegisterComponent implements OnInit {
         return null;
     };
   }
-  
+
   constructor(public snackBar: MatSnackBar, private http: HttpClient, 
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private datePipe: DatePipe,
     private appService: AppService) { }

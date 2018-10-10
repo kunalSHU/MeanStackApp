@@ -45,7 +45,7 @@
   </mat-header>
   <app-cuisine-table></app-cuisine-table>
   <mat-chip-list>
-    <mat-chip color="accent" id="searchBasedCuisine" selected>
+    <mat-chip color="accent" (click)="searchCuisineClick()" class="searchBasedCuisine" selected>
       <div id="searchText">Search</div></mat-chip>
   </mat-chip-list>
   

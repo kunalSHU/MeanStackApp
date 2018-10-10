@@ -49,11 +49,6 @@ export class CuisineTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
 
   }
-  checkBoxSelection(name_array : SelectionModel<any>){
-    console.log(name_array);
-    console.log(name_array.selected);
-    //console.log(name_array._selection);
-  }
   selectedRow(row_original){
     console.log(row_original);
     this.found = false;
@@ -86,6 +81,7 @@ export class CuisineTableComponent implements OnInit {
     console.log(this.found);
     
     console.log(this.selectedCuisines);
+    localStorage.setItem("selectedCuisines", JSON.stringify(this.selectedCuisines));
   }
 
   applyFilter(filterValue: string){

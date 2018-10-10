@@ -126,13 +126,13 @@ app-cuisine-table{
     position: relative;
     top:35px;
 }
-#searchBasedCuisine{
+.searchBasedCuisine{
     position: absolute;
     top:92%;
-    left:34%;
+    left:35%;
     width: 150px;
 }
-#searchBasedCuisine #searchText{
+.searchBasedCuisine #searchText{
     position: relative;
     left: 38%;
 }
