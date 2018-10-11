@@ -1,0 +1,25 @@
+.tropicalMain{
+    background-position: center;
+    width: 2px;
+    top: 500px;
+}
+img.tropicalMainImg {
+    width:1920px; /* you can use % */
+    height: 938px;
+}
+.toolbar{
+    top: 0px;
+    position: absolute;
+}
+.toolbar #logout{
+    left: 93%;
+    position: absolute;
+}
+#hw{
+    top: 15px;
+    left: 41%;
+    position: absolute;
+    font-family: 'Kunstler Script';
+    font: 'Kunstler Script';
+    font-size: 50px;
+}

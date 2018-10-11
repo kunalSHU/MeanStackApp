@@ -52,6 +52,9 @@ export class CuisineTableComponent implements OnInit {
   selectedRow(row_original){
     console.log(row_original);
     this.found = false;
+    //something  got selected
+    localStorage.setItem('cuisineSelectedBool', 'true');
+
     //loop through the list of selected cuisines to see if that 
     //cuisine needs to be removed or added to the list
     var i;
