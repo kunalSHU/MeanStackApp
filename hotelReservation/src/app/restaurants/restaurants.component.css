@@ -1,0 +1,28 @@
+mat-list{
+    position: absolute;
+    top: 15%;
+    width: 27%;
+    left: 36%;
+}
+mat-list-item #text{
+    color: yellow;
+}
+mat-list .divider{
+    background-color: white;
+}
+#table{
+    height: 700px;
+    overflow: auto; 
+    width: 50%;
+    position: absolute;
+    top:100px;
+    left:30%;
+}
+#rectangle{
+    top:6.8%;
+    left: 25%;
+    width:50%;
+    height:93.2%;
+    background:rgba(0, 0, 0, 0.94);
+    position: absolute;
+}

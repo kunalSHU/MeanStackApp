@@ -51,7 +51,7 @@ export class AppService {
     .map((response: any)=> response);
   }
   getRestaurantFromCuisineZomato(headers:HttpHeaders, locationID:number, cuisineString:string){
-    const url = `https://developers.zomato.com/api/v2.1/search?entity_id=${locationID}&entity_type=city&cuisines=${cuisineString}`
+    const url = `https://jsonplaceholder.typicode.com/posts`
     return this.http.get(url,{headers})
     .map((response: any)=> response);    
   }

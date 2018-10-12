@@ -41,7 +41,7 @@ export class CuisineTableComponent implements OnInit {
     for(i = 0; i < unformatted_data.length; i++){
       formatted_lst.push(unformatted_data[i].cuisine)
     }
-    //localStorage.setItem('formattedData', formatted_lst);
+    localStorage.setItem('formattedData', JSON.stringify(formatted_lst));
     console.log(formatted_lst);
     this.dataSource = new MatTableDataSource(formatted_lst);
     

@@ -1,0 +1,34 @@
+<app-nav-pic></app-nav-pic>
+<div id="rectangle"></div>
+<div id="table">
+<mat-table #table [dataSource]="dataSources" aria-label="Elements">
+  
+<!-- userId Column -->
+<ng-container matColumnDef="userId">
+  <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+  <mat-cell *matCellDef="let row" >{{row.userId}}</mat-cell>
+</ng-container>
+
+<!-- id Column -->
+<ng-container matColumnDef="id">
+  <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+  <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+</ng-container>
+
+<!-- title Column -->
+<ng-container matColumnDef="title">
+  <mat-header-cell *matHeaderCellDef>title</mat-header-cell>
+  <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
+</ng-container>
+
+<!-- body Column -->
+<ng-container matColumnDef="body">
+  <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+  <mat-cell *matCellDef="let row">{{row.body}}</mat-cell>
+</ng-container>
+
+
+<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+  </div>

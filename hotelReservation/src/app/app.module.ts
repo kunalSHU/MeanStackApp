@@ -57,6 +57,7 @@ import { RegisterComponent, SubmitComponent } from './register/register.componen
 import { HomeComponent } from './home/home.component';
 import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
 import { NavPicComponent } from './nav-pic/nav-pic.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 //import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
 //import { CuisineTableDataSource } from './cuisine-table/cuisine-table-datasource';
 @NgModule({
@@ -116,7 +117,7 @@ export class DemoMaterialModule {}
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
   entryComponents: [AppComponent, SubmitComponent],
-  declarations: [AppComponent, NavPicComponent,CuisineTableComponent,LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
+  declarations: [AppComponent, RestaurantsComponent,NavPicComponent,CuisineTableComponent,LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
   bootstrap: [AppComponent],  providers: [AppService,/*CuisineTableDataSource,*/HttpClientModule,LoginGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

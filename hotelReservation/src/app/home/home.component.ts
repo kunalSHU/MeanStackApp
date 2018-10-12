@@ -172,6 +172,8 @@ export class HomeComponent implements OnInit {
       //arguments: locatoin_id, enitytype=city, list of cuisine ID (string)
       this.appService.getRestaurantFromCuisineZomato(headers, this.location_id, formatted_cuisine_string).subscribe(result=>{
         console.log(result);
+        localStorage.setItem('restaurantData', JSON.stringify(result));
+        this.router.navigate(['/restaurants']);
       })
     }
     else{
@@ -191,6 +193,12 @@ export class HomeComponent implements OnInit {
       this.onSubmit(form);
     }, 2000);
   }
+  searchRestaurantSubmit(){
+    setTimeout(() => {
+      this.searchCuisineClick();
+    }, 2000);
+  }
+
   reset(){
     this.isCityExist = undefined;
     this.isPlaceFound = undefined;
