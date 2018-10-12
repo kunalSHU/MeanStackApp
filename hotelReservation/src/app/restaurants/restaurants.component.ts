@@ -1,18 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
-import {HomeComponent} from '../home/home.component';
-import {MatTableDataSource} from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
-
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
+import {Router} from '@angular/router';
+import {MapsAPILoader} from '@agm/core';
+import {NgForm, FormControl} from '@angular/forms';
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
+import {AppService} from '../service/app.service';
+import {RestaurantTableComponent} from '../restaurant-table/restaurant-table.component';
 @Component({
   selector: 'app-restaurants',
   templateUrl: './restaurants.component.html',
   styleUrls: ['./restaurants.component.css']
 })
 export class RestaurantsComponent implements OnInit {
-  @ViewChild(MatTableDataSource) filterData: MatTableDataSource<any>;
-  dataSources: MatTableDataSource<any>;
-  displayedColumns: string[] = ['userId', 'id', 'title', 'body'];
+
   constructor() { }
 
   ngOnInit() {
@@ -23,8 +22,6 @@ export class RestaurantsComponent implements OnInit {
       formatted_lst.push(unformatted_data[i].restaurant)
     }
     console.log(formatted_lst);*/
-    var lst = JSON.parse(localStorage.getItem('restaurantData'));
-    this.dataSources = new MatTableDataSource(lst);
-    console.log(this.dataSources);
+
   }
 }

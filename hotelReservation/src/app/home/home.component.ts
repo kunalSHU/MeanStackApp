@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   isPlaceFound: any;
   savedResult: any;
   location_id: number;
+  loadingRes:boolean;
   //Search functionality using google maps API
   @ViewChild('search') public searchElement: ElementRef;
 
@@ -189,15 +190,17 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('cuisineSelectedBool', null);
     this.loading = true;
     this.reset();
+    this.onSubmit(form);
     setTimeout(() => {
       this.onSubmit(form);
     }, 2000);
   }
-  searchRestaurantSubmit(){
+  /*searchRestaurantSubmit(){
+    this.loadingRes = true;
     setTimeout(() => {
       this.searchCuisineClick();
     }, 2000);
-  }
+  }*/
 
   reset(){
     this.isCityExist = undefined;
