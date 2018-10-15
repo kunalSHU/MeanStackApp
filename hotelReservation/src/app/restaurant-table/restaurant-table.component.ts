@@ -12,18 +12,6 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 @Component({
   selector: 'app-restaurant-table',
   templateUrl: './restaurant-table.component.html',
@@ -31,21 +19,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class RestaurantTableComponent implements OnInit {
   show: boolean = false;
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
     //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-    displayedColumns: string[] = ['id', 'first_name', 'last_name', 'avatar'];
-    dataSource = [
-      {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-      {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-      {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-      {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-      {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-      {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-      {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-      {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-      {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-      {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-    ];
+    displayedColumns: string[] = ['id'];
     dataSources: MatTableDataSource<any>;
     constructor(private http: HttpClient){
   
@@ -53,19 +30,27 @@ export class RestaurantTableComponent implements OnInit {
     ngOnInit(){
       console.log('in init');
      this.dataSources = new MatTableDataSource([
-        {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-        {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-        {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-        {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-        {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-        {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-        {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-        {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-        {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-        {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+        {position: 1},
+        {position: 2},
+        {position: 3},
+        {position: 4},
+        {position: 5},
+        {position: 6},
+        {position: 7},
+        {position: 8},
+        {position: 9},
+        {position: 10},
+        {position: 10},
+        {position: 10},
+        {position: 10},
+        {position: 10},
+        {position: 10} ,       
       ]);
+      this.dataSources.sort = this.sort;
+      this.dataSources.paginator = this.paginator;
       console.log(this.dataSources); 
     }
+    
     submit(){
       /* const url = "https://reqres.in/api/users/2"
       this.http.get(url).subscribe(

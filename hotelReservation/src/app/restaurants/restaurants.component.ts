@@ -13,7 +13,9 @@ import {RestaurantTableComponent} from '../restaurant-table/restaurant-table.com
 export class RestaurantsComponent implements OnInit {
 
   constructor() { }
-
+  scrollHandler(e){
+    console.log(e);
+  }
   ngOnInit() {
     /*var i;
     var formatted_lst: string[] = [];

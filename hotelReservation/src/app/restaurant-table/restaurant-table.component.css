@@ -2,7 +2,39 @@
     position: absolute;
     top: 0px;
 }
-.table{
+#table{
     position: absolute;
-    top:50%;
+    top:10%;
+    left: 32.5%;
+    overflow-y:auto;
+    width: 35%;
+    height: 80%;
+    /*background-color: black;*/
 }
+#table th, td{
+    color: white;
+}
+#table mat-cell{
+    background-color: rgba(0, 0, 0, 0.86);
+    border-bottom: 1px solid white;
+    height: 150px;
+}
+#table mat-cell #text{
+    color: grey;
+}
+mat-divider{
+    background-color: red;
+
+}
+mat-list{
+    position: absolute;
+    top:25%;
+}
+.mat-table {
+    height: 525px;
+    overflow: auto; 
+    width: 100%;
+  }
+  #table mat-cell:hover{
+    background-color: rgba(128, 128, 128, 0.56);
+  }

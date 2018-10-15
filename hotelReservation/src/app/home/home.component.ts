@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   loading: boolean = false;
   cuisines: any;
   getCuisineSuccess: boolean = false;
+  resShow: boolean = false;
+  
   country_pic: any;
   isPlaceFound: any;
   savedResult: any;
@@ -174,7 +176,21 @@ export class HomeComponent implements OnInit {
       this.appService.getRestaurantFromCuisineZomato(headers, this.location_id, formatted_cuisine_string).subscribe(result=>{
         console.log(result);
         localStorage.setItem('restaurantData', JSON.stringify(result));
+        //$("#cuisine-card").hide();
+        //$("#rectangle").hide();
+        //$("#locationForm").hide();
+        //$(".line").hide();
+        //this.loading = true;
+        //setTimeout(() => {
+         // this.loading = false;
+         // this.resShow = true;
+        //  
+        //}, 2000);
         this.router.navigate(['/restaurants']);
+       // console.log(this.router.url);
+        //this.router.routeReuseStrategy.shouldReuseRoute = function (){
+        //  return false;
+        //}
       })
     }
     else{
