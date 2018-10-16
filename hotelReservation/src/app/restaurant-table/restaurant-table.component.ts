@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import {HomeComponent} from '../home/home.component';
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 
@@ -25,6 +25,7 @@ export class RestaurantTableComponent implements OnInit {
     formatted_lst: any = [];
     formatted_data_lst: any = [];
     dataSources: MatTableDataSource<any>;
+    clickTest: boolean = false;
     constructor(private http: HttpClient){
   
     }
@@ -45,6 +46,7 @@ export class RestaurantTableComponent implements OnInit {
     
     test(){
       console.log('in the test');
+      this.clickTest = true;
     }
     formatList(lst: any){
       var i;

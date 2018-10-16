@@ -47,5 +47,10 @@ mat-list{
   }
   mat-header-cell #title{
       position: relative;
-      left: 43%;
+      left: 38%;
+      color: white;
+      font-size: 20px;
+  }
+  mat-header-cell{
+    background-color: rgba(0, 0, 0, 0.83);
   }
