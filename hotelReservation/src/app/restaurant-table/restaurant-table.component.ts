@@ -19,49 +19,39 @@ export interface PeriodicElement {
 })
 export class RestaurantTableComponent implements OnInit {
   show: boolean = false;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+
     //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     displayedColumns: string[] = ['id'];
+    formatted_lst: any = [];
+    formatted_data_lst: any = [];
     dataSources: MatTableDataSource<any>;
     constructor(private http: HttpClient){
   
     }
     ngOnInit(){
-      console.log('in init');
-     this.dataSources = new MatTableDataSource([
-        {position: 1},
-        {position: 2},
-        {position: 3},
-        {position: 4},
-        {position: 5},
-        {position: 6},
-        {position: 7},
-        {position: 8},
-        {position: 9},
-        {position: 10},
-        {position: 10},
-        {position: 10},
-        {position: 10},
-        {position: 10},
-        {position: 10} ,       
-      ]);
-      this.dataSources.sort = this.sort;
-      this.dataSources.paginator = this.paginator;
-      console.log(this.dataSources); 
+      console.log(typeof (typeof {address: 4}));
+      console.log(JSON.parse(localStorage.getItem('restaurantData')).restaurants);
+
+      //format Data source here
+      this.formatted_data_lst = this.formatList(JSON.parse(localStorage.getItem('restaurantData')).restaurants);
+      console.log(this.formatted_lst);
+      this.dataSources = new MatTableDataSource(this.formatted_data_lst);
+      //this.dataSources.sort = this.sort;
+      //this.dataSources.paginator = this.paginator;
+      console.log(this.dataSources);
+      var dataSourceLength = this.dataSources.data.length;
+      console.log(this.dataSources.data[0].name); 
     }
     
-    submit(){
-      /* const url = "https://reqres.in/api/users/2"
-      this.http.get(url).subscribe(
-        (data: any) => {
-          console.log(data.data);
-          this.show = true;
-  
-  
-          this.dataSources = new MatTableDataSource([data.data]);
-      });*/  
-      //this.show = true;
+    test(){
+      console.log('in the test');
+    }
+    formatList(lst: any){
+      var i;
+      for(i = 0; i < lst.length; i++){
+        this.formatted_lst.push(lst[i].restaurant);
+      }
+      return this.formatted_lst;
     }
 
 }

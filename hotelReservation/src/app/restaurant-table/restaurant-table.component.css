@@ -1,26 +1,32 @@
+:root {
+    --myVar: ; 
+}
 #cuisine-card{
     position: absolute;
     top: 0px;
 }
 #table{
     position: absolute;
-    top:10%;
+    top:12%;
     left: 32.5%;
     overflow-y:auto;
     width: 35%;
     height: 80%;
+    /*content: attr(data-dataSourceLength)*/
     /*background-color: black;*/
 }
 #table th, td{
-    color: white;
+    color: black;
 }
 #table mat-cell{
-    background-color: rgba(0, 0, 0, 0.86);
+    background-color: rgba(0, 0, 0, 0.83);
     border-bottom: 1px solid white;
     height: 150px;
 }
-#table mat-cell #text{
-    color: grey;
+#table mat-cell #restaurantInfo img{
+    position: relative;
+    height: 75px;
+    width: 75px;
 }
 mat-divider{
     background-color: red;
@@ -36,5 +42,10 @@ mat-list{
     width: 100%;
   }
   #table mat-cell:hover{
-    background-color: rgba(128, 128, 128, 0.56);
+    background-color: 
+    rgba(10, 6, 6, 0.76);
+  }
+  mat-header-cell #title{
+      position: relative;
+      left: 43%;
   }

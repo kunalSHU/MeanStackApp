@@ -6,9 +6,13 @@
 
     <!-- id Column -->
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Restaurants Near You </mat-header-cell>
-      <mat-cell *matCellDef="let element"><div id="text">gh</div></mat-cell>
-      <mat-divider></mat-divider>
+      <mat-header-cell *matHeaderCellDef><div id="title"> Restaurants Near You </div></mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="test()">
+        <div id="restaurantInfo">
+          <div *ngIf="element.featured_image!=''"><img src="{{element.featured_image}}"></div>
+          <div *ngIf="element.featured_image==''"><img src="../../assets/images/noImage.png"></div>
+        </div>
+      </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

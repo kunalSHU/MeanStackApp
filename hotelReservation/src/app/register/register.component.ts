@@ -155,7 +155,6 @@ export class RegisterComponent implements OnInit {
       !dateOfBirthrequired && !telephonerequired && (telephonePattern==null) && !streetrequired && !coderequired)){
         this.isSelectedStep2 = false;
       }
-
       else if(this.isSelectedStep2){
         this.secondnextCall(date);
       }
@@ -179,6 +178,7 @@ export class RegisterComponent implements OnInit {
           }
       }
   }
+  
   //package the user info and post it to the db
   registerSubmit(){
     //data payload for the user

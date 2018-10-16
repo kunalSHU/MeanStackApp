@@ -175,6 +175,7 @@ export class HomeComponent implements OnInit {
       //arguments: locatoin_id, enitytype=city, list of cuisine ID (string)
       this.appService.getRestaurantFromCuisineZomato(headers, this.location_id, formatted_cuisine_string).subscribe(result=>{
         console.log(result);
+        console.log(result.restaurants);
         localStorage.setItem('restaurantData', JSON.stringify(result));
         //$("#cuisine-card").hide();
         //$("#rectangle").hide();
