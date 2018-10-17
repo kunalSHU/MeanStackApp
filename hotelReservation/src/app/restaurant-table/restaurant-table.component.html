@@ -6,13 +6,21 @@
     <!-- id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef><div id="title"> Restaurants Near You </div></mat-header-cell>
-      <mat-cell *matCellDef="let element" (click)="test()">
-        <div id="restaurantInfo">
-          <div *ngIf="this.noData">{{element.noData}}</div>
-          <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"></div>
-          <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"></div>
-        </div>
-      </mat-cell>
+      <div id="cellWithData" *ngIf="!this.noData">
+        <mat-cell id="cellWithData" *matCellDef="let element" (click)="test()">
+          <div id="restaurantInfo">
+            <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"></div>
+            <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"></div>
+          </div>
+        </mat-cell>
+      </div>
+      <div id="cellWithNoData" *ngIf="this.noData">
+          <mat-cell id="cellWithNoData" *matCellDef="let element">
+            <div id="restaurantNoData">
+              <div id="imageDiv" *ngIf="this.noData"><img src="../../assets/images/noData.png"></div>
+            </div>
+          </mat-cell>
+      </div>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

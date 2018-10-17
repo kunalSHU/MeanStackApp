@@ -18,15 +18,25 @@
 #table th, td{
     color: black;
 }
-#table mat-cell{
+#table #cellWithData{
     background-color: rgba(0, 0, 0, 0.83);
     border-bottom: 1px solid white;
     height: 150px;
 }
-#table mat-cell #restaurantInfo img{
+#table #cellWithData #restaurantInfo img{
     position: relative;
     height: 75px;
     width: 75px;
+}
+#table #cellWithNoData{
+    height: 692px;
+}
+#table #cellWithNoData #restaurantNoData img{
+    position: absolute;
+    height: 500px;
+    width: 610px;
+    top: 20%;
+    left:7.2%;
 }
 mat-divider{
     background-color: red;
@@ -41,7 +51,7 @@ mat-list{
     overflow: auto; 
     width: 100%;
   }
-  #table mat-cell:hover{
+  #table #cellWithData:hover{
     background-color: 
     rgba(10, 6, 6, 0.76);
   }
