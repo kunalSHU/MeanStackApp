@@ -178,7 +178,6 @@ export class RegisterComponent implements OnInit {
           }
       }
   }
-  
   //package the user info and post it to the db
   registerSubmit(){
     //data payload for the user

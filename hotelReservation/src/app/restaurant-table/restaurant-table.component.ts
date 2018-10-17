@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort} from '@angular/material';
 import {HomeComponent} from '../home/home.component';
 import {MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
@@ -26,7 +26,7 @@ export class RestaurantTableComponent implements OnInit {
     formatted_data_lst: any = [];
     dataSources: MatTableDataSource<any>;
     clickTest: boolean = false;
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient, public dialog: MatDialog){
   
     }
     ngOnInit(){
@@ -47,6 +47,13 @@ export class RestaurantTableComponent implements OnInit {
     test(){
       console.log('in the test');
       this.clickTest = true;
+      const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+        width: '250px'
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
     }
     formatList(lst: any){
       var i;
@@ -55,5 +62,20 @@ export class RestaurantTableComponent implements OnInit {
       }
       return this.formatted_lst;
     }
+
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: './dialog-open.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }
