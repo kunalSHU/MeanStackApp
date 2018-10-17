@@ -26,6 +26,7 @@ export class RestaurantTableComponent implements OnInit {
     formatted_data_lst: any = [];
     dataSources: MatTableDataSource<any>;
     clickTest: boolean = false;
+    noData: boolean = false;
     constructor(private http: HttpClient, public dialog: MatDialog){
   
     }
@@ -35,12 +36,15 @@ export class RestaurantTableComponent implements OnInit {
 
       //format Data source here
       this.formatted_data_lst = this.formatList(JSON.parse(localStorage.getItem('restaurantData')).restaurants);
-      console.log(this.formatted_lst);
-      this.dataSources = new MatTableDataSource(this.formatted_data_lst);
-      //this.dataSources.sort = this.sort;
-      //this.dataSources.paginator = this.paginator;
+      console.log(this.formatted_data_lst);
+      if(this.formatted_data_lst.length != 0){
+        this.dataSources = new MatTableDataSource(this.formatted_data_lst);
+      }
+      else if(this.formatted_data_lst.length == 0){
+        this.noData = true;
+        this.dataSources = new MatTableDataSource([{noData: "NO DATA IN HERE"}]);
+      }
       console.log(this.dataSources);
-      var dataSourceLength = this.dataSources.data.length;
       console.log(this.dataSources.data[0].name); 
     }
     

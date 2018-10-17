@@ -8,8 +8,9 @@
       <mat-header-cell *matHeaderCellDef><div id="title"> Restaurants Near You </div></mat-header-cell>
       <mat-cell *matCellDef="let element" (click)="test()">
         <div id="restaurantInfo">
-          <div *ngIf="element.featured_image!=''"><img src="{{element.featured_image}}"></div>
-          <div *ngIf="element.featured_image==''"><img src="../../assets/images/noImage.png"></div>
+          <div *ngIf="this.noData">{{element.noData}}</div>
+          <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"></div>
+          <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"></div>
         </div>
       </mat-cell>
     </ng-container>

@@ -71,14 +71,15 @@ export class CuisineTableComponent implements OnInit {
           var index = this.selectedCuisines.findIndex(x=>x.cuisine_name == row_original.cuisine_name);
           console.log(index);
           this.selectedCuisines.splice(index,1);
+          console.log(this.selectedCuisines);
         }
       }
     }
-    if(this.found == false){
+    if(!this.found){
       this.selectedCuisines.push(row_original);
     }
     //need to add the cuisine here
-    if(this.selectedCuisines.length==0){
+    if(this.selectedCuisines.length==0 && !this.found){
       this.selectedCuisines.push(row_original);
     }
     console.log(this.found);
