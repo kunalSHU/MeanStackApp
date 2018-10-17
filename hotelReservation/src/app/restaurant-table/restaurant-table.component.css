@@ -64,3 +64,6 @@ mat-list{
   mat-header-cell{
     background-color: rgba(0, 0, 0, 0.83);
   }
+  #loading{
+      background-color: white;
+  }

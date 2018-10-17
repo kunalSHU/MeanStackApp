@@ -27,6 +27,7 @@ export class RestaurantTableComponent implements OnInit {
     dataSources: MatTableDataSource<any>;
     clickTest: boolean = false;
     noData: boolean = false;
+    finished: boolean = false;
     constructor(private http: HttpClient, public dialog: MatDialog){
   
     }
@@ -37,6 +38,8 @@ export class RestaurantTableComponent implements OnInit {
       //format Data source here
       this.formatted_data_lst = this.formatList(JSON.parse(localStorage.getItem('restaurantData')).restaurants);
       console.log(this.formatted_data_lst);
+
+      //infinite scroll stuff here
       if(this.formatted_data_lst.length != 0){
         this.dataSources = new MatTableDataSource(this.formatted_data_lst);
       }

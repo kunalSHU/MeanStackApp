@@ -9,6 +9,7 @@ import {AgmCoreModule} from '@agm/core';
 import {AppService} from '../app/service/app.service';
 import {LoginGuard} from '../app/login/login.guard';
 import { HttpModule } from '@angular/http';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {TokenInterceptorService} from '../app/service/token-interceptor.service';
 import {
   MatAutocompleteModule,
@@ -115,6 +116,7 @@ export class DemoMaterialModule {}
     AngularSvgIconModule,
     MatTableModule, MatPaginatorModule, MatSortModule,
     HttpModule,
+    InfiniteScrollModule,
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],
   entryComponents: [AppComponent, SubmitComponent, DialogOverviewExampleDialog],
