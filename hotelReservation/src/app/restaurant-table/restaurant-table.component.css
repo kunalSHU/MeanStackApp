@@ -12,6 +12,7 @@
     overflow-y:auto;
     width: 35%;
     height: 80%;
+    
     /*content: attr(data-dataSourceLength)*/
     /*background-color: black;*/
 }
@@ -67,3 +68,50 @@ mat-list{
   #loading{
       background-color: white;
   }
+
+
+
+
+
+
+  .box-container {
+    box-sizing: border-box;
+    width: 800px;
+    height: 500px;
+    max-width: 90%;
+    max-height: 90%;
+    padding: 24px;
+    margin: 24px auto;
+    border-radius: 4px;
+  
+    color: #555;
+    background-color: #eee;
+    box-shadow:
+      0 6px 20px rgba(0, 0, 0, 0.18),
+      0 6px 6px rgba(0, 0, 0, 0.25);
+  }
+  
+  
+  .action-container,
+  .content-container {
+    position: relative;
+  
+    overflow: auto;
+    height: 300px;
+    min-height: 0;
+    margin: 8px 16px;
+    border-radius: 4px;
+  
+    background-color: #fff;
+  }
+  
+  
+  .content-container {
+    position: relative;
+  
+    min-height: 0;
+    padding: 8px;
+    margin: 12px 16px;
+    border: 1px solid #ccc;
+  }
+  

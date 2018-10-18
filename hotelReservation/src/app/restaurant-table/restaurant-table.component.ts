@@ -29,9 +29,9 @@ export class RestaurantTableComponent implements OnInit {
     clickTest: boolean = false;
     totalImages: any = [];
     noData: boolean = false;
-    finished: boolean = false;
     index: number = 0;
     group: number = 5; 
+    finished: boolean = false;
     constructor(private http: HttpClient, public dialog: MatDialog){
   
     }

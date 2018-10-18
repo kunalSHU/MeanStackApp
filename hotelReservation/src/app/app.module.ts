@@ -10,6 +10,7 @@ import {AppService} from '../app/service/app.service';
 import {LoginGuard} from '../app/login/login.guard';
 import { HttpModule } from '@angular/http';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import {TokenInterceptorService} from '../app/service/token-interceptor.service';
 import {
   MatAutocompleteModule,
@@ -116,6 +117,7 @@ export class DemoMaterialModule {}
     AngularSvgIconModule,
     MatTableModule, MatPaginatorModule, MatSortModule,
     HttpModule,
+    PerfectScrollbarModule,
     InfiniteScrollModule,
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],

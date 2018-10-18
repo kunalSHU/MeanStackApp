@@ -1,32 +1,30 @@
-  
-  <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
-  infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000">
+<mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
+infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- id Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef><div id="title"> Restaurants Near You </div></mat-header-cell>
-      <div id="cellWithData" *ngIf="!this.noData">
-        <mat-cell id="cellWithData" *matCellDef="let element" (click)="test()">
-          <div id="restaurantInfo">
-            <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"> {{element.name}}</div>
-            <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"> {{element.name}}</div>
+  <!-- id Column -->
+  <ng-container matColumnDef="id">
+   
+    <mat-header-cell *matHeaderCellDef><div id="title"> Restaurants Near You </div></mat-header-cell>
+    <div id="cellWithData" *ngIf="!this.noData">
+      <mat-cell id="cellWithData" *matCellDef="let element" (click)="test()">
+        <div id="restaurantInfo">
+          <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"> {{element.name}}</div>
+          <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"> {{element.name}}</div>
+        </div>
+      </mat-cell>
+    </div>
+    <div id="cellWithNoData" *ngIf="this.noData">
+        <mat-cell id="cellWithNoData" *matCellDef="let element">
+          <div id="restaurantNoData">
+            <div id="imageDiv" *ngIf="this.noData"><img src="../../assets/images/noData.png"></div>
           </div>
-
         </mat-cell>
-      </div>
-      <div id="cellWithNoData" *ngIf="this.noData">
-          <mat-cell id="cellWithNoData" *matCellDef="let element">
-            <div id="restaurantNoData">
-              <div id="imageDiv" *ngIf="this.noData"><img src="../../assets/images/noData.png"></div>
-            </div>
-          </mat-cell>
-      </div>
+    </div>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+</mat-table>
 
