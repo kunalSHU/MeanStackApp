@@ -15,13 +15,14 @@
 
         </mat-cell>
       </div>
-      <mat-cell><h1 id="loading">HELLO WORLD</h1></mat-cell>
       <div id="cellWithNoData" *ngIf="this.noData">
           <mat-cell id="cellWithNoData" *matCellDef="let element">
             <div id="restaurantNoData">
               <div id="imageDiv" *ngIf="this.noData"><img src="../../assets/images/noData.png"></div>
             </div>
           </mat-cell>
+      </div>
+      <div infiniteScroll class="content" (scrolled)="getImages()" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000">
       </div>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

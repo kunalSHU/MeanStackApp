@@ -50,6 +50,9 @@ export class RestaurantTableComponent implements OnInit {
       console.log(this.dataSources);
       console.log(this.dataSources.data[0].name); 
     }
+    getImages(){
+      console.log('in the getImages function');
+    }
     
     test(){
       console.log('in the test');
