@@ -24,10 +24,14 @@ export class RestaurantTableComponent implements OnInit {
     displayedColumns: string[] = ['id'];
     formatted_lst: any = [];
     formatted_data_lst: any = [];
+    new_formatted_data_lst: any = [];
     dataSources: MatTableDataSource<any>;
     clickTest: boolean = false;
+    totalImages: any = [];
     noData: boolean = false;
     finished: boolean = false;
+    index: number = 0;
+    group: number = 5; 
     constructor(private http: HttpClient, public dialog: MatDialog){
   
     }
@@ -41,7 +45,7 @@ export class RestaurantTableComponent implements OnInit {
 
       //infinite scroll stuff here
       if(this.formatted_data_lst.length != 0){
-        this.dataSources = new MatTableDataSource(this.formatted_data_lst);
+        this.getImages();
       }
       else if(this.formatted_data_lst.length == 0){
         this.noData = true;
@@ -51,6 +55,14 @@ export class RestaurantTableComponent implements OnInit {
       console.log(this.dataSources.data[0].name); 
     }
     getImages(){
+      this.new_formatted_data_lst = this.formatted_data_lst.slice(this.index, this.group);
+      this.totalImages = this.totalImages.concat(this.new_formatted_data_lst);
+      this.dataSources = new MatTableDataSource(this.totalImages);
+      console.log(this.dataSources);
+      //this.dataSources = new MatTableDataSource(this.dataSources.data.concat(this.new_formatted_data_lst));
+      console.log(this.dataSources);
+      this.index+=5;
+      this.group+=5;
       console.log('in the getImages function');
     }
     

@@ -1,4 +1,6 @@
-  <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8">
+  
+  <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
+  infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -9,8 +11,8 @@
       <div id="cellWithData" *ngIf="!this.noData">
         <mat-cell id="cellWithData" *matCellDef="let element" (click)="test()">
           <div id="restaurantInfo">
-            <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"></div>
-            <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"></div>
+            <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"> {{element.name}}</div>
+            <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"> {{element.name}}</div>
           </div>
 
         </mat-cell>
@@ -22,8 +24,7 @@
             </div>
           </mat-cell>
       </div>
-      <div infiniteScroll class="content" (scrolled)="getImages()" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000">
-      </div>
+
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
