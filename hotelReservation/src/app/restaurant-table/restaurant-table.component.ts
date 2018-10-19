@@ -31,7 +31,7 @@ export class RestaurantTableComponent implements OnInit {
     noData: boolean = false;
     index: number = 0;
     group: number = 5; 
-    finished: boolean = false;
+    loading: boolean = false;
     constructor(private http: HttpClient, public dialog: MatDialog){
   
     }
@@ -55,8 +55,15 @@ export class RestaurantTableComponent implements OnInit {
       console.log(this.dataSources.data[0].name); 
     }
     getImages(){
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+      }, 2000);
+
+
       this.new_formatted_data_lst = this.formatted_data_lst.slice(this.index, this.group);
       this.totalImages = this.totalImages.concat(this.new_formatted_data_lst);
+
       this.dataSources = new MatTableDataSource(this.totalImages);
       console.log(this.dataSources);
       //this.dataSources = new MatTableDataSource(this.dataSources.data.concat(this.new_formatted_data_lst));
