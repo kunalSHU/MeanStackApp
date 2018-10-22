@@ -1,3 +1,4 @@
+<p id="findme">PLZ FIND ME</p>
 <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
 infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000">
   <!--- Note that these columns can be defined in any order.
@@ -7,11 +8,19 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
   <ng-container matColumnDef="id">
    
     <mat-header-cell *matHeaderCellDef><div id="title"> Restaurants Near You </div></mat-header-cell>
-    <div id="cellWithData" *ngIf="!this.noData">
+    <div *ngIf="!this.noData">
       <mat-cell id="cellWithData" *matCellDef="let element" (click)="test()">
         <div id="restaurantInfo">
-          <div *ngIf="element.featured_image!='' && !this.noData"><img src="{{element.featured_image}}"> {{element.name}}</div>
-          <div *ngIf="element.featured_image=='' && !this.noData"><img src="../../assets/images/noImage.png"> {{element.name}}</div>
+          <div *ngIf="element.featured_image!='' && !this.noData">
+            <img src="{{element.featured_image}}"> 
+            <div id="elementInfo">
+              {{element.name}}
+            </div>
+          </div>
+          <div *ngIf="element.featured_image=='' && !this.noData">
+            <img src="../../assets/images/noImage.png"> 
+            {{element.name}}
+          </div>
         </div>
       </mat-cell>
     </div>

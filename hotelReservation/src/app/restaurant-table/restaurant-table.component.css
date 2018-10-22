@@ -23,11 +23,13 @@
     background-color: rgba(0, 0, 0, 0.83);
     border-bottom: 1px solid white;
     height: 150px;
+    position: relative;
 }
 #table #cellWithData #restaurantInfo img{
-    position: relative;
+    position: absolute;
     height: 75px;
     width: 75px;
+    top:55px;
 }
 #table #cellWithNoData{
     height: 692px;
@@ -67,6 +69,13 @@ mat-list{
   }
   #loading{
       background-color: white;
+  }
+  #table mat-cell #restaurantInfo #elementInfo{
+    color: white;
+    position: absolute;
+    left:5%;
+    top:20px;
+    font-weight: bold;
   }
 
   .lds-ellipsis {

@@ -65,9 +65,11 @@ export class RestaurantTableComponent implements OnInit {
       this.totalImages = this.totalImages.concat(this.new_formatted_data_lst);
 
       this.dataSources = new MatTableDataSource(this.totalImages);
-      console.log(this.dataSources);
+      ///console.log(this.getCumulativeOffset(element));
+      //console.log(element.position());
+      //console.log(element.css('top', ''));
+
       //this.dataSources = new MatTableDataSource(this.dataSources.data.concat(this.new_formatted_data_lst));
-      console.log(this.dataSources);
       this.index+=5;
       this.group+=5;
       console.log('in the getImages function');
@@ -91,7 +93,6 @@ export class RestaurantTableComponent implements OnInit {
       }
       return this.formatted_lst;
     }
-
 }
 
 @Component({
