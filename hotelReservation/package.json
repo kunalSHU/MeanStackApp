@@ -35,6 +35,7 @@
     "hammerjs": "^2.0.8",
     "http-server": "^0.11.1",
     "ionic-native": "^2.9.0",
+    "jquery.rateit": "^1.1.1",
     "mongodb": "^3.1.4",
     "mongojs": "^2.6.0",
     "mongoose": "^5.2.10",

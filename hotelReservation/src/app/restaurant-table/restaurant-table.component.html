@@ -1,6 +1,6 @@
-<p id="findme">PLZ FIND ME</p>
+
 <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
-infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000">
+infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollThrottle]="3000">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
@@ -16,10 +16,18 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
             <div id="elementInfo">
               {{element.name}}
             </div>
+            <div id="elementType">
+              {{element.cuisines}}
+            </div>
           </div>
           <div *ngIf="element.featured_image=='' && !this.noData">
             <img src="../../assets/images/noImage.png"> 
-            {{element.name}}
+            <div id="elementInfo">
+              {{element.name}}
+            </div>
+            <div id="elementType">
+              {{element.cuisines}}
+            </div>
           </div>
         </div>
       </mat-cell>

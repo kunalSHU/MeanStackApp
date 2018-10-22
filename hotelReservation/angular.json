@@ -24,9 +24,10 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/jquery.rateit/scripts/rateit.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/jquery.rateit/scripts/jquery.rateit.min.js"]
           },
           "configurations": {
             "production": {

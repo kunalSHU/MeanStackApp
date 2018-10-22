@@ -73,9 +73,16 @@ mat-list{
   #table mat-cell #restaurantInfo #elementInfo{
     color: white;
     position: absolute;
-    left:5%;
+    left:4.5%;
     top:20px;
     font-weight: bold;
+  }  
+  
+  #table mat-cell #restaurantInfo #elementType{
+    color: white;
+    position: absolute;
+    right:3%;
+    top:20px;
   }
 
   .lds-ellipsis {
