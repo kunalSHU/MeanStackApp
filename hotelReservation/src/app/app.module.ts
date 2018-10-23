@@ -49,6 +49,7 @@ import {
   MatTreeModule
 } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from '@angular/material/icon';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -60,6 +61,7 @@ import { HomeComponent } from './home/home.component';
 import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
 import { NavPicComponent } from './nav-pic/nav-pic.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import {RatingModule} from "ngx-rating";
 import { RestaurantTableComponent, DialogOverviewExampleDialog } from './restaurant-table/restaurant-table.component';
 //import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
 //import { CuisineTableDataSource } from './cuisine-table/cuisine-table-datasource';
@@ -117,7 +119,9 @@ export class DemoMaterialModule {}
     AngularSvgIconModule,
     MatTableModule, MatPaginatorModule, MatSortModule,
     HttpModule,
+    NgbModule,
     PerfectScrollbarModule,
+    RatingModule,
     InfiniteScrollModule,
     ReactiveFormsModule,DemoMaterialModule,NgProgressModule.forRoot()
   ],

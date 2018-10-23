@@ -179,6 +179,7 @@ export class RegisterComponent implements OnInit {
           }
       }
   }
+  
   //package the user info and post it to the db
   registerSubmit(){
     //data payload for the user
@@ -209,6 +210,7 @@ export class RegisterComponent implements OnInit {
     this.snackBar.openFromComponent(SubmitComponent, {duration: 1200,
     });
   }
+  
   firstnextCall(){
     //Using JQuery for the progress bar 
     $("#msform").children("#f1").hide();

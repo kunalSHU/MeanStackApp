@@ -31,6 +31,19 @@
     width: 75px;
     top:55px;
 }
+#table #cellWithData #restaurantInfo #ratings{
+  position: absolute;
+  right:1%;
+  top: 58%;
+}
+#table #cellWithData #restaurantInfo #numberRating{
+  position: absolute;
+  right:1%;
+  top: 2.8%;
+  color: red;
+  font-weight: bold;
+  
+}
 #table #cellWithNoData{
     height: 692px;
 }
@@ -67,6 +80,21 @@ mat-list{
   mat-header-cell{
     background-color: rgba(0, 0, 0, 0.83);
   }
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+.full {
+    color: red;
+}
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: red;}
+
   #loading{
       background-color: white;
   }
