@@ -44,6 +44,12 @@
   font-weight: bold;
   
 }
+#table #cellWithData #restaurantInfo #address{
+  position: absolute;
+  left:35%;
+  top: 43%;
+  color: white;
+}
 #table #cellWithNoData{
     height: 692px;
 }

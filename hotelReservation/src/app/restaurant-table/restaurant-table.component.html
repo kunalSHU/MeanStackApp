@@ -30,6 +30,9 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
             <div id="numberRating">
               {{element.user_rating.aggregate_rating}}
             </div>
+            <div id="address">
+              {{element.location.address}}
+            </div>
           </div>
           <div *ngIf="element.featured_image=='' && !this.noData">
             <img src="../../assets/images/noImage.png"> 
@@ -49,6 +52,9 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
             </div>
             <div id="numberRating">
              {{element.user_rating.aggregate_rating}} 
+            </div>
+            <div id="address">
+              {{element.location.address}}
             </div>
           </div>
         </div>
