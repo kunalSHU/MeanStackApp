@@ -28,10 +28,7 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
               <ngb-rating [(rate)]="element.user_rating.aggregate_rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
             </div>
             <div id="numberRating">
-              {{element.user_rating.aggregate_rating}}
-            </div>
-            <div id="address">
-              {{element.location.address}}
+              <font color="element.user_rating.rating_color">{{element.user_rating.aggregate_rating}}</font>
             </div>
           </div>
           <div *ngIf="element.featured_image=='' && !this.noData">
@@ -50,11 +47,8 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
               </ng-template>
               <ngb-rating [(rate)]="element.user_rating.aggregate_rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
             </div>
-            <div id="numberRating">
+            <div id="numberRating" color="element.user_rating.rating_color">
              {{element.user_rating.aggregate_rating}} 
-            </div>
-            <div id="address">
-              {{element.location.address}}
             </div>
           </div>
         </div>

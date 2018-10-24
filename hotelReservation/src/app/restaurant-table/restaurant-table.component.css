@@ -8,9 +8,9 @@
 #table{
     position: absolute;
     top:12%;
-    left: 32.5%;
+    left: 35%;
     overflow-y:auto;
-    width: 35%;
+    width: 29%;
     height: 80%;
     
     /*content: attr(data-dataSourceLength)*/
@@ -40,7 +40,6 @@
   position: absolute;
   right:1%;
   top: 2.8%;
-  color: red;
   font-weight: bold;
   
 }

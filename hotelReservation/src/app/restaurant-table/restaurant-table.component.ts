@@ -80,7 +80,8 @@ export class RestaurantTableComponent implements OnInit {
       console.log('in the test');
       this.clickTest = true;
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-        width: '250px'
+        width: '500px',
+        height: '500px',
       });
   
       dialogRef.afterClosed().subscribe(result => {
