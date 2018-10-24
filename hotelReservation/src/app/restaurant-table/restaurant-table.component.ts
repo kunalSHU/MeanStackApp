@@ -65,6 +65,9 @@ export class RestaurantTableComponent implements OnInit {
       this.new_formatted_data_lst = this.formatted_data_lst.slice(this.index, this.group);
       this.totalImages = this.totalImages.concat(this.new_formatted_data_lst);
       console.log(this.totalImages);
+      if(this.totalImages[13]){
+        console.log(typeof(this.totalImages[13].user_rating.rating_color));
+      }
       this.dataSources = new MatTableDataSource(this.totalImages);
       ///console.log(this.getCumulativeOffset(element));
       //console.log(element.position());

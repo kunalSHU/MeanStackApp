@@ -94,6 +94,12 @@ mat-list{
 .full {
     color: red;
 }
+/*.test{
+  color: #9ACD32;
+}
+.test2{
+  color: #5BA829
+}*/
 .half {
     position: absolute;
     display: inline-block;
@@ -107,15 +113,15 @@ mat-list{
     color: white;
     position: absolute;
     left:4.5%;
-    top:20px;
+    top:15px;
     font-weight: bold;
   }  
   
   #table mat-cell #restaurantInfo #elementType{
     color: white;
     position: absolute;
-    right:3%;
-    top:20px;
+    right:0.5%;
+    top:36px;
   }
 
   .lds-ellipsis {
