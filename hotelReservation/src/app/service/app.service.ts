@@ -56,5 +56,10 @@ export class AppService {
     return this.http.get(url,{headers})
     .map((response: any)=> response);    
   }
+  getCollectionsFromCityZomato(headers:HttpHeaders, locationID:number){
+    const url = `https://developers.zomato.com/api/v2.1/collections?city_id=${locationID}`;
+    return this.http.get(url,{headers})
+    .map((response: any)=> response); 
+  }
 
 }

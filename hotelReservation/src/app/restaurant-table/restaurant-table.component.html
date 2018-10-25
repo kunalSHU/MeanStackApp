@@ -1,3 +1,7 @@
+<mat-button-toggle-group class="test" style="background-color: 
+rgba(139, 126, 126, 0.76);" name="fontStyle" color="yellow" aria-label="Font Style" vertical="true">
+  <mat-button-toggle id="collections" *ngFor="let x of collections_title">{{x}}</mat-button-toggle>
+</mat-button-toggle-group>
 
 <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
 infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollThrottle]="3000">
@@ -47,8 +51,8 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
               </ng-template>
               <ngb-rating [(rate)]="element.user_rating.aggregate_rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
             </div>
-            <div id="numberRating" color="element.user_rating.rating_color">
-             {{element.user_rating.aggregate_rating}} 
+            <div id="numberRating">
+             <font color="element.user_rating.rating_color">{{element.user_rating.aggregate_rating}}</font> 
             </div>
           </div>
         </div>

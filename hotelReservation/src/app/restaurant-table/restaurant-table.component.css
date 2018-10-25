@@ -94,10 +94,15 @@ mat-list{
 .full {
     color: red;
 }
-/*.test{
-  color: #9ACD32;
+.test{
+  position: absolute;
+  top:12.5%;
+  left:19%;
 }
-.test2{
+.test #collections{
+  color: white;
+}
+/*.test2{
   color: #5BA829
 }*/
 .half {

@@ -4,6 +4,7 @@ import {HomeComponent} from '../home/home.component';
 import {MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
+import {AppService} from '../service/app.service';
 
 export interface PeriodicElement {
   name: string;
@@ -30,10 +31,11 @@ export class RestaurantTableComponent implements OnInit {
     totalImages: any = [];
     noData: boolean = false;
     currentRate: number;
+    collections_title: any = [];
     index: number = 0;
     group: number = 5; 
     loading: boolean = false;
-    constructor(private http: HttpClient, public dialog: MatDialog){
+    constructor(private http: HttpClient, public dialog: MatDialog, private appService: AppService){
   
     }
     ngOnInit(){
@@ -46,6 +48,21 @@ export class RestaurantTableComponent implements OnInit {
 
       //infinite scroll stuff here
       if(this.formatted_data_lst.length != 0){
+        let headers: HttpHeaders = new HttpHeaders();
+        headers = headers.append('Accept', 'application/json');
+        headers = headers.append('X-Zomato-API-Key', '5f8f8c7daa019ccc1553516688930d4f');
+        let location_array = JSON.parse(localStorage.getItem("locationInfo"));
+        let location_id  = location_array[0].id;
+        this.appService.getCollectionsFromCityZomato(headers, location_id).subscribe(result => {
+          console.log(result);
+
+          //loop through array and get the title of collection
+          var i;
+          for(i = 0; i < 10; i++){
+            this.collections_title.push(result.collections[i].collection.title);
+          }
+          console.log(this.collections_title);
+        });
         this.getImages();
       }
       else if(this.formatted_data_lst.length == 0){

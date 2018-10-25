@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
         let i;
         let cityState = city[0] + ', ' + city[1];
         let location_array = result.location_suggestions;
-    
+        localStorage.setItem("locationInfo", JSON.stringify(location_array));
         console.log(location_array);
         console.log(cityState);
         
