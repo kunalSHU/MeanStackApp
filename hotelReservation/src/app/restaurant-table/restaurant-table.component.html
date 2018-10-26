@@ -1,7 +1,18 @@
-<mat-button-toggle-group class="test" style="background-color: 
-rgba(139, 126, 126, 0.76);" name="fontStyle" color="yellow" aria-label="Font Style" vertical="true">
-  <mat-button-toggle id="collections" *ngFor="let x of collections_title">{{x}}</mat-button-toggle>
-</mat-button-toggle-group>
+<div class="linebold"></div>
+<div class="linenormal"></div>
+<div id="myFavs"> My Favourites </div>
+<div class="test">
+    <div id="sort" align="center">Sort By:</div>
+    <mat-radio-group class="example-radio-group" [(ngModel)]="selectedCategory">
+      <mat-radio-button (click)="radioClick(x)" *ngFor="let x of collections_title" [value]="x">
+        <div id="text">{{x}}</div>
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <div class="search-button">
+        <button mat-flat-button id="search" (click)=searchClick() [disabled]="isDisabledSearch">Search</button>  
+    </div>
+  </div>
 
 <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
 infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollThrottle]="3000">

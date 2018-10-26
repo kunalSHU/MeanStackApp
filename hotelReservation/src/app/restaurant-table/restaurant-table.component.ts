@@ -30,15 +30,24 @@ export class RestaurantTableComponent implements OnInit {
     clickTest: boolean = false;
     totalImages: any = [];
     noData: boolean = false;
+    isDisabledSearch: boolean = true;
     currentRate: number;
-    collections_title: any = [];
+    collections_title: any = ['cost', 'rating'];
     index: number = 0;
+    location_array: any = [];
     group: number = 5; 
     loading: boolean = false;
+    location_id: any;
     constructor(private http: HttpClient, public dialog: MatDialog, private appService: AppService){
   
     }
     ngOnInit(){
+
+      //clear collections title
+      //if(this.collections_title.length != 0){
+        //this.collections_title = [];
+     // }
+
       console.log(typeof (typeof {address: 4}));
       console.log(JSON.parse(localStorage.getItem('restaurantData')).restaurants);
 
@@ -51,17 +60,11 @@ export class RestaurantTableComponent implements OnInit {
         let headers: HttpHeaders = new HttpHeaders();
         headers = headers.append('Accept', 'application/json');
         headers = headers.append('X-Zomato-API-Key', '5f8f8c7daa019ccc1553516688930d4f');
-        let location_array = JSON.parse(localStorage.getItem("locationInfo"));
-        let location_id  = location_array[0].id;
-        this.appService.getCollectionsFromCityZomato(headers, location_id).subscribe(result => {
+        this.location_array = JSON.parse(localStorage.getItem("locationInfo"));
+        this.location_id  = this.location_array[0].id;
+        console.log(this.location_id);
+        this.appService.getCollectionsFromCityZomato(headers, this.location_id).subscribe(result => {
           console.log(result);
-
-          //loop through array and get the title of collection
-          var i;
-          for(i = 0; i < 10; i++){
-            this.collections_title.push(result.collections[i].collection.title);
-          }
-          console.log(this.collections_title);
         });
         this.getImages();
       }
@@ -77,7 +80,6 @@ export class RestaurantTableComponent implements OnInit {
       setTimeout(() => {
         this.loading = false;
       }, 2000);
-
 
       this.new_formatted_data_lst = this.formatted_data_lst.slice(this.index, this.group);
       this.totalImages = this.totalImages.concat(this.new_formatted_data_lst);
@@ -96,6 +98,29 @@ export class RestaurantTableComponent implements OnInit {
       console.log('in the getImages function');
     }
     
+    radioClick(param: any): string{
+      console.log(param);
+      
+      //enable the search category button here
+      this.isDisabledSearch = false;
+
+      //store clicked category in localStorage
+      localStorage.setItem("categoryVal", param);
+
+      return param;
+    }
+    searchClick(){
+      let categoryValue = localStorage.getItem("categoryVal");
+      console.log(categoryValue);
+
+      //make get request to zomato API
+      //once data is fetched in JSON then rerender table
+      //reset MatTableDataSource
+      var cuisine_string = localStorage.getItem("cuisineString");
+      /*1%2C2*/
+      console.log(cuisine_string);
+    }
+
     test(){
       console.log('in the test');
       this.clickTest = true;

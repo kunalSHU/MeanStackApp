@@ -61,5 +61,9 @@ export class AppService {
     return this.http.get(url,{headers})
     .map((response: any)=> response); 
   }
-
+  getRestaurantsFromCategoryZomato(headers:HttpHeaders, locationID:number, cuisineString:string, categoryVal: string){
+    const url = `https://developers.zomato.com/api/v2.1/search?entity_id=${locationID}&entity_type=city&cuisines=${cuisineString}&sort=${categoryVal}`;
+    return this.http.get(url,{headers})
+    .map((response: any)=> response);
+  }
 }

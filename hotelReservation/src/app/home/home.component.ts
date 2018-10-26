@@ -167,6 +167,7 @@ export class HomeComponent implements OnInit {
     
       var formatted_cuisine_string = cuisine_id_string.slice(0,cuisine_id_string.length-3);
       console.log(formatted_cuisine_string);
+      localStorage.setItem("cuisineString", formatted_cuisine_string);
 
       //grab each of the cuisine ID's and format it into a string
 

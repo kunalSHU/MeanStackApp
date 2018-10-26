@@ -225,6 +225,7 @@ export class RegisterComponent implements OnInit {
     if(this.autocomplete.getPlace() != undefined){
       (<HTMLInputElement>document.getElementById('streetValue')).innerHTML = '<b>Street: </b>' + this.autocomplete.getPlace().formatted_address;
     }
+    
     this.formattedDate = this.datePipe.transform(date, "yyyy-MM-dd");
     $("#progressbar li").eq(2).addClass("active");
     $("#msform").children("#f3").show();
