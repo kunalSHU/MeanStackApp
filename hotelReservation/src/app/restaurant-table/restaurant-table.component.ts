@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator, MatSort} from '@angular/material';
 import {HomeComponent} from '../home/home.component';
 import {MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -30,6 +30,7 @@ export class RestaurantTableComponent implements OnInit {
     clickTest: boolean = false;
     totalImages: any = [];
     noData: boolean = false;
+    matDialogRef: MatDialogRef<DialogOverviewExampleDialog>;
     isDisabledSearch: boolean = true;
     currentRate: number;
     collections_title: any = ['cost', 'rating'];
@@ -121,12 +122,23 @@ export class RestaurantTableComponent implements OnInit {
       console.log(cuisine_string);
     }
 
-    test(){
+    test(image_url){
+      console.log(image_url);
       console.log('in the test');
+
+      if(image_url == ""){
+        this.noData = true;
+      }
+      else{
+        this.noData = false;
+      }
+
       this.clickTest = true;
+
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
         width: '500px',
-        height: '500px',
+        height: '700px',
+        data: {imageUrl: image_url, no_data: this.noData}
       });
   
       dialogRef.afterClosed().subscribe(result => {
@@ -145,11 +157,13 @@ export class RestaurantTableComponent implements OnInit {
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: './dialog-open.html',
+  styleUrls: ['dialog-open.css']
 })
 export class DialogOverviewExampleDialog {
 
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>) {}
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   onNoClick(): void {
     this.dialogRef.close();

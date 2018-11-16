@@ -1,4 +1,18 @@
 #dialogBox{
+    position: relative;
+}
+
+#dialogBox .mainImgDialog{
     position: absolute;
-    left: 50%;
+    width: 501.2px; 
+    height: 250px;
+    top: -25px;
+    left: -5.5%;
+
+}
+
+#dialogBox #dialogContent{
+    position: absolute;
+    top: 250px;
+    
 }
