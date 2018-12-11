@@ -70,7 +70,7 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
       </mat-cell>
     </div>
     <div id="cellWithNoData" *ngIf="this.noData">
-        <mat-cell id="cellWithNoData" *matCellDef="let element">
+        <mat-cell id="cellWithNoData" *matCellDef="let element" (click)="test(element.featured_image)">
           <div id="restaurantNoData">
             <div id="imageDiv" *ngIf="this.noData"><img src="../../assets/images/noData.png"></div>
           </div>

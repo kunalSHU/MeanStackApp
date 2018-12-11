@@ -219,6 +219,7 @@ export class RegisterComponent implements OnInit {
     $("#progressbar li").eq(1).addClass("active");
     $("#msform").children("#f2").show();
   }
+  
   secondnextCall(date){
     $("#msform").children("#f2").hide();
     this.current_fs = $(this).parent();

@@ -126,13 +126,6 @@ export class RestaurantTableComponent implements OnInit {
       console.log(image_url);
       console.log('in the test');
 
-      if(image_url == ""){
-        this.noData = true;
-      }
-      else{
-        this.noData = false;
-      }
-
       this.clickTest = true;
 
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -143,6 +136,7 @@ export class RestaurantTableComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        console.log("NO DATA VALUE " + this.noData);
       });
     }
     formatList(lst: any){
