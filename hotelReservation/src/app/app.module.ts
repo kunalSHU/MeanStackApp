@@ -65,6 +65,10 @@ import {RatingModule} from "ngx-rating";
 import { RestaurantTableComponent, DialogOverviewExampleDialog } from './restaurant-table/restaurant-table.component';
 //import { CuisineTableComponent } from './cuisine-table/cuisine-table.component';
 //import { CuisineTableDataSource } from './cuisine-table/cuisine-table-datasource';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 @NgModule({
   exports: [
     CdkTableModule,
@@ -127,7 +131,8 @@ export class DemoMaterialModule {}
   ],
   entryComponents: [AppComponent, SubmitComponent, DialogOverviewExampleDialog],
   declarations: [AppComponent,RestaurantTableComponent,DialogOverviewExampleDialog ,RestaurantsComponent,NavPicComponent,CuisineTableComponent,LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
-  bootstrap: [AppComponent],  providers: [AppService,/*CuisineTableDataSource,*/HttpClientModule,LoginGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+  bootstrap: [AppComponent],  providers: [AppService,/*CuisineTableDataSource,*/HttpClientModule,LoginGuard,  {provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG}, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule {}

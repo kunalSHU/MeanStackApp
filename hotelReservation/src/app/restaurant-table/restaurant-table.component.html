@@ -1,6 +1,7 @@
 <div class="linebold"></div>
 <div class="linenormal"></div>
-<div id="myFavs"> My Favourites </div>
+<div id="myFavs"> My Favourites  </div>
+<perfect-scrollbar style="max-width: 600px; max-height: 400px;" [config]="config"></perfect-scrollbar>
 <div class="test">
     <div id="sort" align="center">Sort By:</div>
     <mat-radio-group class="example-radio-group" [(ngModel)]="selectedCategory">
@@ -15,7 +16,7 @@
   </div>
 
 <mat-table [dataSource]="dataSources" id="table" class="mat-elevation-z8"
-infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [infiniteScrollThrottle]="3000">
+infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [perfectScrollbar]="config" [infiniteScrollThrottle]="3000">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
