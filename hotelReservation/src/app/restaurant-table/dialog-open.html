@@ -1,6 +1,9 @@
 <div id="dialogBox"> 
   <img class="mainImgDialog" *ngIf="data.no_data == false" src="{{data.imageUrl}}" mat-dialog-title>
-  <mat-dialog-content id="dialogContent">
-    hello
-  </mat-dialog-content>
+  <img class="mainImgDialog" *ngIf="data.no_data == true" src="{{data.imageUrl}}" mat-dialog-title>
+  <div id="dialogWrapper">
+    <mat-dialog-content id="dialogContent">
+      hello
+    </mat-dialog-content>
+  </div>
 </div>

@@ -10,9 +10,18 @@
     left: -5.5%;
 
 }
+#dialogBox #dialogWrapper{
+    
+    position: absolute;
+    width: 500px;
+    height: 451px;
+    top: 225px;
+    left: -5.3%;
+    background-color: rgba(0, 0, 0, 0.79);
+}
 
 #dialogBox #dialogContent{
     position: absolute;
-    top: 250px;
-    
+    top: 50px;
+    color: white;
 }
