@@ -20,6 +20,27 @@
     background-color: rgba(0, 0, 0, 0.79);
 }
 
+#dialogBox #addFavButton{
+    position: absolute;
+    top: 380px;
+    left: 25px;
+    height: 50px;
+    width: 450px;
+    background-color: rgba(128, 128, 128, 0.68);
+}
+#dialogBox #addFavButton .addImage{
+    position: absolute;
+    left: 140px;
+    top: 15px;
+    height: 20px;
+    width: 20px;
+}
+
+#dialogBox #addFavButton #favWriting{
+    position: relative;
+    color: white;
+    font-weight: bold;
+}
 #dialogBox #dialogContent{
     position: absolute;
     top: 50px;
