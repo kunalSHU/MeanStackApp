@@ -41,8 +41,9 @@
     color: white;
     font-weight: bold;
 }
-#dialogBox #dialogContent{
+#dialogBox #dialogContent #address{
     position: absolute;
-    top: 50px;
+    top: 25px;
+    left: 10px;
     color: white;
 }

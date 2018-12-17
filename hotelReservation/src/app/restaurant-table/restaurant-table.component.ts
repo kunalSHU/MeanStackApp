@@ -122,20 +122,21 @@ export class RestaurantTableComponent implements OnInit {
       console.log(cuisine_string);
     }
 
-    test(image_url){
-      console.log(image_url);
+    test(element){
+      
       console.log('in the test');
-
-      if(image_url == ""){
-        image_url = "../../assets/images/noImage.png";
+      console.log("THIS IS THE ELEMENT " + element.location.address);
+      if(element.featured_image == ""){
+        element.featured_image = "../../assets/images/noImage.png";
       }
-
+      console.log("THE IMAGE URL " + element.featured_image);
       this.clickTest = true;
 
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
         width: '500px',
         height: '700px',
-        data: {imageUrl: image_url, no_data: this.noData}
+        data: {imageUrl: element.featured_image, 
+          no_data: this.noData, resAddress: element.location.address}
       });
       dialogRef.afterClosed().subscribe(result => {
       });
