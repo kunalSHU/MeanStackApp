@@ -6,6 +6,19 @@
       <div id="address" align="center">
         {{data.resAddress}}
       </div>
+
+      <mat-table [dataSource]="commentsData" id="reviewTable" class="mat-elevation-z8"
+      infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [perfectScrollbar]="config" [infiniteScrollThrottle]="3000">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef id="cellDef"><div id="reviews"> Reviews </div></mat-header-cell>
+          <mat-cell *matCellDef="let element" id="cellData">
+            <div id="reviewText">{{element.review_text}}</div>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
     </mat-dialog-content>
     <button mat-raised-button id="addFavButton">
       <img class="addImage" src="../../assets/images/plusIcon.png">

@@ -5,7 +5,7 @@ import {MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@ang
 import {SelectionModel} from '@angular/cdk/collections';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {AppService} from '../service/app.service';
-
+import {tableUtil} from './tableUtil';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -39,7 +39,8 @@ export class RestaurantTableComponent implements OnInit {
     group: number = 5; 
     loading: boolean = false;
     location_id: any;
-    constructor(private http: HttpClient, public dialog: MatDialog, private appService: AppService){
+    constructor(private http: HttpClient, 
+      public tableUtil: tableUtil,public dialog: MatDialog, private appService: AppService){
   
     }
     ngOnInit(){
@@ -58,13 +59,10 @@ export class RestaurantTableComponent implements OnInit {
 
       //infinite scroll stuff here
       if(this.formatted_data_lst.length != 0){
-        let headers: HttpHeaders = new HttpHeaders();
-        headers = headers.append('Accept', 'application/json');
-        headers = headers.append('X-Zomato-API-Key', '5f8f8c7daa019ccc1553516688930d4f');
         this.location_array = JSON.parse(localStorage.getItem("locationInfo"));
         this.location_id  = this.location_array[0].id;
         console.log(this.location_id);
-        this.appService.getCollectionsFromCityZomato(headers, this.location_id).subscribe(result => {
+        this.appService.getCollectionsFromCityZomato(this.tableUtil.headerInit(), this.location_id).subscribe(result => {
           console.log(result);
         });
         this.getImages();
@@ -85,9 +83,6 @@ export class RestaurantTableComponent implements OnInit {
       this.new_formatted_data_lst = this.formatted_data_lst.slice(this.index, this.group);
       this.totalImages = this.totalImages.concat(this.new_formatted_data_lst);
       console.log(this.totalImages);
-      if(this.totalImages[13]){
-        console.log(typeof(this.totalImages[13].user_rating.rating_color));
-      }
       this.dataSources = new MatTableDataSource(this.totalImages);
       ///console.log(this.getCumulativeOffset(element));
       //console.log(element.position());
@@ -136,7 +131,8 @@ export class RestaurantTableComponent implements OnInit {
         width: '500px',
         height: '700px',
         data: {imageUrl: element.featured_image, 
-          no_data: this.noData, resAddress: element.location.address}
+          no_data: this.noData, resAddress: element.location.address,
+          resID: element.R.res_id}
       });
       dialogRef.afterClosed().subscribe(result => {
       });
@@ -155,14 +151,39 @@ export class RestaurantTableComponent implements OnInit {
   templateUrl: './dialog-open.html',
   styleUrls: ['dialog-open.css']
 })
-export class DialogOverviewExampleDialog {
+export class DialogOverviewExampleDialog implements OnInit{
 
+  commentsData: MatTableDataSource<any>;
+  displayedColumns: string[] = ['id'];
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
+    @Inject(MAT_DIALOG_DATA) public data: any, public appService: AppService,
+  public http: HttpClient, public tableUtil: tableUtil) {}
+
+  ngOnInit(){
+
+    //make rest call to review endpoint here to zomato API
+    console.log("IMAGE URL IN DIALOG " + this.data.imageUrl);
+    console.log("RES ID IN DIALOG " + this.data.resID);
+    this.appService.getReviewForRestaurantZomato(this.tableUtil.headerInit(), this.data.resID).subscribe(result => {
+      console.log(result);
+      
+      //matTableData source takes in a list of dictionaries
+      //ie [{p: 1, q: 2}, {x: 3, y: 4}]
+
+      var i;
+      var reviewList = [];
+      for(i = 0; i < result.user_reviews.length; i++){
+        reviewList.push(result.user_reviews[i].review);
+      }
+      console.log(reviewList);
+      this.commentsData = new MatTableDataSource(reviewList);
+    })
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
 }
+

@@ -66,4 +66,9 @@ export class AppService {
     return this.http.get(url,{headers})
     .map((response: any)=> response);
   }
+  getReviewForRestaurantZomato(headers: HttpHeaders, resID: number){
+    const url = `https://developers.zomato.com/api/v2.1/reviews?res_id=${resID}`;
+    return this.http.get(url,{headers})
+    .map((response: any)=> response);
+  }
 }

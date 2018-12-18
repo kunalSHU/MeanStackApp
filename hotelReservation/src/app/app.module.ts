@@ -7,6 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {NgProgressModule} from '@ngx-progressbar/core';
 import {AgmCoreModule} from '@agm/core';
 import {AppService} from '../app/service/app.service';
+import {tableUtil} from '../app/restaurant-table/tableUtil';
 import {LoginGuard} from '../app/login/login.guard';
 import { HttpModule } from '@angular/http';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
@@ -131,7 +132,7 @@ export class DemoMaterialModule {}
   ],
   entryComponents: [AppComponent, SubmitComponent, DialogOverviewExampleDialog],
   declarations: [AppComponent,RestaurantTableComponent,DialogOverviewExampleDialog ,RestaurantsComponent,NavPicComponent,CuisineTableComponent,LoginComponent,RegisterComponent, SubmitComponent, HomeComponent],
-  bootstrap: [AppComponent],  providers: [AppService,/*CuisineTableDataSource,*/HttpClientModule,LoginGuard,  {provide: PERFECT_SCROLLBAR_CONFIG,
+  bootstrap: [AppComponent],  providers: [tableUtil, AppService,/*CuisineTableDataSource,*/HttpClientModule,LoginGuard,  {provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG}, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

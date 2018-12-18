@@ -47,3 +47,32 @@
     left: 10px;
     color: white;
 }
+
+#reviewTable{
+    position: absolute;
+    height: 280px;
+    width: 88%;
+    top: 75px;
+    left: 25px;
+}
+
+#reviewTable #cellData{
+    background-color: rgba(0, 0, 0, 0.83);
+    border-bottom: 1px solid white;
+    position: relative;
+}
+
+#reviewTable #cellData #reviewText{
+    color: white;
+    position: relative;
+}
+#reviewTable #cellDef{
+    background-color: rgba(0, 0, 0, 0.83);
+    border-bottom: 1px solid white;
+    position: relative;
+}
+#reviewTable #cellDef #reviews{
+    color: white;
+    left: 45%;
+    position: relative;
+}
