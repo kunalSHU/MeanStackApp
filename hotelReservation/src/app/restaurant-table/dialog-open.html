@@ -13,6 +13,9 @@
             <mat-header-cell *matHeaderCellDef id="cellDef"><div id="reviews"> Reviews </div></mat-header-cell>
           <mat-cell *matCellDef="let element" id="cellData">
             <div id="reviewText">{{element.review_text}}</div>
+            <div id="reviewTime">{{element.review_time_friendly}}</div>
+            <img id="profileImage" src="{{element.user.profile_image}}">
+            <div id="name">- {{element.user.name}}</div>
           </mat-cell>
         </ng-container>
 

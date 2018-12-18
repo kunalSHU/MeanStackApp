@@ -51,9 +51,9 @@
 #reviewTable{
     position: absolute;
     height: 280px;
-    width: 88%;
+    width: 92%;
     top: 75px;
-    left: 25px;
+    left: 20px;
 }
 
 #reviewTable #cellData{
@@ -64,7 +64,11 @@
 
 #reviewTable #cellData #reviewText{
     color: white;
+    font-size: 14px;
+    font-family: 'Agency FB';
+    font: 'Agency FB';
     position: relative;
+    left: 18px;
 }
 #reviewTable #cellDef{
     background-color: rgba(0, 0, 0, 0.83);
@@ -75,4 +79,30 @@
     color: white;
     left: 45%;
     position: relative;
+}
+#reviewTable #cellData #reviewTime{
+    color: white;
+    font-size: 14px;
+    font-family: 'Agency FB';
+    font: 'Agency FB';
+    position: absolute;
+    right: 90px;
+    top: 25px;
+    
+}
+#reviewTable #cellData #name{
+    color: white;
+    font-size: 14px;
+    font-family: 'Agency FB';
+    font: 'Agency FB';
+    position: absolute;
+    right: 18px;
+    top: 25px;
+}
+#reviewTable #cellData #profileImage{
+    position: absolute;
+    left: 10px;
+    top: 12.5px;
+    width: 25px;
+    height: 25px;
 }
