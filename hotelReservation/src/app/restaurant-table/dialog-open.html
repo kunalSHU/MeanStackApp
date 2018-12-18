@@ -8,9 +8,9 @@
       </div>
 
       <mat-table [dataSource]="commentsData" id="reviewTable" class="mat-elevation-z8"
-      infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [perfectScrollbar]="config" [infiniteScrollThrottle]="3000">
+      infiniteScroll class="content" [scrollWindow]="false" [perfectScrollbar]="config" [infiniteScrollThrottle]="3000">
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef id="cellDef"><div id="reviews"> Reviews </div></mat-header-cell>
+            <mat-header-cell *matHeaderCellDef id="cellDef"><div id="reviews"> Reviews for {{data.resName}}</div></mat-header-cell>
           <mat-cell *matCellDef="let element" id="cellData">
             <div id="reviewText">{{element.review_text}}</div>
             <div id="reviewTime">{{element.review_time_friendly}}</div>
@@ -31,3 +31,4 @@
     </button>
   </div>
 </div>
+<div class="lds-ellipsis" *ngIf="loading"><div></div><div></div><div></div><div></div></div>

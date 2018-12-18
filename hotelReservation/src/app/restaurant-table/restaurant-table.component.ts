@@ -132,7 +132,7 @@ export class RestaurantTableComponent implements OnInit {
         height: '700px',
         data: {imageUrl: element.featured_image, 
           no_data: this.noData, resAddress: element.location.address,
-          resID: element.R.res_id}
+          resID: element.R.res_id, resName: element.name}
       });
       dialogRef.afterClosed().subscribe(result => {
       });
