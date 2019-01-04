@@ -210,7 +210,6 @@ export class RegisterComponent implements OnInit {
     this.snackBar.openFromComponent(SubmitComponent, {duration: 1200,
     });
   }
-
   firstnextCall(){
     //Using JQuery for the progress bar 
     $("#msform").children("#f1").hide();
@@ -227,7 +226,7 @@ export class RegisterComponent implements OnInit {
     if(this.autocomplete.getPlace() != undefined){
       (<HTMLInputElement>document.getElementById('streetValue')).innerHTML = '<b>Street: </b>' + this.autocomplete.getPlace().formatted_address;
     }
-  
+
     this.formattedDate = this.datePipe.transform(date, "yyyy-MM-dd");
     $("#progressbar li").eq(2).addClass("active");
     $("#msform").children("#f3").show();

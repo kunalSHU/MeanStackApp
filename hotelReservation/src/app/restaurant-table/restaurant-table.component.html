@@ -46,6 +46,9 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
             <div id="numberRating">
               <font color="element.user_rating.rating_color">{{element.user_rating.aggregate_rating}}</font>
             </div>
+            <div id="avgCost">
+              Avg Cost for 2: {{element.currency}}{{element.average_cost_for_two}}
+            </div>
           </div>
           <div *ngIf="element.featured_image=='' && !this.noData">
             <img src="../../assets/images/noImage.png"> 
@@ -65,6 +68,9 @@ infiniteScroll class="content" (scrolled)="getImages()" [scrollWindow]="false" [
             </div>
             <div id="numberRating">
              <font color="element.user_rating.rating_color">{{element.user_rating.aggregate_rating}}</font> 
+            </div>
+            <div id="avgCost">
+              Avg Cost for 2: {{element.currency}}{{element.average_cost_for_two}}
             </div>
           </div>
         </div>

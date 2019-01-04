@@ -163,6 +163,14 @@ mat-expansion-panel{
     top:15px;
     font-weight: bold;
   }  
+
+  #table mat-cell #restaurantInfo #avgCost{
+    color: white;
+    position: absolute;
+    left:35%;
+    top:125px;
+    font-weight: bold;
+  }  
   
   #table mat-cell #restaurantInfo #elementType{
     color: white;
