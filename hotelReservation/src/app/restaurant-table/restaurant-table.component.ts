@@ -102,7 +102,6 @@ export class RestaurantTableComponent implements OnInit {
 
       //store clicked category in localStorage
       localStorage.setItem("categoryVal", param);
-
       return param;
     }
     searchClick(){
@@ -132,7 +131,7 @@ export class RestaurantTableComponent implements OnInit {
         height: '700px',
         data: {imageUrl: element.featured_image, 
           no_data: this.noData, resAddress: element.location.address,
-          resID: element.R.res_id, resName: element.name}
+          resID: element.R.res_id, resName: element.name, rating: element.user_rating}
       });
       dialogRef.afterClosed().subscribe(result => {
       });
@@ -154,6 +153,7 @@ export class RestaurantTableComponent implements OnInit {
 export class DialogOverviewExampleDialog implements OnInit{
 
   commentsData: MatTableDataSource<any>;
+  favRestaurantsData: MatTableDataSource<any>;
   displayedColumns: string[] = ['id'];
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
@@ -165,6 +165,8 @@ export class DialogOverviewExampleDialog implements OnInit{
     //make rest call to review endpoint here to zomato API
     console.log("IMAGE URL IN DIALOG " + this.data.imageUrl);
     console.log("RES ID IN DIALOG " + this.data.resID);
+    console.log("THE RES NAME " + this.data.resName);
+    console.log("THE RATING OF THE RES " + this.data.rating.aggregate_rating);
     this.appService.getReviewForRestaurantZomato(this.tableUtil.headerInit(), this.data.resID).subscribe(result => {
       console.log(result);
       
@@ -179,6 +181,13 @@ export class DialogOverviewExampleDialog implements OnInit{
       console.log(reviewList);
       this.commentsData = new MatTableDataSource(reviewList);
     })
+  }
+
+  addToFavListener(){
+    console.log('fav button clicked');
+    let jsonRestaurantHistoryList = [];
+
+
   }
 
   onNoClick(): void {
